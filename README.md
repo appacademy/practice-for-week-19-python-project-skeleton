@@ -110,7 +110,7 @@ Add the following keys and values in the Render GUI form:
 - SECRET_KEY (click "Generate" to generate a secure secret for production)
 - FLASK_ENV production
 - FLASK_APP app
-- REACT_APP_BASE_URL https://<this-application-name>.onrender.com
+- REACT_APP_BASE_URL https://this-application-name.onrender.com
 
 In a new tab, navigate to your dashboard and click on your Postgres database
 instance.
@@ -135,7 +135,7 @@ start commands being executed, and see any errors in the build process.
 When deployment is complete, open your deployed site and check to see if you
 successfully deployed your Flask application to Render! You can find the URL for
 your site just below the name of the Web Service at the top of the page
-(https://<this-application-name>.onrender.com).
+(https://this-application-name.onrender.com).
 
 [Render.com]: https://render.com/
 [Dashboard]: https://dashboard.render.com/
