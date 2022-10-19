@@ -18,7 +18,8 @@ This is the starter for the Flask React project.
 
 5. (Optional): This starter organizes all tables inside the `flask_schema`
    schema. Use the search function in VSCode to find all instances of
-   `flask_schema` and replace them with a unique schema name.
+   `flask_schema` and replace them with a unique schema name. Make sure you use
+   the snake_case convention for the schema name.
 
 6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
 
