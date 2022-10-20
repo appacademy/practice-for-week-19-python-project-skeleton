@@ -16,10 +16,10 @@ This is the starter for the Flask React project.
 
 4. Make sure the SQLite3 database connection URL is in the **.env** file
 
-5. (Optional): This starter organizes all tables inside the `flask_schema`
-   schema. Use the search function in VSCode to find all instances of
-   `flask_schema` and replace them with a unique schema name. Make sure you use
-   the snake_case convention for the schema name.
+5. This starter organizes all tables inside the `flask_schema` schema, defined
+   by the `SCHEMA` environment variable.  Replace the value for
+   `SCHEMA` with a unique name, **making sure you use the snake_case
+   convention**.
 
 6. Get into your pipenv, migrate your database, seed your database, and run your Flask app
 
@@ -66,14 +66,14 @@ the root directory.
 Make sure the Environment field is set set to "Python 3", the Region is set to
 the location closest to you, and the Branch is set to "main".
 
-Next, add your Build script. This is a script that should include everything
+Next, add your Build command. This is a script that should include everything
 that needs to happen _before_ starting the server.
 
-For your Flask project, enter the following script into the Build field, all in
+For your Flask project, enter the following command into the Build field, all in
 one line:
 
 ```shell
-# build script - enter all in one line
+# build command - enter all in one line
 npm install --prefix react-app &&
 npm run build --prefix react-app &&
 pip install -r requirements.txt &&
@@ -87,7 +87,7 @@ command in the __package.json__ file for the frontend, which builds the React
 application. Then, it will install the dependencies needed for the Python
 backend, and run the migration and seed files.
 
-Now, add your start script in the Start field:
+Now, add your start command in the Start field:
 
 ```shell
 # start script
@@ -111,7 +111,9 @@ Add the following keys and values in the Render GUI form:
 - SECRET_KEY (click "Generate" to generate a secure secret for production)
 - FLASK_ENV production
 - FLASK_APP app
-- REACT_APP_BASE_URL https://this-application-name.onrender.com
+- SCHEMA (your unique schema name, in snake_case)
+- REACT_APP_BASE_URL (use render.com url, located at top of page, similar to
+  https://this-application-name.onrender.com)
 
 In a new tab, navigate to your dashboard and click on your Postgres database
 instance.
@@ -135,8 +137,7 @@ start commands being executed, and see any errors in the build process.
 
 When deployment is complete, open your deployed site and check to see if you
 successfully deployed your Flask application to Render! You can find the URL for
-your site just below the name of the Web Service at the top of the page
-(https://this-application-name.onrender.com).
+your site just below the name of the Web Service at the top of the page.
 
 [Render.com]: https://render.com/
 [Dashboard]: https://dashboard.render.com/

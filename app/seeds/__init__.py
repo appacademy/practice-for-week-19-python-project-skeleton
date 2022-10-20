@@ -1,11 +1,7 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
 
-from app.models import db
-
-import os
-
-environment = os.getenv("FLASK_ENV")
+from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -18,7 +14,7 @@ def seed():
     if environment == 'production':
         # Before seeding, truncate all tables prefixed with schema name
         # Add a truncate command for each table that will be seeded.
-        db.session.execute('TRUNCATE table flask_schema.users RESTART IDENTITY CASCADE;')
+        db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
         db.session.commit()
     seed_users()
     # Add other seed functions here
