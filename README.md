@@ -95,6 +95,10 @@ Now, add your start command in the Start field:
 gunicorn app:app
 ```
 
+_If you are using websockets, use the following start command instead for increased performance:_
+
+`gunicorn --worker-class eventlet -w 1 app:app`
+
 ### Part B: Add the Environment Variables
 
 Click on the "Advanced" button at the bottom of the form to configure the
