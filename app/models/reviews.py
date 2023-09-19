@@ -13,6 +13,8 @@ class Review(db.Model):
     review = db.Column(db.String(500), nullable=False)
     stars = db.Column(db.Integer(), nullable=False)
 
+    images = db.relationship('Image', backref='review')
+
     def to_dict(self):
         return {
             'id': self.id,
