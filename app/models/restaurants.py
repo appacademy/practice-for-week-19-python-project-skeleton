@@ -15,6 +15,8 @@ class Restaurant(db.Model):
     name = db.Column(db.String, nullable=False)
     priceRange = db.Column(db.Integer, nullable=False)
 
+    images = db.relationship('Image', backref='restaurant')
+
     def to_dict(self):
         return {
             "id": self.id,
