@@ -7,8 +7,8 @@ class Image(db.Model):
         table_args = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    reviewId = db.Column(db.Integer, db.ForeignKey("reviews.id"))
-    restaurantId = db.Column(db.Integer, db.ForeignKey("restaurants.id"))
+    review_id = db.Column(db.Integer, db.ForeignKey("reviews.id"))
+    restaurant_id = db.Column(db.Integer, db.ForeignKey("restaurants.id"))
     url = db.Column(db.String, nullable=False)
 
     def to_dict(self):

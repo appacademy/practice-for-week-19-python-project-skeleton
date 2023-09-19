@@ -7,13 +7,13 @@ class Restaurant(db.Model):
         table_args = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    owner_id = db.Column('ownerId', db.ForeignKey("users.id"))
+    owner_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     address = db.Column(db.String, nullable=False)
     city = db.Column(db.String, nullable=False)
     state = db.Column(db.String, nullable=False)
     country = db.Column(db.String, nullable=False)
     name = db.Column(db.String, nullable=False)
-    priceRange = db.Column(db.Integer, nullable=False)
+    price = db.Column(db.Integer, nullable=False)
 
     images = db.relationship('Image', backref='restaurant')
 
