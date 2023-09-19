@@ -1,9 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, IntegerField
 from wtforms.validators import DataRequired
-from app.models import Image
+from app.models import MenuItem
 
-class ImageForm(FlaskForm):
-    review_id = IntegerField("Review",  validators=[DataRequired()])
+class MenuItemForm(FlaskForm):
     restaurant_id = IntegerField("Restaurant", validators=[DataRequired()])
-    url = StringField("URL", validators=[DataRequired()])
+    item = StringField("Item", validators=[DataRequired()])
