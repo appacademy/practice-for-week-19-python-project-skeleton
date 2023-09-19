@@ -13,6 +13,9 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    reviews = db.relationship('Review', backref='review')
+    restaurants = db.relationship("Restaurant", backref="owner")
+
 
     @property
     def password(self):
