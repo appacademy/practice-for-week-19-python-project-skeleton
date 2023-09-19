@@ -13,8 +13,9 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    reviews = db.relationship('Review', backref='review', cascade='all, delete-orphan')
-    restaurants = db.relationship("Restaurant", backref="owner", cascade='all, delete-orphan')
+
+    reviews = db.relationship('Review', back_populates='reviewer', cascade='all, delete-orphan')
+    restaurants = db.relationship("Restaurant", back_populates='owner', cascade='all, delete-orphan')
 
 
     @property

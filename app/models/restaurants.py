@@ -1,21 +1,23 @@
 from .db import db, environment, SCHEMA
 
 class Restaurant(db.Model):
-    tablename = "restaurants"
+    __tablename__ = "restaurants"
 
     if environment == "production":
         table_args = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    owner_id = db.Column('ownerId', db.ForeignKey("users.id"))
+    owner_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     address = db.Column(db.String, nullable=False)
     city = db.Column(db.String, nullable=False)
     state = db.Column(db.String, nullable=False)
     country = db.Column(db.String, nullable=False)
     name = db.Column(db.String, nullable=False)
-    priceRange = db.Column(db.Integer, nullable=False)
+    price = db.Column(db.Integer, nullable=False)
 
-    images = db.relationship('Image', backref='restaurant')
+    images = db.relationship('Image', back_populates='restaurant', cascade='all, delete-orphan')
+    owner = db.relationship('User', back_populates='restaurants')
+    menuitems = db.relationship('MenuItem', back_populates='restaurant', cascade='all, delete-orphan')
 
     def to_dict(self):
         return {
@@ -26,5 +28,5 @@ class Restaurant(db.Model):
             "state": self.state,
             "country": self.country,
             "name": self.name,
-            "priceRange": self.priceRange,
+            "price": self.price,
         }
