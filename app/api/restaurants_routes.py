@@ -25,11 +25,17 @@ def get_restaurants():
         id = restaurant.id
         reviews = Review.query.filter(Review.restaurant_id == id)
         ratings = []
-        for review in reviews:
-            ratings.append(review.stars)
-        avgRating = mean(ratings)
-        restaurant.rating = round(avgRating, 2)
+        if reviews:
+            for review in reviews:
+                ratings.append(review.stars)
+                if len(ratings) > 0:
+                    avgRating = mean(ratings)
+                    restaurant.rating = round(avgRating, 2)
         results.append(restaurant.to_dict())
+        # menu=[]
+        # for item in restaurant.menuitems:
+        #     menu.append(item.to_dict())
+        # return menu
     return results
 
 @restaurant_routes.route('/new', methods=['POST'])
