@@ -5,11 +5,11 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_restaurants():
     restaurant1 = Restaurant(
-        owner_id=1, address='123 Glizzy Way', city='Hot Dog Cove', state='NE', country='USA', name="Frank's Weenies", price=2)
+        owner_id=1, address='123 Glizzy Way', city='Hot Dog Cove', state='NE', country='USA', name="Frank's Weenies", price=2, rating=0)
     restaurant2 = Restaurant(
-        owner_id=2, address='6969 Ben Dover St', city='Sawcon', state='FL', country='Sugon', name="Sugondese World Famous Dogs", price=1)
+        owner_id=2, address='6969 Ben Dover St', city='Sawcon', state='FL', country='Sugon', name="Sugondese World Famous Dogs", price=1, rating=0)
     restaurant3 = Restaurant(
-        owner_id=3, address='18180 Colima Rd', city='Rowland Hts', state='CA', country='USA', name="Top Dog", price=2)
+        owner_id=3, address='18180 Colima Rd', city='Rowland Hts', state='CA', country='USA', name="Top Dog", price=2, rating=0)
 
     db.session.add(restaurant1)
     db.session.add(restaurant2)

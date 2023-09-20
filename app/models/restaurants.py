@@ -14,6 +14,7 @@ class Restaurant(db.Model):
     country = db.Column(db.String, nullable=False)
     name = db.Column(db.String, nullable=False)
     price = db.Column(db.Integer, nullable=False)
+    rating = db.Column(db.Integer, nullable=True)
 
     images = db.relationship('Image', back_populates='restaurant', cascade='all, delete-orphan')
     owner = db.relationship('User', back_populates='restaurants')
@@ -29,4 +30,5 @@ class Restaurant(db.Model):
             "country": self.country,
             "name": self.name,
             "price": self.price,
+            "rating": self.rating
         }

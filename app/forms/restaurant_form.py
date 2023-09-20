@@ -5,10 +5,10 @@ from app.models import Restaurant
 
 
 class CreateRestaurantForm(FlaskForm):
-    owner_id = IntegerField('Owner', validators=[DataRequired()])
-    address = StringField('Address', validators=[DataRequired()])
-    city = StringField('City', validators=[DataRequired()])
-    state = StringField('State', validators=[DataRequired()])
-    country = StringField('Country', validators=[DataRequired()])
-    name = StringField('Name', validators=[DataRequired()])
-    price = IntegerField('Price', validators=[DataRequired()])
+    owner_id = IntegerField('owner')
+    address = StringField('address', validators=[DataRequired()])
+    city = StringField('city', validators=[DataRequired()])
+    state = StringField('state', validators=[DataRequired()])
+    country = StringField('country', validators=[DataRequired()])
+    name = StringField('name', validators=[DataRequired()])
+    price = IntegerField('price', validators=[DataRequired()])
