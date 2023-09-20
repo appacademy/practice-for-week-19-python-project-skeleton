@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
+import LoginFormModal from "../LoginFormModal";
+import RegisterModalButton from "../OpenModalButton/indexv2";
 import "./SignupForm.css";
 
 function SignupFormModal() {
@@ -30,7 +32,7 @@ function SignupFormModal() {
 	};
 
 	return (
-		<>
+		<div className="signup-container-modal">
 			<h1>Sign Up</h1>
 			<form onSubmit={handleSubmit}>
 				<ul>
@@ -38,45 +40,58 @@ function SignupFormModal() {
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
-				<label>
-					Email
+				<div className="input-fields">
+				<label className="email-input-field">
+
 					<input
+						placeholder="Email"
 						type="text"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						required
 					/>
 				</label>
-				<label>
-					Username
+				<label className="password-input-field">
+
+				<input
+					placeholder="Password"
+						type="password"
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+							required
+						/>
+				</label>
+				<label className="username-input-field">
+
 					<input
+					placeholder="Username"
 						type="text"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
 						required
 					/>
 				</label>
-				<label>
-					Password
+				<label className="confirm-password-input-field">
+
 					<input
-						type="password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Confirm Password
-					<input
+					placeholder="Confirm Password"
 						type="password"
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
 						required
 					/>
 				</label>
-				<button type="submit">Sign Up</button>
+				</div>
+				<button type="submit" className="login-for-modal">Sign Up</button>
+				<div className="existing-account-button">
+					<p>Already have an account? <a><RegisterModalButton
+              className="login-button"
+              buttonText="Log In"
+              modalComponent={<LoginFormModal />}
+            /></a></p>
+				</div>
 			</form>
-		</>
+		</div>
 	);
 }
 

@@ -4,6 +4,9 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import './Navigation.css';
+
+
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -38,9 +41,9 @@ function ProfileButton({ user }) {
   const closeMenu = () => setShowMenu(false);
 
   return (
-    <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+    <div>
+      <button className='profile-button' onClick={openMenu}>
+        <img className='profile-image' src='https://cdn.discordapp.com/attachments/1115823811116400650/1153911006939054180/gayboyjosh.png' alt="profile button"></img>
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
@@ -52,22 +55,26 @@ function ProfileButton({ user }) {
             </li>
           </>
         ) : (
-          <>
+          <ul className="login-signup-buttons">
+            <li>
             <OpenModalButton
+              className="login-button"
               buttonText="Log In"
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
             />
-
+          </li>
+          <li>
             <OpenModalButton
               buttonText="Sign Up"
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
-          </>
+            </li>
+          </ul>
         )}
       </ul>
-    </>
+    </div>
   );
 }
 

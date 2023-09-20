@@ -1,0 +1,134 @@
+.signup-container-modal {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 65%;
+    margin: 30px 0;
+    border-radius: 20px;
+    background: orange;
+    width: 800px;
+    height: 450px;
+    border: 1px solid black
+}
+
+.login-for-modal {
+    color: white;
+    transition: all 0.5s;
+    position: relative;
+    line-height: 50px;
+    height: 50px;
+    text-align: center;
+    width: 250px;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-left: 200px;
+    border: 0;
+    background-color: orange;
+    border-radius: 35px;
+}
+.login-for-modal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(255,255,255,0.3);
+    transition: all 0.3s;
+    border-radius: 35px;
+}
+.login-for-modal:hover::before {
+    opacity: 0 ;
+    transform: scale(0.5,0.5);
+}
+.login-for-modal::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border: 1px solid rgba(255,255,255,0.3);
+    transform: scale(1.2,1.2);
+    border-radius: 35px;
+}
+.login-for-modal:hover::after {
+    opacity: 1;
+    transform: scale(1,1);
+}
+
+.email-input-field input{
+    margin-top: 15px;
+    margin-left: 15px;
+    width: 75%;
+    border-radius: 40px;
+    border-radius: 40px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: white;
+    padding: 15px 40px 15px;
+}
+
+.username-input-field input{
+    margin-top: 15px;
+    margin-left: 15px;
+    width: 75%;
+    border-radius: 40px;
+    border-radius: 40px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: white;
+    padding: 15px 40px 15px;
+}
+
+.password-input-field input {
+    margin-top: 15px;
+    width: 75%;
+    border-radius: 40px;
+    border-radius: 40px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: white;
+    padding: 15px 40px 15px;
+}
+
+.confirm-password-input-field input{
+    margin-top: 15px;
+    width: 75%;
+    border-radius: 40px;
+    border-radius: 40px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: white;
+    padding: 15px 40px 15px;
+}
+
+.input-fields {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
