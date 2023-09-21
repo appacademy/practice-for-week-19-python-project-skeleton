@@ -116,3 +116,16 @@ def delete_one_restaurant(id):
         db.session.commit()
         return {'message': 'Restaurant successfully deleted'}
     return {'error': 'Restaurant not found'}, 404
+
+
+@restaurant_routes.route("/<int:id>/reviews")
+def get_reviews(id):
+    restaurant = Restaurant.query.get(id)
+    reviews = Review.query.filter(Review.restaurant_id == restaurant.id)
+    results = []
+    if reviews:
+        for review in reviews:
+            results.append(review.to_dict())
+        return results
+    else:
+        return {"errors": "No reivews found for this spot!"}, 404
