@@ -16,7 +16,6 @@ class Restaurant(db.Model):
     price = db.Column(db.Integer, nullable=False)
     rating = db.Column(db.Integer, nullable=True)
 
-    images = db.relationship('Image', back_populates='restaurant', cascade='all, delete-orphan')
     owner = db.relationship('User', back_populates='restaurants')
     menuitems = db.relationship('MenuItem', back_populates='restaurant', cascade='all, delete-orphan')
 
