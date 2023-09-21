@@ -5,11 +5,11 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_images():
     image1 = Image(
-        review_id=1, restaurant_id=1, url='https://i.kym-cdn.com/photos/images/original/002/478/462/fc2.jpg')
+        review_id=1, url='https://i.kym-cdn.com/photos/images/original/002/478/462/fc2.jpg')
     image2 = Image(
-        review_id=2, restaurant_id=2, url='https://i.redd.it/8i3g5uq6kac51.png')
+        review_id=2, url='https://i.redd.it/8i3g5uq6kac51.png')
     image3 = Image(
-        review_id=3, restaurant_id=3, url='https://i1.sndcdn.com/artworks-OnxUtSVPpcAFGZxQ-Sujwlw-t500x500.jpg')
+        review_id=3, url='https://i1.sndcdn.com/artworks-OnxUtSVPpcAFGZxQ-Sujwlw-t500x500.jpg')
 
     db.session.add(image1)
     db.session.add(image2)

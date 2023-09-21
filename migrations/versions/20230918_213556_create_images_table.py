@@ -21,10 +21,8 @@ def upgrade():
     op.create_table('images',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('review_id', sa.Integer(), nullable=False),
-    sa.Column('restaurant_id', sa.Integer(), nullable=False),
     sa.Column('url', sa.String(), nullable=False),
     sa.ForeignKeyConstraint(['review_id'], ['reviews.id'], ),
-    sa.ForeignKeyConstraint(['restaurant_id'], ['restaurants.id']),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
