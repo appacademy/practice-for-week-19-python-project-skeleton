@@ -9,6 +9,7 @@ function Navigation({ isLoaded }){
 	const [query, setQuery] = useState("")
 
 	return (
+		<div id="backround-image">
 		<ul className='nav-bar'>
 			<li>
 				<NavLink exact to="/"><img className='home-button' src='https://cdn.discordapp.com/attachments/1115823811116400650/1153915198898450462/joshisgay3.png' alt='home button'></img></NavLink>
@@ -23,6 +24,7 @@ function Navigation({ isLoaded }){
 				</li>
 			)}
 		</ul>
+		</div>
 	);
 }
 

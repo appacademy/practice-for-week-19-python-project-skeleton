@@ -6,66 +6,81 @@
     width: 100%;
     height: 50%;
     margin: 30px 0;
-    border-radius: 20px;
-    background: orange;
+    border-radius: 10px;
+    background: #151515;
     width: 500px;
-    height: 400px;
-    border: 1px solid black
+    height: 500px;
+    /* border: 1px solid black */
+}
+
+.login-container-modal h2 {
+    color: white;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+
+.login-container-modal p {
+    color: white;
+    margin-top: 0;
 }
 
 .username-field input{
+    background-color: grey;
     margin-left: 20px;
     width: 75%;
-    border-radius: 40px;
-    background: transparent;
+    border-radius: 10px;
     border: none;
     outline: none;
     border: 2px solid rgba(255, 255, 255, .2);
-    border-radius: 40px;
     font-size: 16px;
     color: white;
     padding: 15px 40px 15px;
 }
 .username-field input::placeholder{
-    color: white;
+    color: black;
 }
 .password-field input::placeholder{
-    color: white;
+    color: black;
 }
 
 .password-field input{
+    background-color: grey;
     margin-top: 15px;
     margin-left: 20px;
     width: 75%;
-    border-radius: 40px;
-    border-radius: 40px;
-    background: transparent;
+    border-radius: 10px;
     border: none;
     outline: none;
     border: 2px solid rgba(255, 255, 255, .2);
-    border-radius: 40px;
     font-size: 16px;
     color: white;
     padding: 15px 40px 15px;
 }
 
 .no-account-register  {
+    color: black;
     margin-left: 140px;
     margin-top: 50px;
 }
 
+
+
 .password-field i {
     position: absolute;
     right: 40px;
-    top: 225px;
+    top: 293px;
     font-size: 25px;
 }
 
 .username-field i {
     position: absolute;
     right: 40px;
-    top: 160px;
+    top: 227px;
     font-size: 25px;
+}
+
+.register-button {
+    color: #ff9600;
 }
 
 /* .login-for-modal {
@@ -82,7 +97,7 @@
 } */
 
 .login-for-modal {
-    color: white;
+    color: black;
     transition: all 0.5s;
     position: relative;
     line-height: 50px;
@@ -93,10 +108,27 @@
     margin-top: 15px;
     margin-left: 125px;
     border: 0;
-    background-color: orange;
-    border-radius: 35px;
+    background-color: #ff9600;
+    border-radius: 10px;
 }
-  .login-for-modal::before {
+
+.login-for-modal:disabled {
+    color: black;
+    transition: all 0.5s;
+    position: relative;
+    line-height: 50px;
+    height: 50px;
+    text-align: center;
+    width: 250px;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-left: 125px;
+    border: 0;
+    background-color: grey;
+    border-radius: 10px;
+}
+
+  /* .login-for-modal::before {
     content: '';
     position: absolute;
     top: 0;
@@ -106,7 +138,7 @@
     z-index: 1;
     background-color: rgba(255,255,255,0.3);
     transition: all 0.3s;
-    border-radius: 35px;
+    border-radius: 10px;
 }
   .login-for-modal:hover::before {
     opacity: 0 ;
@@ -124,9 +156,9 @@
     transition: all 0.3s;
     border: 1px solid rgba(255,255,255,0.3);
     transform: scale(1.2,1.2);
-    border-radius: 35px;
+    border-radius: 10px;
 }
   .login-for-modal:hover::after {
     opacity: 1;
     transform: scale(1,1);
-}
+} */

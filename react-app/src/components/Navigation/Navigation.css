@@ -1,14 +1,11 @@
-/* body{
-  background-image: url(https://cdn10.phillymag.com/wp-content/uploads/sites/3/2020/01/front-street-cafe-fishtown.jpg);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-} */
+body{
+  padding: 0;
+  margin: 0;
+}
 
 
 .profile-dropdown {
   list-style: none;
-  border: 1px solid black;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -17,7 +14,7 @@
   background: white;
   height: 5rem;
   width: 8rem;
-  padding: 0;
+  padding: 15px;
   border-radius: 5px;
 }
 
@@ -46,18 +43,17 @@
 }
 
 .nav-bar {
+  position: fixed;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   text-decoration: none;
   align-items: flex-start;
   list-style: none;
-  height: 500px;
-  background-image: url(https://cdn10.phillymag.com/wp-content/uploads/sites/3/2020/01/front-street-cafe-fishtown.jpg);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-
+  padding: 0;
+  margin: 0;
+  background-color: black;
 }
 
 .home-button {
@@ -79,6 +75,7 @@
   padding: 10px 20px;
   border-radius: 30px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  margin-top: 8px;
 }
 
 .search-bar:hover input{
@@ -94,5 +91,54 @@
 }
 
 .login-signup-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 5rem;
   list-style: none;
+  margin-top: 5px;
+  padding: 0;
+
+}
+
+#backround-image {
+  height: 500px;
+  background-attachment: fixed;
+  background-size: cover;
+  animation: change 15s infinite ease-in-out;
+  background-position: bottom;
+}
+/* #backround-image2 {
+  height: 500px;
+  background-image: url(pexels-rachel-claire-5490965.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+} */
+
+@keyframes change{
+  0%
+  {
+    background-image: url(https://images.pexels.com/photos/5490965/pexels-photo-5490965.jpeg);
+  }
+  20%
+  {
+    background-image: url(https://images.pexels.com/photos/2290753/pexels-photo-2290753.jpeg);
+  }
+  40%
+  {
+    background-image: url(https://images.pexels.com/photos/331107/pexels-photo-331107.jpeg);
+  }
+  60%
+  {
+    background-image: url(https://images.pexels.com/photos/4946625/pexels-photo-4946625.jpeg);
+  }
+  80%
+  {
+    background-image: url(https://images.pexels.com/photos/2290070/pexels-photo-2290070.jpeg);
+  }
+  100%
+  {
+    background-image: url(https://images.pexels.com/photos/2434649/pexels-photo-2434649.jpeg);
+  }
 }

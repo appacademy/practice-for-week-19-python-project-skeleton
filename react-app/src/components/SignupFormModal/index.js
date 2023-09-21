@@ -33,7 +33,8 @@ function SignupFormModal() {
 
 	return (
 		<div className="signup-container-modal">
-			<h1>Sign Up</h1>
+			<img className="home-button" src="https://cdn.discordapp.com/attachments/1115823811116400650/1153915198898450462/joshisgay3.png"></img>
+			<h2>Sign Up</h2>
 			<form onSubmit={handleSubmit}>
 				<ul>
 					{errors.map((error, idx) => (
@@ -82,13 +83,13 @@ function SignupFormModal() {
 					/>
 				</label>
 				</div>
-				<button type="submit" className="login-for-modal">Sign Up</button>
+				<button type="submit" className="signup-for-modal" disabled={username.length < 6 || password.length < 6 || email.length < 8 || confirmPassword !== password}>Sign Up</button>
 				<div className="existing-account-button">
-					<p>Already have an account? <a><RegisterModalButton
+					<p>Already have an account?<a><RegisterModalButton
               className="login-button"
               buttonText="Log In"
               modalComponent={<LoginFormModal />}
-            /></a></p>
+            /></a>here</p>
 				</div>
 			</form>
 		</div>
