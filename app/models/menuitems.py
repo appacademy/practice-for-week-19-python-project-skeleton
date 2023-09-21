@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 class MenuItem(db.Model):
     __tablename__ = 'menuitems'
@@ -8,7 +8,7 @@ class MenuItem(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurants.id'), nullable=False)
+    restaurant_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('restaurants.id')), nullable=False)
     item = db.Column(db.String(500), nullable=False)
 
     restaurant = db.relationship('Restaurant', back_populates='menuitems')

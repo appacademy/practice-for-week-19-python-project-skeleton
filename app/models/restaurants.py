@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 class Restaurant(db.Model):
     __tablename__ = "restaurants"
@@ -7,7 +7,7 @@ class Restaurant(db.Model):
         table_args = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    owner_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     address = db.Column(db.String, nullable=False)
     city = db.Column(db.String, nullable=False)
     state = db.Column(db.String, nullable=False)
