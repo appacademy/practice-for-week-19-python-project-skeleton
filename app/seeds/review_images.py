@@ -1,14 +1,14 @@
-from app.models import db, Image, environment, SCHEMA
+from app.models import db, ReviewImage, environment, SCHEMA
 from sqlalchemy.sql import text
 
 
 # Adds a demo user, you can add other users here if you want
-def seed_images():
-    image1 = Image(
+def seed_review_images():
+    image1 = ReviewImage(
         review_id=1, url='https://i.kym-cdn.com/photos/images/original/002/478/462/fc2.jpg')
-    image2 = Image(
+    image2 = ReviewImage(
         review_id=2, url='https://i.redd.it/8i3g5uq6kac51.png')
-    image3 = Image(
+    image3 = ReviewImage(
         review_id=3, url='https://i1.sndcdn.com/artworks-OnxUtSVPpcAFGZxQ-Sujwlw-t500x500.jpg')
 
     db.session.add(image1)
@@ -23,10 +23,10 @@ def seed_images():
 # incrementing primary key, CASCADE deletes any dependent entities.  With
 # sqlite3 in development you need to instead use DELETE to remove all data and
 # it will reset the primary keys for you as well.
-def undo_images():
+def undo_review_images():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.images RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.review_images RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM images"))
+        db.session.execute(text("DELETE FROM review_images"))
 
     db.session.commit()

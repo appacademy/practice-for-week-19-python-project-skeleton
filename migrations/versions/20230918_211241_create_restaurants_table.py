@@ -28,6 +28,7 @@ def upgrade():
     sa.Column('name', sa.String(), nullable=False),
     sa.Column('price', sa.Integer(), nullable=False),
     sa.Column('rating', sa.Integer(), nullable=True),
+    sa.Column("category", sa.String(), nullable=False),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id']),
     sa.PrimaryKeyConstraint('id')
     )

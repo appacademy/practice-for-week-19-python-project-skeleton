@@ -12,3 +12,4 @@ class CreateRestaurantForm(FlaskForm):
     country = StringField('country', validators=[DataRequired()])
     name = StringField('name', validators=[DataRequired()])
     price = IntegerField('price', validators=[DataRequired()])
+    category = StringField("category", validators=[DataRequired()])
