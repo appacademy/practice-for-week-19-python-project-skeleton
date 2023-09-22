@@ -13,14 +13,19 @@ class Review(db.Model):
     review = db.Column(db.String(500), nullable=False)
     stars = db.Column(db.Integer(), nullable=False)
 
-    images = db.relationship('Image', back_populates='review', cascade='all, delete-orphan')
+    review_images = db.relationship('ReviewImage', back_populates='review', cascade='all, delete-orphan')
     reviewer = db.relationship('User', back_populates='reviews')
+    restaurant = db.relationship("Restaurant", back_populates="reviews")
+
 
     def to_dict(self):
+        images_list = [image.to_dict() for image in self.review_images]
         return {
             'id': self.id,
             'reviewer_id': self.reviewer_id,
             'restaurant_id': self.restaurant_id,
             'review': self.review,
-            'stars': self.stars
+            'stars': self.stars,
+            "reviewer": self.reviewer.to_dict(),
+            "images": images_list
         }

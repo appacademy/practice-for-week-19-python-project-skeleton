@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db, Restaurant, Review
+from app.models import User, db, Restaurant, Review, RestaurantImage
 from app.forms.restaurant_form import CreateRestaurantForm
 from app.forms.review_form import ReviewForm
+from app.forms.restaraunt_image_form import RestaurantImageForm
 from flask_login import current_user, login_user, logout_user, login_required
 from statistics import mean
 
@@ -33,10 +34,6 @@ def get_restaurants():
                     avgRating = mean(ratings)
                     restaurant.rating = round(avgRating, 2)
         results.append(restaurant.to_dict())
-        # menu=[]
-        # for item in restaurant.menuitems:
-        #     menu.append(item.to_dict())
-        # return menu
     return results
 
 # Create A Restaurant
@@ -55,7 +52,8 @@ def create_restaurants():
             country=form.data['country'],
             name=form.data['name'],
             price=form.data['price'],
-            rating=0
+            rating=0,
+            category=form.data["category"]
         )
         db.session.add(restaurant)
         db.session.commit()
@@ -101,6 +99,7 @@ def update_one_restaurant(id):
                 restaurant.price=form.data['price']
                 reviews = Review.query.filter(Review.restaurant_id == id)
                 ratings = []
+                restaurant.category=form.data["category"]
                 if reviews:
                     for review in reviews:
                         ratings.append(review.stars)
@@ -186,3 +185,41 @@ def update_review(id, reviewId):
             return {"errors": "USER MUST OWN THE REVIEW!!!!!"}, 401
         return {"errors": "Review mayhaps not exist?"}, 404
     return {"errors": "This restaurant does not exist - Josh"}, 404
+
+#Create a restaurant image
+@restaurant_routes.route("/<int:id>/images/new", methods=["POST"])
+@login_required
+def create_restaurant_image(id):
+    restaurant = Restaurant.query.get(id)
+
+    if restaurant:
+        if restaurant.owner_id == current_user.id:
+            form = RestaurantImageForm()
+            form['csrf_token'].data = request.cookies['csrf_token']
+            if form.validate_on_submit():
+                restaurantImage = RestaurantImage(
+                    restaurant_id=id,
+                    url=form.data["url"]
+                )
+                db.session.add(restaurantImage)
+                db.session.commit()
+                return restaurantImage.to_dict()
+            return {'errors': validation_errors_to_error_messages(form.errors)}, 401 
+        return {"errors": "You must be the restaurant owner to complete this action!"}, 401
+    return {"errors": "This restaurant does not exist!"}
+
+
+#Delete a specific restaurant image
+@restaurant_routes.route("/images/<int:id>/delete", methods=["DELETE"])
+@login_required
+def delete_review_image(id):
+    restaurantImage = RestaurantImage.query.get(id)
+
+    if restaurantImage:
+        restaurant = Restaurant.query.get(restaurantImage.restaurant_id)
+        if restaurant.owner_id == current_user.id:
+            db.session.delete(restaurantImage)
+            db.session.commit()
+            return {"message": "Restaurant image sucessfully deleted"}
+        return {"errors": "You must own the restaurant to complete this action!"}, 401
+    return {"errors": "This restaurant image does not exist!"}, 404

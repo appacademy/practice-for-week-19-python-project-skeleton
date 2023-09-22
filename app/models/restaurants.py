@@ -15,11 +15,15 @@ class Restaurant(db.Model):
     name = db.Column(db.String, nullable=False)
     price = db.Column(db.Integer, nullable=False)
     rating = db.Column(db.Integer, nullable=True)
+    category = db.Column(db.String, nullable=False)
 
     owner = db.relationship('User', back_populates='restaurants')
-    menuitems = db.relationship('MenuItem', back_populates='restaurant', cascade='all, delete-orphan')
+    restaurant_images = db.relationship('RestaurantImage', back_populates='restaurant', cascade='all, delete-orphan')
+    reviews = db.relationship("Review", back_populates="restaurant", cascade='all, delete-orphan' )
 
     def to_dict(self):
+        reviews_list = [review.to_dict() for review in self.reviews]
+        images_list = [image.to_dict() for  image in self.restaurant_images]
         return {
             "id": self.id,
             "owner_id": self.owner_id,
@@ -29,5 +33,9 @@ class Restaurant(db.Model):
             "country": self.country,
             "name": self.name,
             "price": self.price,
-            "rating": self.rating
+            "rating": self.rating,
+            "category": self.category,
+            "reviews": reviews_list,
+            "images": images_list,
+            "owner": self.owner.to_dict()
         }
