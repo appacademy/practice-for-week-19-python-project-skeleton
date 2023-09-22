@@ -186,9 +186,3 @@ def update_review(id, reviewId):
             return {"errors": "USER MUST OWN THE REVIEW!!!!!"}, 401
         return {"errors": "Review mayhaps not exist?"}, 404
     return {"errors": "This restaurant does not exist - Josh"}, 404
-
-
-
-
-
-
