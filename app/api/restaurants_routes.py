@@ -21,7 +21,14 @@ def validation_errors_to_error_messages(validation_errors):
 # View All Restaurants
 @restaurant_routes.route('/')
 def get_restaurants():
-    restaurants = Restaurant.query.all()
+    page = request.args.get('page')
+    size = 10
+
+    if page == None or page > 10:
+        page = 1
+    offset = size * (page - 1)
+
+    restaurants = Restaurant.query.limit(size).offset(offset).all()
     results = []
     for restaurant in restaurants:
         id = restaurant.id
@@ -231,7 +238,11 @@ def search_filter():
     categorySearch = request.args.get('category')
     priceSearch = request.args.get('price')
     page = request.args.get('page')
-    size = request.args.get('size')
+    size = 10
+
+    if page == None or page > 10:
+        page = 1
+    offset = size * (page - 1)
 
     results=[]
     restaurants=None
@@ -241,28 +252,28 @@ def search_filter():
             Restaurant.name==nameSearch,
             Restaurant.category==categorySearch,
             Restaurant.price==priceSearch
-        )
+        ).limit(size).offset(offset)
     elif nameSearch and categorySearch:
         restaurants = Restaurant.query.filter(
             Restaurant.name==nameSearch,
             Restaurant.category==categorySearch
-        )
+        ).limit(size).offset(offset)
     elif nameSearch and priceSearch:
         restaurants = Restaurant.query.filter(
             Restaurant.name==nameSearch,
             Restaurant.price==priceSearch
-        )
+        ).limit(size).offset(offset)
     elif categorySearch and priceSearch:
         restaurants = Restaurant.query.filter(
             Restaurant.category==categorySearch,
             Restaurant.price==priceSearch
-        )
+        ).limit(size).offset(offset)
     elif nameSearch:
-        restaurants = Restaurant.query.filter(Restaurant.name==nameSearch)
+        restaurants = Restaurant.query.filter(Restaurant.name==nameSearch).limit(size).offset(offset)
     elif categorySearch:
-        restaurants = Restaurant.query.filter(Restaurant.category==categorySearch)
+        restaurants = Restaurant.query.filter(Restaurant.category==categorySearch).limit(size).offset(offset)
     elif priceSearch:
-        restaurants = Restaurant.query.filter(Restaurant.price==priceSearch)
+        restaurants = Restaurant.query.filter(Restaurant.price==priceSearch).limit(size).offset(offset)
     for res in restaurants:
         id = res.id
         reviews = Review.query.filter(Review.restaurant_id == id)
