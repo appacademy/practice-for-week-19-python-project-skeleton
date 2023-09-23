@@ -223,3 +223,55 @@ def delete_review_image(id):
             return {"message": "Restaurant image sucessfully deleted"}
         return {"errors": "You must own the restaurant to complete this action!"}, 401
     return {"errors": "This restaurant image does not exist!"}, 404
+
+#Search Filter for Restaurants
+@restaurant_routes.route("/search")
+def search_filter():
+    nameSearch = request.args.get('name')
+    categorySearch = request.args.get('category')
+    priceSearch = request.args.get('price')
+    page = request.args.get('page')
+    size = request.args.get('size')
+
+    results=[]
+    restaurants=None
+
+    if nameSearch and categorySearch and priceSearch:
+        restaurants = Restaurant.query.filter(
+            Restaurant.name==nameSearch,
+            Restaurant.category==categorySearch,
+            Restaurant.price==priceSearch
+        )
+    elif nameSearch and categorySearch:
+        restaurants = Restaurant.query.filter(
+            Restaurant.name==nameSearch,
+            Restaurant.category==categorySearch
+        )
+    elif nameSearch and priceSearch:
+        restaurants = Restaurant.query.filter(
+            Restaurant.name==nameSearch,
+            Restaurant.price==priceSearch
+        )
+    elif categorySearch and priceSearch:
+        restaurants = Restaurant.query.filter(
+            Restaurant.category==categorySearch,
+            Restaurant.price==priceSearch
+        )
+    elif nameSearch:
+        restaurants = Restaurant.query.filter(Restaurant.name==nameSearch)
+    elif categorySearch:
+        restaurants = Restaurant.query.filter(Restaurant.category==categorySearch)
+    elif priceSearch:
+        restaurants = Restaurant.query.filter(Restaurant.price==priceSearch)
+    for res in restaurants:
+        id = res.id
+        reviews = Review.query.filter(Review.restaurant_id == id)
+        ratings = []
+        if reviews:
+            for review in reviews:
+                ratings.append(review.stars)
+                if len(ratings) > 0:
+                    avgRating = mean(ratings)
+                    res.rating = round(avgRating, 2)
+        results.append(res.to_dict())
+    return results

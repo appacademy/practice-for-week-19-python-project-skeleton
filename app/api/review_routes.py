@@ -18,6 +18,15 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
+#Get all Reviews
+@review_routes.route('/')
+def get_all_reviews():
+    results = []
+    reviews = Review.query.all()
+    for review in reviews:
+        results.append(review.to_dict())
+    return results
+
 #Delete a specific review
 @review_routes.route('/delete/<int:id>', methods=['DELETE'])
 @login_required
@@ -51,7 +60,7 @@ def create_review_image(id):
                 db.session.add(reviewImage)
                 db.session.commit()
                 return reviewImage.to_dict()
-            return {'errors': validation_errors_to_error_messages(form.errors)}, 401 
+            return {'errors': validation_errors_to_error_messages(form.errors)}, 401
         return {"errors": "You must be the review owner to complete this action!"}, 401
     return {"errors": "This review does not exist!"}
 
