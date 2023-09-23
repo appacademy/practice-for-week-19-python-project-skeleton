@@ -43,7 +43,7 @@ function LoginFormModal() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-          <i class='bx bxs-user-circle'></i>
+
         </label>
         <label className="password-field">
           <input
@@ -53,7 +53,7 @@ function LoginFormModal() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <i class='bx bxs-lock' ></i>
+
         </label>
         <button type="submit" className="login-for-modal" disabled={password.length < 6}>Log In</button>
 

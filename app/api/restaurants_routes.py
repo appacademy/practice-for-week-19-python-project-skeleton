@@ -140,7 +140,7 @@ def get_reviews(id):
         else:
             return {"errors": "No reivews found for this spot!"}, 404
     return {"errors": "No restaurant found!"}, 404
-    
+
 #Create review for a specific restaurant
 @restaurant_routes.route("/<int:id>/reviews/new", methods=["POST"])
 @login_required
@@ -161,7 +161,7 @@ def create_review(id):
             db.session.commit()
             return review.to_dict()
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-    
+
 
 #Update a specific review for a specific spot
 @restaurant_routes.route("/<int:id>/review/<int:reviewId>", methods=["PUT"])
@@ -204,7 +204,7 @@ def create_restaurant_image(id):
                 db.session.add(restaurantImage)
                 db.session.commit()
                 return restaurantImage.to_dict()
-            return {'errors': validation_errors_to_error_messages(form.errors)}, 401 
+            return {'errors': validation_errors_to_error_messages(form.errors)}, 401
         return {"errors": "You must be the restaurant owner to complete this action!"}, 401
     return {"errors": "This restaurant does not exist!"}
 
