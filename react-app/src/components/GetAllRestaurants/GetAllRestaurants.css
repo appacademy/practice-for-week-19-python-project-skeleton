@@ -1,0 +1,21 @@
+.all-restaurant-tiles {
+    display: flex;
+    flex-direction: row;
+}
+
+.restaraunt-tiles {
+    display: table;
+    table-layout: auto;
+}
+
+.restaurant-image-tile {
+    box-sizing: border-box;
+    display: table-cell;
+    vertical-align: top;
+}
+
+.restaurant-text-tile {
+    box-sizing: border-box;
+    display: table-cell;
+    vertical-align: top;
+}
