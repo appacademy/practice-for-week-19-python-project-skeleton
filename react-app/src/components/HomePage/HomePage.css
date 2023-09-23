@@ -1,6 +1,6 @@
 #backround-image {
     height: 500px;
-    background-attachment: fixed;
+    background-attachment: local;
     background-size: cover;
     animation: change 15s infinite ease-in-out;
     background-position: bottom;
