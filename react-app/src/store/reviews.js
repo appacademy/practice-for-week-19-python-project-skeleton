@@ -5,6 +5,8 @@ const DELETE_REVIEW = 'Reviews/DELETE_REVIEW'
 const UPDATE_REVIEW = 'Reviews/UPDATE_REVIEW'
 
 
+
+
 const createRestaurantReview = (review) => ({
     type: CREATE_REVIEW,
     review,
@@ -24,6 +26,17 @@ const deleteUserReview = (review) => ({
     type: DELETE_REVIEW,
     review,
 })
+
+
+export const fetchReviews = () => async dispatch => {
+
+    const res = await fetch('/api/reviews')
+    if(res.ok) {
+        const reviews = await res.json()
+        dispatch(fetchRestaurantReviews(reviews))
+        return res;
+    }
+}
 
 
 export const createReview = (restaurantId, review) => async dispatch => {
@@ -78,3 +91,28 @@ export const updateReview = (reviewId, reviewData) => async dispatch => {
     dispatch(updateUserReview(review))
     return res
 }
+
+
+const reviewReducer = (state = {}, action) => {
+    let newState = {...state}
+
+    switch (action.type) {
+        case LOAD_REVIEWS:
+            action.reviews.forEach((review) => {
+                newState[review.id] = review
+            })
+            return newState;
+        case CREATE_REVIEW:
+            newState[action.review.id] = action.review
+            return newState;
+        case DELETE_REVIEW:
+            delete newState[action.reviewId]
+            return newState;
+            default:
+                return state;
+    }
+
+
+}
+
+export default reviewReducer;

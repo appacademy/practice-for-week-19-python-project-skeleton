@@ -37,7 +37,7 @@ function LoginFormModal() {
         </ul>
         <label className="username-field">
           <input
-            placeholder="Username"
+            placeholder="Email"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
