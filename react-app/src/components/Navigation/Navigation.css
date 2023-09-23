@@ -1,7 +1,3 @@
-body{
-  padding: 0;
-  margin: 0;
-}
 
 
 .profile-dropdown {
@@ -99,46 +95,4 @@ body{
   margin-top: 5px;
   padding: 0;
 
-}
-
-#backround-image {
-  height: 500px;
-  background-attachment: fixed;
-  background-size: cover;
-  animation: change 15s infinite ease-in-out;
-  background-position: bottom;
-}
-/* #backround-image2 {
-  height: 500px;
-  background-image: url(pexels-rachel-claire-5490965.jpg);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-} */
-
-@keyframes change{
-  0%
-  {
-    background-image: url(https://images.pexels.com/photos/5490965/pexels-photo-5490965.jpeg);
-  }
-  20%
-  {
-    background-image: url(https://images.pexels.com/photos/2290753/pexels-photo-2290753.jpeg);
-  }
-  40%
-  {
-    background-image: url(https://images.pexels.com/photos/331107/pexels-photo-331107.jpeg);
-  }
-  60%
-  {
-    background-image: url(https://images.pexels.com/photos/4946625/pexels-photo-4946625.jpeg);
-  }
-  80%
-  {
-    background-image: url(https://images.pexels.com/photos/2290070/pexels-photo-2290070.jpeg);
-  }
-  100%
-  {
-    background-image: url(https://images.pexels.com/photos/2434649/pexels-photo-2434649.jpeg);
-  }
 }
