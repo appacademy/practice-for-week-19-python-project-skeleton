@@ -16,6 +16,7 @@ const CreateRestaurant = () => {
   const [price, setPrice] = useState("");
   const [urls, setUrls] = useState(["", "", "", ""]);
   const [errors, setErrors] = useState({});
+  const [category, setCategory] = useState("")
   const [validSubmit, setValidSubmit] = useState(false);
 
 
@@ -27,6 +28,7 @@ const CreateRestaurant = () => {
     const updateCountry = (e) => setCountry(e.target.value)
     const updateName = (e) => setName(e.target.value);
     const updatePrice = (e) => setPrice(e.target.value);
+    const updateCategory = (e) => setCategory(e.target.value)
 
 
 
@@ -69,7 +71,8 @@ const errors = {};
             state,
             country,
             name,
-            price
+            price,
+            category
         };
 
        try {
@@ -82,7 +85,7 @@ const errors = {};
               }
             });
         }
-            history.push(`/restaurant/${createdRestaurant.id}`);
+            history.push(`/restaurants/${createdRestaurant.id}`);
           } catch (error) {
             console.error("Restaurant creation failed:", error);
           }
@@ -141,7 +144,7 @@ return (
                 <div className="name-container">
                 <h2>Add the Name and Genre of your Restaurant</h2>
 
-            <select required>
+            <select required onChange={updateCategory}>
                 <option value="0">Mexican</option>
                 <option value="1">Korean</option>
                 <option value="2">American</option>
@@ -161,7 +164,7 @@ return (
                 <div className="price-container0">
                 <h2>Set an Average cost per person</h2>
             <input
-                type="string"
+                type="integer"
                 placeholder="Average Cost Per Person"
                 value={price}
                 onChange={updatePrice} />
