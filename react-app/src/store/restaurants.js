@@ -35,8 +35,8 @@ const createRestaurantAction = (restaurantDetails) => ({
 })
 
 const createRestaurantImageAction = (restaurantImage) => ({
-type: CREATE_RESTAURANT_IMAGE,
-restaurantImage
+    type: CREATE_RESTAURANT_IMAGE,
+    restaurantImage
 })
 
 const deleteRestaurantImageAction = (restaurantImageId) => ({
@@ -68,7 +68,7 @@ export const loadRestaurantDetails = (restaurantId) => async dispatch => {
 export const createRestaurant = (restaurantData) => async dispatch => {
     const res = await fetch("/api/restaurants/new", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(restaurantData)
     });
 
@@ -102,7 +102,7 @@ export const deleteRestaurant = (restaurantId) => async dispatch => {
 export const createRestaurantImage = (restaurantId, restaurantImageData) => async dispatch => {
     const res = await fetch(`/api/restaurants/${restaurantId}/images/new`, {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(restaurantImageData)
     });
 
@@ -125,37 +125,35 @@ export const deleteRestaurantImage = (restaurantImageId) => async dispatch => {
 const initialState = {};
 
 const restaurantReducer = (state = initialState, action) => {
-  let newState = { ...state };
-  switch (action.type) {
-    case LOAD_RESTAURANTS:
-      newState = {};
-      action.restaurants.forEach((restaurant) => {
-        newState[restaurant.id] = restaurant;
-      });
-      return newState;
-//     case LOAD_SPOT:
-//       newState = {};
-//       const something = action.spot;
-//       newState[something.id] = something;
-//       return newState;
-//     case LOAD_USER_SPOT:
-//       newState = {};
-//       action.userSpot.Spots.forEach((spot) => {
-//         newState[spot.id] = spot;
-//       });
-//       return newState;
-//     case UPDATE_SPOT:
-//       newState[action.updatedSpot.id] = action.updatedSpot;
-//       return newState;
-//     case CREATE_IMAGE:
-//       newState[action.image.id] = action.image;
-//       return newState;
-//     case DELETE_SPOT:
-//       delete newState[action.spotId];
-//       return newState;
-     default:
-     return state;
-   }
+    let newState = { ...state };
+    switch (action.type) {
+        case LOAD_RESTAURANTS:
+            newState = {};
+            action.restaurants.forEach((restaurant) => {
+                newState[restaurant.id] = restaurant;
+            });
+            return newState;
+        case RESTAURANT_DETAIL:
+            newState[action.restaurant.id] = action.restaurant;
+            return newState;
+        //     case LOAD_USER_SPOT:
+        //       newState = {};
+        //       action.userSpot.Spots.forEach((spot) => {
+        //         newState[spot.id] = spot;
+        //       });
+        //       return newState;
+        //     case UPDATE_SPOT:
+        //       newState[action.updatedSpot.id] = action.updatedSpot;
+        //       return newState;
+        //     case CREATE_IMAGE:
+        //       newState[action.image.id] = action.image;
+        //       return newState;
+        //     case DELETE_SPOT:
+        //       delete newState[action.spotId];
+        //       return newState;
+        default:
+            return state;
+    }
 };
 
 export default restaurantReducer;
