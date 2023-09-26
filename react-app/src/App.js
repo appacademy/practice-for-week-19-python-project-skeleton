@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import GetAllRestaurantsPage from "./components/GetAllRestaurants";
 import RestaurantDetailsPage from "./components/RestaurantDetails";
+import CreateRestaurant from "./components/createRestaurantForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,10 +28,13 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/restaurants/:restaurantId">
+          <Route path="/restaurant/new">
+            <CreateRestaurant />
+          </Route>
+          <Route path="/restaurant/:restaurantId">
             <RestaurantDetailsPage />
           </Route>
-          <Route path="/restaurants">
+          <Route path="/restaurant">
             <GetAllRestaurantsPage />
           </Route>
           <Route path="/">
