@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import HomePage from "./components/HomePage";
 import GetAllRestaurantsPage from "./components/GetAllRestaurants";
+import RestaurantDetailsPage from "./components/RestaurantDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path="/restaurants/:restaurantId">
+            <RestaurantDetailsPage />
           </Route>
           <Route path="/restaurants">
             <GetAllRestaurantsPage />
