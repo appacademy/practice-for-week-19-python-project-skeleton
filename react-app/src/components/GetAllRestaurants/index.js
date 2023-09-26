@@ -9,7 +9,7 @@ function GetAllRestaurantsPage() {
     const restaurants = useSelector((state) => state.restaurant)
 
     useEffect(() => {
-        dispatch(loadRestaurants())
+        dispatch(loadRestaurants(0, 0, 0))
     }, [dispatch])
 
     //console.log(Object.values(restaurants))
