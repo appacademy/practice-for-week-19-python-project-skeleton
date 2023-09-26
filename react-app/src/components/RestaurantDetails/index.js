@@ -13,10 +13,11 @@ function RestaurantDetailsPage() {
         dispatch(loadRestaurantDetails(restaurantId))
     }, [dispatch, restaurantId])
 
+    console.log(restaurant)
 
 
     return (
-        <div>{restaurant?.name}</div>
+        <div className="detail-body">{restaurant?.name}</div>
     )
 
 }
