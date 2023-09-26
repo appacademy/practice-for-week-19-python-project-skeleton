@@ -29,14 +29,14 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path="/restaurants/:name/:price/:category">
+            <GetAllRestaurantsPage />
+          </Route>
           <Route path="/restaurants/new">
             <CreateRestaurant />
           </Route>
           <Route path="/restaurants/:restaurantId">
             <RestaurantDetailsPage />
-          </Route>
-          <Route path="/restaurants">
-            <GetAllRestaurantsPage />
           </Route>
           <Route path="/restaurant/:restaurantId/new-review">
             <ReviewModal />

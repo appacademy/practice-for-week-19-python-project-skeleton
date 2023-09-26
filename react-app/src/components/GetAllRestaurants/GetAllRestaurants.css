@@ -19,3 +19,8 @@
     display: table-cell;
     vertical-align: top;
 }
+
+.res-detail-body {
+    margin-top: 100px;
+}
+
