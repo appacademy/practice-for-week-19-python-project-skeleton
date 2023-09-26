@@ -72,10 +72,10 @@
   padding: 10px 20px;
   border-radius: 30px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-  margin-top: 8px;
+  margin-top: 7px;
 }
 
-.search-bar:hover input{
+.search-bar-form:hover input{
   width:400px
 }
 
@@ -96,4 +96,32 @@
   margin-top: 5px;
   padding: 0;
 
+}
+
+.search-submit-button {
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+  width: 20px;
+  height: 20px;
+}
+
+.search-submit-button:hover {
+  cursor: pointer;
+}
+
+.fa-search {
+  width: 20px;
+  height: 20px;
+}
+
+.search-bar-form select {
+  visibility: hidden;
+  width: 0;
+}
+
+
+.search-bar-form:hover select{
+  visibility: visible;
+  width: 3.8rem;
 }
