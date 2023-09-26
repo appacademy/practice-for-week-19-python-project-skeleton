@@ -5,6 +5,10 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import HomePage from "./components/HomePage";
+import GetAllRestaurantsPage from "./components/GetAllRestaurants";
+import RestaurantDetailsPage from "./components/RestaurantDetails";
+import CreateRestaurant from "./components/createRestaurantForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +27,18 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path="/restaurants/new">
+            <CreateRestaurant />
+          </Route>
+          <Route path="/restaurants/:restaurantId">
+            <RestaurantDetailsPage />
+          </Route>
+          <Route path="/restaurants">
+            <GetAllRestaurantsPage />
+          </Route>
+          <Route path="/">
+            <HomePage />
           </Route>
         </Switch>
       )}

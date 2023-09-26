@@ -4,7 +4,7 @@ import './modal-button.css'
 
 
 
-function OpenModalButton({
+function RegisterModalButton({
   modalComponent, // component to render inside the modal
   buttonText, // text of the button that opens the modal
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
@@ -19,8 +19,8 @@ function OpenModalButton({
   };
 
   return (
-    <button className="modal-button" onClick={onClick}>{buttonText}</button>
+    <button className="Register-modal-button" onClick={onClick}>{buttonText}</button>
   );
 }
 
-export default OpenModalButton;
+export default RegisterModalButton;

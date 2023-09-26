@@ -1,7 +1,127 @@
+
+
 .profile-dropdown {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   position: absolute;
+  left: 91%;
+  background: white;
+  height: 5rem;
+  width: 8rem;
+  padding: 15px;
+  border-radius: 5px;
 }
 
 .hidden {
   display: none;
+}
+
+.profile-button {
+  background-color: transparent;
+  font-size: 20px;
+  border: none;
+  border-radius: 60px;
+
+}
+
+.profile-button:hover {
+  box-shadow: 1px 10px 50px -8px rgba(0,0,0,1);
+  cursor: pointer;
+
+}
+
+.profile-image {
+  height: 40px;
+  width: 40px;
+  border-radius: 20px;
+}
+
+.nav-bar {
+  top: 0;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-decoration: none;
+  align-items: flex-start;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: black;
+}
+
+.home-button {
+  padding: 0;
+  height: 50px;
+  width: 90px;
+  text-decoration: none;
+
+}
+
+
+.search-bar {
+  cursor: pointer;
+  height: 30;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: orange;
+  padding: 10px 20px;
+  border-radius: 30px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  margin-top: 7px;
+}
+
+.search-bar-form:hover input{
+  width:400px
+}
+
+.search-input {
+  width: 0;
+  outline: none;
+  border: none;
+  transition: 0.3s;
+  background: transparent;
+}
+
+.login-signup-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 5rem;
+  list-style: none;
+  margin-top: 5px;
+  padding: 0;
+
+}
+
+.search-submit-button {
+  text-decoration: none;
+  border: none;
+  background-color: transparent;
+  width: 20px;
+  height: 20px;
+}
+
+.search-submit-button:hover {
+  cursor: pointer;
+}
+
+.fa-search {
+  width: 20px;
+  height: 20px;
+}
+
+.search-bar-form select {
+  visibility: hidden;
+  width: 0;
+}
+
+
+.search-bar-form:hover select{
+  visibility: visible;
+  width: 3.8rem;
 }
