@@ -11,7 +11,7 @@ import RestaurantDetailsPage from "./components/RestaurantDetails";
 import CreateRestaurant from "./components/createRestaurantForm";
 import ReviewModal from "./components/ReviewModal";
 import UpdateForm from "./components/updateRestaurant";
-
+import UpdateReviewFunc from "./components/UpdateReview";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,11 +25,14 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/login" >
+          <Route path="/login">
             <LoginFormPage />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path="/restaurants/:restaurantId/review/:reviewId/edit">
+            <UpdateReviewFunc />
           </Route>
           <Route path="/restaurants/:name/:price/:category">
             <GetAllRestaurantsPage />
