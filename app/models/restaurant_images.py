@@ -10,7 +10,7 @@ class RestaurantImage(db.Model):
     restaurant_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("restaurants.id")))
     url = db.Column(db.String, nullable=False)
 
-    restaurant = db.relationship('Restaurant', back_populates='restaurant_images')
+    restaurant_img = db.relationship('Restaurant', back_populates='restaurant_images')
 
     def to_dict(self):
         return {
