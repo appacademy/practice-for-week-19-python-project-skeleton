@@ -5,6 +5,7 @@ import { loadRestaurantDetails } from "../../store/restaurants";
 import "../RestaurantDetails/RestaurantDetails.css";
 import OpenModalButton from "../OpenModalButton";
 import DeleteForm from "../DeleteConfirmation";
+import DeleteReviewForm from "../DeleteReview";
 
 function RestaurantDetailsPage() {
   const dispatch = useDispatch();
@@ -22,14 +23,14 @@ function RestaurantDetailsPage() {
 
   return (
     <div className="detail-body">
-      {sessionUser?.id === restaurant?.owner.id && (
+      {sessionUser?.id === restaurant?.owner?.id && (
         <div className="manage-buttons">
           <a href={`/restaurants/edit/${restaurant?.id}`}>
             <button>Update Restaurant Info</button>
           </a>
           <OpenModalButton
             buttonText="Delete"
-            modalComponent={<DeleteForm restaurantId={restaurant.id} />}
+            modalComponent={<DeleteForm restaurantId={restaurant?.id} />}
           />
         </div>
       )}
@@ -44,8 +45,8 @@ function RestaurantDetailsPage() {
       {restaurant?.images.length > 0 && (
         <div>
           Images:{" "}
-          {restaurant?.images.map((image) => (
-            <img src={image.url} />
+          {restaurant?.images?.map((image) => (
+            <img src={image?.url} />
           ))}
         </div>
       )}
@@ -56,9 +57,9 @@ function RestaurantDetailsPage() {
         Reviews:{" "}
         {restaurant?.reviews?.map((review) => (
           <div>
-            <div>{review.reviewer.username}</div>
-            <div>{review.review}</div>
-            <div>{review.stars}</div>
+            <div>{review?.reviewer?.username}</div>
+            <div>{review?.review}</div>
+            <div>{review?.stars}</div>
             {review?.images.length > 0 && (
               <div>
                 Images:{" "}
@@ -67,14 +68,17 @@ function RestaurantDetailsPage() {
                 ))}
               </div>
             )}
-            {review?.reviewer.id === sessionUser?.id && (
+            {review?.reviewer?.id === sessionUser?.id && (
               <div>
                 <NavLink
-                  to={`/restaurants/${restaurantId}/review/${review.id}/edit`}
+                  to={`/restaurants/${restaurantId}/review/${review?.id}/edit`}
                 >
                   <button>Update Review</button>
                 </NavLink>
-                <button>Delete Review</button>
+                <OpenModalButton
+                  buttonText="Delete"
+                  modalComponent={<DeleteReviewForm reviewId={review?.id} />}
+                />
               </div>
             )}
           </div>
