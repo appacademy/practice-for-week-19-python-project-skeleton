@@ -9,7 +9,7 @@ class Review(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     reviewer_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    restaurant_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('restaurant.id')), nullable=False)
+    restaurant_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('restaurants.id')), nullable=False)
     review = db.Column(db.String(500), nullable=False)
     stars = db.Column(db.Integer(), nullable=False)
 
