@@ -44,22 +44,22 @@ export const fetchReviews = () => async (dispatch) => {
   }
 };
 
-export const createReview =
-  (restaurantId, review, stars) => async (dispatch) => {
-    const res = await fetch(`/api/restaurants/${restaurantId}/reviews/new`, {
-      method: "POST",
-      body: JSON.stringify(review, stars),
-    });
+export const createReview = (restaurantId, reviewData) => async (dispatch) => {
+  const res = await fetch(`/api/restaurants/${restaurantId}/reviews/new`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(reviewData),
+  });
 
-    if (res.ok) {
-      const reviewData = await res.json();
-      dispatch(createRestaurantReview(reviewData));
-      return res;
-    } else {
-      const errors = await res.json();
-      return errors;
-    }
-  };
+  if (res.ok) {
+    const reviewData = await res.json();
+    dispatch(createRestaurantReview(reviewData));
+    return reviewData;
+  } else {
+    const errors = await res.json();
+    return errors;
+  }
+};
 
 export const loadRestaurantReviews = (restaurantId) => async (dispatch) => {
   const res = await fetch(`/api/restaurants/${restaurantId}/reviews`);
@@ -81,7 +81,8 @@ export const deleteUserReviews = (reviewId) => async (dispatch) => {
 export const updateReview = (reviewId, reviewData) => async (dispatch) => {
   const res = fetch(`/api/reviews/${reviewId}/update`, {
     method: "PUT",
-    body: JSON.stringify(reviewData),
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(reviewData)
   });
   const review = await res.json(res);
   dispatch(updateUserReview(review));
@@ -89,11 +90,11 @@ export const updateReview = (reviewId, reviewData) => async (dispatch) => {
 };
 
 export const createReviewImage =
-  (reviewId, reviewImageData) => async (dispatch) => {
+  (url, reviewId) => async (dispatch) => {
     const res = await fetch(`/api/reviews/${reviewId}/images/new`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(reviewImageData),
+      body: JSON.stringify(url),
     });
 
     if (res.ok) {
@@ -103,17 +104,13 @@ export const createReviewImage =
     }
   };
 
-export const deleteReviewImage =
-  (reviewImageId) => async (dispatch) => {
-    const res = await fetch(
-      `/api/reviews/images/${reviewImageId}/delete`,
-      {
-        method: "DELETE",
-      }
-    );
-    dispatch(deleteReviewImageAction(reviewImageId));
-    return res;
-  };
+export const deleteReviewImage = (reviewImageId) => async (dispatch) => {
+  const res = await fetch(`/api/reviews/images/${reviewImageId}/delete`, {
+    method: "DELETE",
+  });
+  dispatch(deleteReviewImageAction(reviewImageId));
+  return res;
+};
 
 const reviewReducer = (state = {}, action) => {
   let newState = { ...state };
@@ -126,6 +123,12 @@ const reviewReducer = (state = {}, action) => {
       return newState;
     case CREATE_REVIEW:
       newState[action.review.id] = action.review;
+      return newState;
+    case CREATE_REVIEW_IMAGE:
+      newState[action.reviewImage.id] = action.reviewImage;
+      return newState;
+    case DELETE_REVIEW_IMAGE:
+      delete newState[action.reviewImageId];
       return newState;
     case DELETE_REVIEW:
       delete newState[action.reviewId];
