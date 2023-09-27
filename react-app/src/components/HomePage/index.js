@@ -59,9 +59,9 @@ const HomePage = () => {
                     {array?.map((review) => (
                         <NavLink id="homepage-review" to={`/restaurants/${review?.restaurant_id}`}>
                             <li key={review?.id} className="single-review">
-                                {review?.review} {review?.stars} {review?.reviewer.username}
-                                {review?.images.map((image) => (
-                                    <img src={image.url} alt='review-image' key={image.id}></img>
+                                {review?.review} {review?.stars} {review?.reviewer?.username}
+                                {review?.images?.map((image) => (
+                                    <img src={image?.url} alt='review-image' key={image?.id}></img>
                                 ))}
                             </li>
                         </NavLink>

@@ -8,6 +8,7 @@ from statistics import mean
 
 restaurant_routes = Blueprint('restuarant', __name__)
 
+
 def validation_errors_to_error_messages(validation_errors):
     """
     Simple function that turns the WTForms validation errors into a simple list
@@ -17,6 +18,7 @@ def validation_errors_to_error_messages(validation_errors):
         for error in validation_errors[field]:
             errorMessages.append(f'{field} : {error}')
     return errorMessages
+
 
 # View All Restaurants
 @restaurant_routes.route('/')
@@ -43,6 +45,7 @@ def get_restaurants():
         results.append(restaurant.to_dict())
     return results
 
+
 # Create A Restaurant
 @restaurant_routes.route('/new', methods=['POST'])
 @login_required
@@ -66,6 +69,7 @@ def create_restaurants():
         db.session.commit()
         return restaurant.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
 
 # View Details of A specific restaurant by Id
 @restaurant_routes.route('/<int:id>')
@@ -93,20 +97,19 @@ def update_one_restaurant(id):
 
     restaurant = Restaurant.query.get(id)
 
-
     if restaurant:
         if restaurant.owner_id == current_user.id:
             form['csrf_token'].data = request.cookies['csrf_token']
             if form.validate_on_submit():
-                restaurant.address=form.data['address']
-                restaurant.city=form.data['city']
-                restaurant.state=form.data['state']
-                restaurant.country=form.data['country']
-                restaurant.name=form.data['name']
-                restaurant.price=form.data['price']
+                restaurant.address = form.data['address']
+                restaurant.city = form.data['city']
+                restaurant.state = form.data['state']
+                restaurant.country = form.data['country']
+                restaurant.name = form.data['name']
+                restaurant.price = form.data['price']
                 reviews = Review.query.filter(Review.restaurant_id == id)
                 ratings = []
-                restaurant.category=form.data["category"]
+                restaurant.category = form.data["category"]
                 if reviews:
                     for review in reviews:
                         ratings.append(review.stars)
@@ -118,6 +121,7 @@ def update_one_restaurant(id):
             return {'errors': validation_errors_to_error_messages(form.errors)}, 401
         return {"errors": "You must own this restaurant to complete this action!"}, 401
     return {"errors": "This restaurant does not exist!"}, 404
+
 
 # Delete a Restaurant
 @restaurant_routes.route('/delete/<int:id>', methods=['DELETE'])
@@ -133,7 +137,8 @@ def delete_one_restaurant(id):
         return {"errors": "You must own the restaurant to complete this action!"}, 401
     return {'error': 'Restaurant not found'}, 404
 
-#View reviews of a specific restaurant
+
+# View reviews of a specific restaurant
 @restaurant_routes.route("/<int:id>/reviews")
 def get_reviews(id):
     restaurant = Restaurant.query.get(id)
@@ -148,7 +153,8 @@ def get_reviews(id):
             return {"errors": "No reivews found for this spot!"}, 404
     return {"errors": "No restaurant found!"}, 404
 
-#Create review for a specific restaurant
+
+# Create review for a specific restaurant
 @restaurant_routes.route("/<int:id>/reviews/new", methods=["POST"])
 @login_required
 def create_review(id):
@@ -170,7 +176,7 @@ def create_review(id):
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-#Update a specific review for a specific spot
+# Update a specific review for a specific spot
 @restaurant_routes.route("/<int:id>/review/<int:reviewId>", methods=["PUT"])
 @login_required
 def update_review(id, reviewId):
@@ -184,8 +190,8 @@ def update_review(id, reviewId):
                 form = ReviewForm()
                 form['csrf_token'].data = request.cookies['csrf_token']
                 if form.validate_on_submit():
-                    review.review=form.data["review"]
-                    review.stars=form.data["stars"]
+                    review.review = form.data["review"]
+                    review.stars = form.data["stars"]
                     db.session.commit()
                     return review.to_dict()
                 return {'errors': validation_errors_to_error_messages(form.errors)}, 401
@@ -193,7 +199,8 @@ def update_review(id, reviewId):
         return {"errors": "Review mayhaps not exist?"}, 404
     return {"errors": "This restaurant does not exist - Josh"}, 404
 
-#Create a restaurant image
+
+# Create a restaurant image
 @restaurant_routes.route("/<int:id>/images/new", methods=["POST"])
 @login_required
 def create_restaurant_image(id):
@@ -216,7 +223,7 @@ def create_restaurant_image(id):
     return {"errors": "This restaurant does not exist!"}
 
 
-#Delete a specific restaurant image
+# Delete a specific restaurant image
 @restaurant_routes.route("/images/<int:id>/delete", methods=["DELETE"])
 @login_required
 def delete_review_image(id):
@@ -231,7 +238,8 @@ def delete_review_image(id):
         return {"errors": "You must own the restaurant to complete this action!"}, 401
     return {"errors": "This restaurant image does not exist!"}, 404
 
-#Search Filter for Restaurants
+
+# Search Filter for Restaurants
 @restaurant_routes.route("/search")
 def search_filter():
     nameSearch = request.args.get('name')
@@ -244,36 +252,39 @@ def search_filter():
         page = 1
     offset = size * (page - 1)
 
-    results=[]
-    restaurants=None
+    results = []
+    restaurants = None
 
     if nameSearch and categorySearch and priceSearch:
         restaurants = Restaurant.query.filter(
-            Restaurant.name==nameSearch,
-            Restaurant.category==categorySearch,
-            Restaurant.price==priceSearch
+            Restaurant.name == nameSearch,
+            Restaurant.category == categorySearch,
+            Restaurant.price == priceSearch
         ).limit(size).offset(offset)
     elif nameSearch and categorySearch:
         restaurants = Restaurant.query.filter(
-            Restaurant.name==nameSearch,
-            Restaurant.category==categorySearch
+            Restaurant.name == nameSearch,
+            Restaurant.category == categorySearch
         ).limit(size).offset(offset)
     elif nameSearch and priceSearch:
         restaurants = Restaurant.query.filter(
-            Restaurant.name==nameSearch,
-            Restaurant.price==priceSearch
+            Restaurant.name == nameSearch,
+            Restaurant.price == priceSearch
         ).limit(size).offset(offset)
     elif categorySearch and priceSearch:
         restaurants = Restaurant.query.filter(
-            Restaurant.category==categorySearch,
-            Restaurant.price==priceSearch
+            Restaurant.category == categorySearch,
+            Restaurant.price == priceSearch
         ).limit(size).offset(offset)
     elif nameSearch:
-        restaurants = Restaurant.query.filter(Restaurant.name==nameSearch).limit(size).offset(offset)
+        restaurants = Restaurant.query.filter(
+            Restaurant.name == nameSearch).limit(size).offset(offset)
     elif categorySearch:
-        restaurants = Restaurant.query.filter(Restaurant.category==categorySearch).limit(size).offset(offset)
+        restaurants = Restaurant.query.filter(
+            Restaurant.category == categorySearch).limit(size).offset(offset)
     elif priceSearch:
-        restaurants = Restaurant.query.filter(Restaurant.price==priceSearch).limit(size).offset(offset)
+        restaurants = Restaurant.query.filter(
+            Restaurant.price == priceSearch).limit(size).offset(offset)
     for res in restaurants:
         id = res.id
         reviews = Review.query.filter(Review.restaurant_id == id)
