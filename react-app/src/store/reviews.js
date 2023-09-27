@@ -78,15 +78,18 @@ export const deleteUserReviews = (reviewId) => async (dispatch) => {
   return res;
 };
 
-export const updateReview = (reviewId, reviewData) => async (dispatch) => {
-  const res = fetch(`/api/reviews/${reviewId}/update`, {
+export const updateReview = (restaurantId, reviewId, reviewData) => async (dispatch) => {
+  const res = fetch(`/api/restaurants/${restaurantId}/review/${reviewId}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(reviewData)
   });
-  const review = await res.json(res);
-  dispatch(updateUserReview(review));
-  return res;
+
+  if (res.ok) {
+    const updatedReview = await res.json();
+    dispatch(updateUserReview(updatedReview));
+    return updatedReview;
+  }
 };
 
 export const createReviewImage =
@@ -117,6 +120,7 @@ const reviewReducer = (state = {}, action) => {
 
   switch (action.type) {
     case LOAD_REVIEWS:
+      newState = {}
       action.reviews.forEach((review) => {
         newState[review.id] = review;
       });
@@ -124,6 +128,9 @@ const reviewReducer = (state = {}, action) => {
     case CREATE_REVIEW:
       newState[action.review.id] = action.review;
       return newState;
+      case UPDATE_REVIEW:
+        newState[action.review.id] = action.review;
+        return newState;
     case CREATE_REVIEW_IMAGE:
       newState[action.reviewImage.id] = action.reviewImage;
       return newState;
