@@ -1,5 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from sqlalchemy.orm import relationship
+
 
 class Review(db.Model):
     __tablename__ = 'reviews'
@@ -16,7 +16,7 @@ class Review(db.Model):
 
     review_images = db.relationship('ReviewImage', back_populates='review', cascade='all, delete-orphan')
     reviewer = db.relationship('User', back_populates='reviews')
-    restaurant = relationship('Restaurant', back_populates='reviews')
+    restaurant = db.relationship('Restaurant', back_populates='reviews')
 
 
     def to_dict(self):
