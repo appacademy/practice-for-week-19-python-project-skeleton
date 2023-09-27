@@ -19,7 +19,7 @@ class Restaurant(db.Model):
 
     owner = db.relationship('User', back_populates='restaurants')
     restaurant_images = db.relationship('RestaurantImage', back_populates='restaurant', cascade='all, delete-orphan')
-    reviews = db.relationship("Review", back_populates="restaurant", cascade='all, delete-orphan' )
+    reviews = db.relationship('Review', back_populates='restaurant', cascade='all, delete-orphan' )
 
     def to_dict(self):
         reviews_list = [review.to_dict() for review in self.reviews]
