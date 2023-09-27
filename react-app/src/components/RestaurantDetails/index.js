@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { loadRestaurants, loadRestaurantDetails } from "../../store/restaurants";
 import "../RestaurantDetails/RestaurantDetails.css"
+import OpenModalButton from "../OpenModalButton";
+import DeleteForm from "../DeleteConfirmation";
 
 function RestaurantDetailsPage() {
     const dispatch = useDispatch();
@@ -22,9 +24,12 @@ function RestaurantDetailsPage() {
     return (
         <div className="detail-body">
             {sessionUser?.id === restaurant?.owner.id && (
-                <div>
-                    <button>Update Restaurant Info</button>
-                    <button>Delete Restaurant</button>
+                <div className="manage-buttons">
+                    <a href={`/restaurants/edit/${restaurant?.id}`}><button>Update Restaurant Info</button></a>
+                    <OpenModalButton
+                        buttonText='Delete'
+                        modalComponent={<DeleteForm restaurantId={restaurant.id} />}
+                    />
                 </div>
             )}
             <div id="restaurant-name">Name: {restaurant?.name}</div>

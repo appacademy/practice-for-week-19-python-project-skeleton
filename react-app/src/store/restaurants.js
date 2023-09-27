@@ -100,8 +100,9 @@ export const createRestaurant = (restaurantData) => async (dispatch) => {
 
 export const updateRestaurant =
   (restaurantId, restaurantData) => async (dispatch) => {
-    const res = await fetch(`/api/restaurants/${restaurantId}/update`, {
+    const res = await fetch(`/api/restaurants/edit/${restaurantId}`, {
       method: "PUT",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(restaurantData),
     });
     const restaurant = await res.json();
@@ -110,7 +111,7 @@ export const updateRestaurant =
   };
 
 export const deleteRestaurant = (restaurantId) => async (dispatch) => {
-  const res = await fetch(`/api/restaurants/${restaurantId}/delete`, {
+  const res = await fetch(`/api/restaurants/delete/${restaurantId}`, {
     method: "DELETE",
   });
   dispatch(deleteRestaurantAction(restaurantId));
@@ -146,11 +147,11 @@ export const deleteRestaurantImage =
 
 const initialState = {};
 
-const restaurantReducer = (state = initialState, action) => {
+const restaurantReducer = (state = {}, action) => {
   let newState = { ...state };
   switch (action.type) {
     case LOAD_RESTAURANTS:
-      newState = {};
+      newState = {}
       action.restaurants.forEach((restaurant) => {
         newState[restaurant.id] = restaurant;
       });
@@ -158,21 +159,9 @@ const restaurantReducer = (state = initialState, action) => {
     case RESTAURANT_DETAIL:
       newState[action.restaurant.id] = action.restaurant;
       return newState;
-    //     case LOAD_USER_SPOT:
-    //       newState = {};
-    //       action.userSpot.Spots.forEach((spot) => {
-    //         newState[spot.id] = spot;
-    //       });
-    //       return newState;
-    //     case UPDATE_SPOT:
-    //       newState[action.updatedSpot.id] = action.updatedSpot;
-    //       return newState;
-    //     case CREATE_IMAGE:
-    //       newState[action.image.id] = action.image;
-    //       return newState;
-    //     case DELETE_SPOT:
-    //       delete newState[action.spotId];
-    //       return newState;
+    case DELETE_RESTAURANT:
+      delete newState[action.restaurantId];
+      return newState;
     default:
       return state;
   }
