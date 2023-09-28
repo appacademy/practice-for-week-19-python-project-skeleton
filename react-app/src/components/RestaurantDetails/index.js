@@ -78,7 +78,7 @@ function RestaurantDetailsPage() {
                   <img className='profile-image' src='https://cdn.discordapp.com/attachments/1115823811116400650/1153911006939054180/gayboyjosh.png' alt="profile button"></img>
                   <div id="reviewer-username">
                     {review?.reviewer?.username}
-                    <div>{review?.stars} stars</div>
+                    <div>{[...Array(review?.stars)].map((_, i) => <span key={i} class="material-symbols-outlined">star_rate</span>)}</div>
                   </div>
                 </div>
                 {review?.reviewer?.id === sessionUser?.id && (
