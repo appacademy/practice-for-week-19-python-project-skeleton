@@ -1,3 +1,57 @@
 .detail-body {
-    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 54px;
+}
+
+
+#res-img {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    width: 100%;
+    justify-content: flex-end;
+    /* background-color: blue; */
+}
+
+.img-tile {
+    height: 500px;
+    width: 100%;
+    position: absolute;
+}
+
+.info {
+    z-index: 9;
+    height: 100px;
+    margin-bottom: 10%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+#res-details {
+    position: absolute;
+    margin-top: 550px;
+}
+
+#restaurant-name {
+    color: white;
+    font-size: 70px;
+    font-weight: bold;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+#restaurant-rtng {
+    color: white;
+    font-size: 30px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+#restaurant-cat {
+    color: white;
+    font-size: 30px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
 }
