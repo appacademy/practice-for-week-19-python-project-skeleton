@@ -12,13 +12,21 @@ function Navigation({ isLoaded }) {
     const [price, setPrice] = useState(0)
 
 
+    const handleReset = () => {
+        Array.from(document.querySelectorAll("input")).forEach(input => (input.value = ""));
+        Array.from(document.querySelectorAll("select")).forEach(select => (select.value = "0"))
+
+    }
     const handleSubmit = async (e) => {
         e.preventDefault()
         history.push(`/restaurants/${name}/${price}/${category}`)
         setName(0)
         setCategory(0)
         setPrice(0)
+        handleReset()
     }
+
+
 
     return (
         <div>
