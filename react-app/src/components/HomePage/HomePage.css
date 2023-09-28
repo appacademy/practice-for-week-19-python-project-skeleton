@@ -53,6 +53,7 @@
 }
 #reviews-wrapper h2{
   align-self: center;
+  letter-spacing: 5px;
 }
 
 #homepage-review {
@@ -76,6 +77,10 @@
   border-radius: 3px;
   padding: 15px;
 }
+.single-review:hover {
+  transition: 0.3s;
+  box-shadow: 1px 1px 19px 1px rgba(0,0,0,0.5);
+}
 
 
 .homepage-image {
@@ -85,6 +90,7 @@
 
 #reviewer-review {
   padding: 8px;
+  line-height: 18px;
 }
 
 #reviewer-stars {
@@ -96,6 +102,8 @@
   font-weight: bolder;
   font-size: medium;
   padding: 8px;
+  letter-spacing: 2px;
+
 }
 
 
@@ -115,6 +123,10 @@
 
 .restaurant-container h2 {
   align-self: center;
+}
+
+#header-text {
+  letter-spacing: 5px;
 }
 
 .restaurant-wrapper {

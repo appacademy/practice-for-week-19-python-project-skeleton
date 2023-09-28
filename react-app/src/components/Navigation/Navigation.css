@@ -126,3 +126,41 @@
   visibility: visible;
   width: 3.8rem;
 }
+
+.create-restaurant-btn {
+  color: grey;
+  text-decoration: none;
+  margin-top: 14px;
+  justify-self: flex-end;
+}
+
+.create-restaurant-btn:hover {
+  transition: 0.5s;
+  color: white;
+}
+
+.create-restaurant {
+  display: flex;
+}
+
+
+
+.genre-input-1 {
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 3px;
+  font-size: smaller;
+  background-color: grey;
+  color: white;
+}
+
+.price-input-1 {
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 3px;
+  font-size: smaller;
+  background-color: grey;
+  color: white;
+}
+
+.price-input-1 option {
+
+}
