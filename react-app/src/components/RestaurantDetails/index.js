@@ -13,76 +13,85 @@ function RestaurantDetailsPage() {
   const restaurant = useSelector((state) => state?.restaurant[restaurantId]);
   const sessionUser = useSelector((state) => state?.session.user);
 
-  console.log(sessionUser);
 
   useEffect(() => {
     dispatch(loadRestaurantDetails(restaurantId));
   }, [dispatch, restaurantId]);
 
-  console.log(restaurant);
+  let priceFunc;
+  const price = restaurant?.price
+  if (price == 4) {
+    priceFunc = "$$$$"
+  } else if (price == 3) {
+    priceFunc = "$$$"
+  } else if (price == 2) {
+    priceFunc = "$$"
+  } else if (price == 1) {
+    priceFunc = "$"
+  }
 
   return (
     <div className="detail-body">
-      {sessionUser?.id === restaurant?.owner?.id && (
-        <div className="manage-buttons">
-          <a href={`/restaurants/edit/${restaurant?.id}`}>
-            <button>Update Restaurant Info</button>
-          </a>
-          <OpenModalButton
-            buttonText="Delete"
-            modalComponent={<DeleteForm restaurantId={restaurant?.id} />}
-          />
+      <div id="res-img">
+        {restaurant?.images.length > 0 && (
+          <img className="img-tile" src={restaurant?.images[0]?.url} />
+        )}
+        <div className="info">
+          <div id="restaurant-name"> {restaurant?.name}</div>
+          <div id="restaurant-rtng">Rating: {restaurant?.rating} ({restaurant?.reviews.length} reviews)</div>
+          <div id="restaurant-cat">{priceFunc} · {restaurant?.category}</div>
         </div>
-      )}
-      <div id="restaurant-name">Name: {restaurant?.name}</div>
-      <div>Rating: {restaurant?.rating}</div>
-      <div>#Reviews({restaurant?.reviews.length})</div>
-      <div>Category: {restaurant?.category}</div>
-      <div>{restaurant?.address}</div>
-      <div>{restaurant?.city}</div>
-      <div>{restaurant?.state}</div>
-      <div>{restaurant?.country}</div>
-      {restaurant?.images.length > 0 && (
+      </div>
+      <div id="res-details">
+        {sessionUser?.id === restaurant?.owner?.id && (
+          <div className="manage-buttons">
+            <a href={`/restaurants/edit/${restaurant?.id}`}>
+              <button>Update Restaurant Info</button>
+            </a>
+            <OpenModalButton
+              buttonText="Delete"
+              modalComponent={<DeleteForm restaurantId={restaurant?.id} />}
+            />
+          </div>
+        )}
+        <div>{restaurant?.address}</div>
+        <div>{restaurant?.city}</div>
+        <div>{restaurant?.state}</div>
+        <div>{restaurant?.country}</div>
+        {sessionUser?.id !== restaurant?.owner.id && (
+          <button>Post a Review</button>
+        )}
         <div>
-          Images:{" "}
-          {restaurant?.images?.map((image) => (
-            <img src={image?.url} />
+          Reviews:{" "}
+          {restaurant?.reviews?.map((review) => (
+            <div>
+              <div>{review?.reviewer?.username}</div>
+              <div>{review?.review}</div>
+              <div>{review?.stars}</div>
+              {review?.images.length > 0 && (
+                <div>
+                  Images:{" "}
+                  {review.images.map((image) => (
+                    <img src={image.url} />
+                  ))}
+                </div>
+              )}
+              {review?.reviewer?.id === sessionUser?.id && (
+                <div>
+                  <NavLink
+                    to={`/restaurants/${restaurantId}/review/${review?.id}/edit`}
+                  >
+                    <button>Update Review</button>
+                  </NavLink>
+                  <OpenModalButton
+                    buttonText="Delete"
+                    modalComponent={<DeleteReviewForm reviewId={review?.id} />}
+                  />
+                </div>
+              )}
+            </div>
           ))}
         </div>
-      )}
-      {sessionUser?.id !== restaurant?.owner.id && (
-        <button>Post a Review</button>
-      )}
-      <div>
-        Reviews:{" "}
-        {restaurant?.reviews?.map((review) => (
-          <div>
-            <div>{review?.reviewer?.username}</div>
-            <div>{review?.review}</div>
-            <div>{review?.stars}</div>
-            {review?.images.length > 0 && (
-              <div>
-                Images:{" "}
-                {review.images.map((image) => (
-                  <img src={image.url} />
-                ))}
-              </div>
-            )}
-            {review?.reviewer?.id === sessionUser?.id && (
-              <div>
-                <NavLink
-                  to={`/restaurants/${restaurantId}/review/${review?.id}/edit`}
-                >
-                  <button>Update Review</button>
-                </NavLink>
-                <OpenModalButton
-                  buttonText="Delete"
-                  modalComponent={<DeleteReviewForm reviewId={review?.id} />}
-                />
-              </div>
-            )}
-          </div>
-        ))}
       </div>
     </div>
   );
