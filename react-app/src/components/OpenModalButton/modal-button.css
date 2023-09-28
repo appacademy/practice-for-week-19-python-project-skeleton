@@ -6,6 +6,7 @@
     text-decoration: none;
     width: fit-content;
     height: 2rem;
+    background-color: transparent;
 }
 
 .Register-modal-button {
@@ -17,4 +18,17 @@
 .Register-modal-button:hover {
     text-decoration: underline;
     color: #ff9600;
+}
+
+.images-button {
+    border: none;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-decoration: none;
+    width: fit-content;
+    height: 2rem;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 3px;
 }

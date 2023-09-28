@@ -82,6 +82,10 @@
     border-radius: 3px;
 }
 
+#photo-butt:hover {
+    background-color: rgb(182, 177, 177, .5);
+}
+
 
 #manage-buttons {
     display: flex;

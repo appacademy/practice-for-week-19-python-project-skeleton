@@ -6,6 +6,8 @@ import "../RestaurantDetails/RestaurantDetails.css";
 import OpenModalButton from "../OpenModalButton";
 import DeleteForm from "../DeleteConfirmation";
 import DeleteReviewForm from "../DeleteReview";
+import ImagesFormModal from "../GetAllImagesModal";
+import ImagesModalButton from "../OpenModalButton";
 
 function RestaurantDetailsPage() {
   const history = useHistory()
@@ -18,6 +20,23 @@ function RestaurantDetailsPage() {
   useEffect(() => {
     dispatch(loadRestaurantDetails(restaurantId));
   }, [dispatch, restaurantId]);
+
+  const images = [];
+
+  if (restaurant?.images.length) {
+    restaurant?.images.forEach(image => {
+      images.push(image.url)
+    });
+  }
+  if (restaurant?.reviews.length) {
+    restaurant?.reviews.forEach((review) => {
+      if (review?.images.length) {
+        review?.images.forEach(image => {
+          images.push(image.url)
+        })
+      }
+    })
+  }
 
   let priceFunc;
   const price = restaurant?.price
@@ -45,7 +64,9 @@ function RestaurantDetailsPage() {
               {priceFunc} · {restaurant?.category}
             </div>
             <button id="photo-butt">
-              See all photos
+              <ImagesModalButton
+                buttonText="See all photos"
+                modalComponent={<ImagesFormModal images={images} name={restaurant?.name} />} />
             </button>
           </div>
         </div>
@@ -78,7 +99,7 @@ function RestaurantDetailsPage() {
                   <img className='profile-image' src='https://cdn.discordapp.com/attachments/1115823811116400650/1153911006939054180/gayboyjosh.png' alt="profile button"></img>
                   <div id="reviewer-username">
                     {review?.reviewer?.username}
-                    <div>{review?.stars} stars</div>
+                    <div>{[...Array(review?.stars)].map((_, i) => <span key={i} class="material-symbols-outlined">star_rate</span>)}</div>
                   </div>
                 </div>
                 {review?.reviewer?.id === sessionUser?.id && (
