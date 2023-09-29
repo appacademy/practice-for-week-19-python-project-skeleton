@@ -5,10 +5,10 @@ import { deleteUserReviews } from "../../store/reviews";
 const DeleteReviewForm = ({ reviewId }) => {
   const dispatch = useDispatch();
 
-  const handleDelete =  () => {
+  const handleDelete = () => {
     const deletedReview = dispatch(deleteUserReviews(reviewId));
     if (deletedReview) {
-        window.location.reload();
+      window.location.reload();
     }
   };
 
@@ -19,8 +19,8 @@ const DeleteReviewForm = ({ reviewId }) => {
         Are you sure you want to remove this review?
       </p>
       <div className="button57-container">
-        <button onClick={() => handleDelete()}>YES (Delete Review)</button>
-        <button id="no-button1" onClick={() => window.location.reload()}>
+        <button className="yes-button1" onClick={() => handleDelete()}>YES (Delete Review)</button>
+        <button className="no-button1" onClick={() => window.location.reload()}>
           NO (Keep Review)
         </button>
       </div>
