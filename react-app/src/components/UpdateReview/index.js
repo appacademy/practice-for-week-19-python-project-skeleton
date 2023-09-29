@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { updateReview, fetchReviews } from "../../store/reviews";
+import "../UpdateReview/UpdateReview.css";
 
 function UpdateReviewFunc() {
   const dispatch = useDispatch();
@@ -11,74 +12,121 @@ function UpdateReviewFunc() {
   const [review, setReview] = useState(currentReview?.review);
   const [stars, setStars] = useState(currentReview?.stars);
   const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     dispatch(fetchReviews());
-    console.log("THIS IS CURRENT REVIEW!", currentReview);
   }, [dispatch]);
-
-  useEffect(() => {
-      const validationErrors = {};
-      if (!review) validationErrors.review = "Review text is required";
-      if (!stars) validationErrors.stars = "Star rating is required";
-      setErrors(validationErrors);
-  }, [review, stars]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const errors = {};
+    if (review.length < 10 || review.length > 250)
+      errors.review = "Review text must be greater than 10 characters.";
+    if (review.length > 250)
+      errors.review = "Review text must be 250 characters or less.";
+    if (!stars) errors.stars = "Star rating is required";
+    if (stars > 5 || stars < 1)
+      errors.stars = "Star rating must be between 1 and 5! ";
+    setErrors(errors);
 
     const reviewData = {
       review,
       stars,
     };
-        await dispatch(updateReview(restaurantId, reviewId, reviewData))
-            .then(async ()  => {
-                await dispatch(fetchReviews());
-                history.push(`/restaurants/${restaurantId}`)
-                console.log("THIS IS CURRENT REVIEW2!", currentReview);
-            })
-            .catch((errors) => console.error(errors))
+    if (Object.values(errors).length === 0) {
+      setSubmitted(true);
+      const reviewData = {
+        review,
+        stars,
+      };
+
+      try {
+        await dispatch(updateReview(restaurantId, reviewId, reviewData)).then(
+          async () => {
+            await dispatch(fetchReviews());
+            history.push(`/restaurants/${restaurantId}`);
+          }
+        );
+      } catch (error) {
+        console.error("Error creating review:", error);
+        if (error instanceof Response) {
+          const responseJson = await error.json();
+          console.error("Server response:", responseJson);
+        }
+      }
+    }
   };
 
   return (
-    <div className="create-spot-container">
-      <h1 className="createSpot-title">Create a new review</h1>
-      <h2 className="createSpot-subtitle">Tell us about your visit!</h2>
+    <div className="create-review-container">
+      <h2 className="create-review-title">Alter your review below!</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form-row">
-          {errors.review && (
-            <p className="create-review-error">{errors.review}</p>
-          )}
-          <label className="create-review-label">
-            Review
-            <input
-              type="text"
-              value={review}
-              placeholder="Review Text"
-              onChange={(e) => setReview(e.target.value)}
-              className="create-review-input"
-            />
-          </label>
+        <div className="review-content-main">
+          <div className="form-row-stars-rating-container">
+            <div className="stars-container">
+              <div className="rating">
+                <div className="stars">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <span
+                      key={star}
+                      className={`star ${star <= stars ? "filled" : ""}`}
+                      onClick={() => setStars(star)}
+                    >
+                      🌭
+                    </span>
+                  ))}
+                  <span className="stars-text">Select your rating</span>
+                </div>
+              </div>
+              <div className="things-to-consider-container">
+                <span className="things-to-consider-text">
+                  A few things to consider in your review
+                </span>
+                <span className="things-to-consider-categories-food">Food</span>
+                <span className="things-to-consider-categories-service">
+                  Service
+                </span>
+                <span className="things-to-consider-categories-ambience">
+                  Ambience
+                </span>
+              </div>
+            </div>
+            <label className="create-review-label">
+              <textarea
+                type="text"
+                value={review}
+                onChange={(e) => setReview(e.target.value)}
+                className="create-review-input"
+              />
+            </label>
+          </div>
+          <div className="all-errors-reviews">
+            {errors.review && (
+              <div className="create-review-error-div">
+                <span className="create-review-error-text">
+                  ⚠︎ {errors.review}
+                </span>
+              </div>
+            )}
+            {errors.stars && (
+              <div className="create-review-error-div">
+                <span className="create-stars-error-text">
+                  ⚠︎ {errors.stars}
+                </span>
+              </div>
+            )}
+          </div>
+          <br />
+          <button
+            type="submit"
+            className="create-review-submit-button"
+            disabled={submitted}
+          >
+            Update Review
+          </button>
         </div>
-        <div className="form-row">
-          {errors.stars && (
-            <p className="create-stars-error">{errors.stars}</p>
-          )}
-          <label className="createSpot-label">
-            stars
-            <input
-              type="integer"
-              value={stars}
-              placeholder="Star Rating"
-              onChange={(e) => setStars(e.target.value)}
-              className="create-stars-input"
-            />
-          </label>
-        </div>
-        <br />
-        <button type="submit" className="createSpot-submit-button">
-          Update Review
-        </button>
       </form>
     </div>
   );
