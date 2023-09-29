@@ -1,26 +1,136 @@
 .all-restaurant-tiles {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
-.restaraunt-tiles {
-    display: table;
-    table-layout: auto;
+.html {
+  background-color: #0e0e0e;
+}
+
+.ul-restaurant-tiles {
+  list-style: none;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+.restaurant-tile-list-container {
+  transition: box-shadow 0.5s ease-in-out;
+  border-radius: 4px;
+  border: solid 0.1px rgb(255, 150, 1, 0.3);
+  margin-bottom: 10px;
+}
+
+.restaurant-tile-inner-div {
+  padding-top: 24px;
+  padding-right: 24px;
+  padding-bottom: 24px;
+  padding-left: 24px;
+  border-color: orange;
+}
+
+.restaurnt-tile-content-most-inner {
+  display: table;
+  min-width: 100%;
+  table-layout: auto;
 }
 
 .restaurant-image-tile {
-    box-sizing: border-box;
-    display: table-cell;
-    vertical-align: top;
+  box-sizing: border-box;
+  display: table-cell;
+  vertical-align: top;
 }
 
 .restaurant-text-tile {
-    box-sizing: border-box;
-    display: table-cell;
-    vertical-align: top;
+  display: table-cell;
+  vertical-align: top;
+  width: 488px;
+}
+
+.more-inner-image-div {
+  display: inline-block;
+  margin-right: 24px;
+}
+
+.restaurant-actual-image-tile {
+  width: 220px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.most-inner-img {
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+}
+
+.literal-img-el {
+  border-radius: 4px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  width: fit-content;
+  width: 100%;
+  height: 100%;
+}
+
+.restaurant-tile-name {
+  display: inline-block;
+}
+
+.restaurant-tile-rating {
+  display: block;
+  margin-right: 4px;
+}
+
+.restaurant-tile-price-category {
+  display: block;
+  line-height: 21px;
+  margin: 5px 0 0;
+}
+
+.restaurant-tile-price-category-pel {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  -webkit-letter-spacing: 0px;
+  -moz-letter-spacing: 0px;
+  -ms-letter-spacing: 0px;
+  letter-spacing: 0px;
+  color: white;
+  text-align: left;
+  line-height: 25px;
+}
+
+.restaurant-tile-price-category-span {
+  display: inline;
 }
 
 .res-detail-body {
-    margin-top: 100px;
+  background-color: #0e0e0e;
+  height: 100vh;
 }
 
+.h1-lameo {
+  color: white;
+  text-align: center;
+  padding-top: 50px;
+  font-size: 25px;
+}
+
+.name-h3 {
+  color: white;
+}
+
+.rating-h3 {
+  color: white;
+}
+
+.restaurant-tile-list-container:hover {
+  box-shadow: 0 0 11px white;
+  cursor: pointer;
+}

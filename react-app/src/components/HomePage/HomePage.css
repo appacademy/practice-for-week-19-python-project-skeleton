@@ -39,3 +39,133 @@
       background-image: url(https://images.pexels.com/photos/2434649/pexels-photo-2434649.jpeg);
     }
   }
+
+
+/* review start */
+
+ #reviews-wrapper{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+#reviews-wrapper h2{
+  align-self: center;
+  letter-spacing: 5px;
+}
+
+#homepage-review {
+  list-style: none;
+  text-decoration: none;
+  color: black;
+}
+
+.review-wrapper {
+  padding: 15px;
+  margin: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.single-review {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(116, 116, 116, 0.3);
+  border-radius: 3px;
+  padding: 15px;
+}
+.single-review:hover {
+  transition: 0.3s;
+  box-shadow: 1px 1px 19px 1px rgba(0,0,0,0.5);
+}
+
+
+.homepage-image {
+  object-fit: cover;
+ height: 150px;
+}
+
+#reviewer-review {
+  padding: 8px;
+  line-height: 18px;
+}
+
+#reviewer-stars {
+  padding: 8px;
+
+}
+
+#reviewer-username {
+  font-weight: bolder;
+  font-size: medium;
+  padding: 8px;
+  letter-spacing: 2px;
+
+}
+
+
+
+/* review end */
+
+/* restaurant start */
+
+.restaurant-container{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.restaurant-container h2 {
+  align-self: center;
+}
+
+#header-text {
+  letter-spacing: 5px;
+}
+
+.restaurant-wrapper {
+  padding: 15px;
+  margin: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 20px;
+}
+
+.rst-img-home {
+  width: 8rem;
+  height: 8rem;
+}
+
+.single-restaurant {
+  display: flex;
+  flex-direction: row;
+  justify-content: baseline;
+}
+
+#restaurant-link {
+  list-style: none;
+  text-decoration: none;
+  color: black;
+}
+.single-restaurant h2{
+  padding: 10px;
+  align-self: baseline;
+  font-size: medium;
+}
+.single-restaurant p{
+  padding: 10px;
+  align-self: baseline;
+  font-size: small;
+  font-weight: lighter;
+}
+.single-restaurant h2:hover{
+  text-decoration: underline;
+}
+
+/* restaurant end */

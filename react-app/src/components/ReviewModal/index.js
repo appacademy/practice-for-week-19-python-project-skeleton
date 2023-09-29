@@ -45,14 +45,16 @@ function ReviewModal() {
     };
 
     try {
-      const createdReview = await dispatch(createReview(restaurantId, reviewDatas));
+      const createdReview = await dispatch(
+        createReview(restaurantId, reviewDatas)
+      );
       if (createdReview) {
         const reviewId = createdReview.id;
         images?.forEach(async (url) => {
           if (url) {
             let payload = {
-              "url": url
-            }
+              url: url,
+            };
             await dispatch(createReviewImage(payload, reviewId));
           }
         });

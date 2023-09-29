@@ -1,3 +1,186 @@
 .detail-body {
-    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 54px;
+}
+
+
+#res-img {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    justify-content: flex-end;
+    /* background-color: blue; */
+    background-color: transparent;
+}
+
+.img-tile {
+    z-index: -1;
+    width: 100%;
+    position: absolute;
+}
+
+.info-thing {
+    /* z-index: 1; */
+    height: 100px;
+    margin-bottom: 10%;
+    margin-left: 15%;
+    margin-right: 15%;
+    background-color: transparent;
+}
+
+#res-details {
+    position: absolute;
+    margin-top: 510px;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+#restaurant-name {
+    color: white;
+    font-size: 70px;
+    font-weight: bold;
+    font-family: Helvetica;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(182, 177, 177);
+}
+
+#restaurant-rtng {
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Helvetica;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(182, 177, 177);
+}
+
+#restaurant-cat {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#restaurant-price {
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Helvetica;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(182, 177, 177);
+}
+
+#photo-butt {
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: Helvetica;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(182, 177, 177);
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 3px;
+}
+
+#photo-butt:hover {
+    background-color: rgb(182, 177, 177, .5);
+}
+
+
+#manage-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    /* background-color: blue; */
+}
+
+#option-buttons button {
+    font-size: 15px;
+    padding: 5px;
+    color: black;
+    background-color: orange;
+    border: 1px solid gray;
+    margin-left: 3px;
+    margin-right: 3px;
+    border-radius: 3px;
+    max-width: fit-content;
+}
+
+#option-buttons {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgb(182, 177, 177);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#location-tag {
+    font-weight: bold;
+    height: 100%;
+}
+
+#res-location {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    padding: 5px;
+    /* background-color: red; */
+}
+
+#rec-review-text {
+    font-weight: bold;
+    font-size: 20px;
+    padding-top: 1rem;
+}
+
+#rev-prof-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+#reviewer-username {
+    font-weight: bold;
+}
+
+#prof-stars {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#manage-rev-buttons {
+    padding-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#manage-rev-buttons button {
+    font-size: 15px;
+    padding: 5px;
+    color: black;
+    background-color: orange;
+    border: 1px solid gray;
+    margin-left: 3px;
+    margin-right: 3px;
+    border-radius: 3px;
+    max-width: fit-content;
+}
+
+#details-review-text {
+    padding-bottom: 1rem;
+}
+
+#rev-imgs-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#rev-imgs-container img {
+    height: 225px;
+    width: 300px;
 }

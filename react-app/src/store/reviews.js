@@ -20,9 +20,9 @@ const updateUserReview = (review) => ({
   review,
 });
 
-const deleteUserReview = (review) => ({
+const deleteUserReview = (reviewId) => ({
   type: DELETE_REVIEW,
-  review,
+  reviewId,
 });
 
 const createReviewImageAction = (reviewImage) => ({
@@ -71,11 +71,14 @@ export const loadRestaurantReviews = (restaurantId) => async (dispatch) => {
 };
 
 export const deleteUserReviews = (reviewId) => async (dispatch) => {
-  const res = fetch(`/api/reviews/${reviewId}/delete`, {
+  const res = fetch(`/api/reviews/delete/${reviewId}`, {
     method: "DELETE",
   });
+  
+  if (!res.ok) {
+    return "Review couldn't be removed";
+  }
   dispatch(deleteUserReview(reviewId));
-  return res;
 };
 
 export const updateReview = (restaurantId, reviewId, reviewData) => async (dispatch) => {

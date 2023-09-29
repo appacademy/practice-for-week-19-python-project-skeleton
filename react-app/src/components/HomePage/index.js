@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink, Switch } from 'react-router-dom';
 import { fetchReviews } from "../../store/reviews";
+import { loadRestaurants } from "../../store/restaurants";
 import { Route } from "react-router-dom/cjs/react-router-dom.min";
 import "./HomePage.css";
 
@@ -23,26 +24,40 @@ const HomePage = () => {
 
 
     const dispatch = useDispatch();
+    let restaurantObject = useSelector((state) => state.restaurant)
+    let restaurantArray = Object.values(restaurantObject)
+    let restaurantIterable = restaurantArray.length - 1
     let reviewObject = useSelector((state) => state.reviews)
     let reviewArray = Object.values(reviewObject)
     let iterable = reviewArray.length - 1
+    console.log(restaurantObject)
 
-    console.log(reviewArray)
+
+
 
     let reviewId = getRandomNumbers(iterable)
+    let restaurantId = getRandomNumbers(restaurantIterable)
 
-    console.log(reviewId)
+
     let array = [];
     reviewId.forEach(id => {
         array.push(reviewArray[id - 1])
     })
 
-    console.log(array)
+    let arr = [];
+    restaurantId.forEach(id => {
+        arr.push(restaurantArray[id - 1])
+    })
+
+
+    {[...Array(9)].map((_, i) => <span key={i} class="material-symbols-outlined">star_rate</span>)}
+
 
 
 
     useEffect(() => {
         dispatch(fetchReviews())
+        dispatch(loadRestaurants(0, 0, 0))
     }, [dispatch])
     /* <img src={review.images[0].url} /> */
 
@@ -52,23 +67,42 @@ const HomePage = () => {
 
 
     return (
-        <div className="homepage">
-            <div id="backround-image">
+        <>
+        <div id="backround-image"></div>
+            <div className="restaurant-container">
+            <h2 id="header-text">Your Next Review Awaits</h2>
+                <ul className="restaurant-wrapper">
+                    {arr?.map((restaurant) => (
+                    <NavLink id="restaurant-link" to={`/restaurants/${restaurant?.id}`}>
+                        <li className="single-restaurant">
+                            <img className="rst-img-home" src={restaurant?.images[0]?.url} />
+                            <h2>{restaurant?.name}<p>Do you reccomend this business?</p></h2>
+                        </li>
+                    </NavLink>
+                    ))}
+                </ul>
             </div>
-            <ul>
+            <div id="reviews-wrapper">
+                <h2>Recent Activity</h2>
+            <ul className="review-wrapper">
                     {array?.map((review) => (
                         <NavLink id="homepage-review" to={`/restaurants/${review?.restaurant_id}`}>
                             <li key={review?.id} className="single-review">
-                                {review?.review} {review?.stars} {review?.reviewer?.username}
-                                {review?.images?.map((image) => (
-                                    <img src={image?.url} alt='review-image' key={image?.id}></img>
+                            <div id="reviewer-username">{review?.reviewer?.username}</div>
+                            {review?.images?.map((image) => (
+                                <img className="homepage-image" src={image?.url} alt='review-image' key={image?.id}></img>
                                 ))}
+                                <div id="reviewer-review">{review?.review}</div>
+                                <div id="reviewer-stars">
+                                {[...Array(review?.stars)].map((_, i) => <span key={i} class="material-symbols-outlined">star_rate</span>)}
+                                </div>
                             </li>
                         </NavLink>
                     ))}
 
                 </ul>
         </div>
+        </>
     )
 
 
