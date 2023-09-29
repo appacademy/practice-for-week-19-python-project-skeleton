@@ -73,7 +73,7 @@ function RestaurantDetailsPage() {
       </div>
       <div id="res-details">
         <div id="option-buttons">
-          {sessionUser?.id !== restaurant?.owner.id && (
+          {sessionUser?.id !== restaurant?.owner.id && sessionUser?.id && (
             <button onClick={() => history.push(`/restaurants/${restaurant?.id}/new-review`)}>Write a review</button>
           )}
           {sessionUser?.id === restaurant?.owner?.id && (

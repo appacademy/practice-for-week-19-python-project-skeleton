@@ -1,0 +1,39 @@
+.delete-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+    margin: 30px 0;
+    border-radius: 10px;
+    background: #151515;
+    padding: 1rem;
+}
+
+.delete-container h2 {
+    color: white;
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+
+.delete-container p {
+    color: white;
+    margin-top: 0;
+}
+
+.yes-button1 {
+    background-color: #ff9600;
+    color: white;
+    border-radius: 5px;
+    margin: 3px;
+    padding: 3px;
+}
+
+.no-button1 {
+    color: black;
+    background-color: grey;
+    border-radius: 5px;
+    margin: 3px;
+    padding: 3px;
+}
