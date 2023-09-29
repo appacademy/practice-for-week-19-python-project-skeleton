@@ -26,10 +26,10 @@ const HomePage = () => {
     const dispatch = useDispatch();
     let restaurantObject = useSelector((state) => state.restaurant)
     let restaurantArray = Object.values(restaurantObject)
-    let restaurantIterable = restaurantArray.length - 1
+    let restaurantIterable = restaurantArray.length
     let reviewObject = useSelector((state) => state.reviews)
     let reviewArray = Object.values(reviewObject)
-    let iterable = reviewArray.length - 1
+    let iterable = reviewArray.length
     console.log(restaurantObject)
 
 
@@ -49,8 +49,6 @@ const HomePage = () => {
         arr.push(restaurantArray[id - 1])
     })
 
-
-    {[...Array(9)].map((_, i) => <span key={i} class="material-symbols-outlined">star_rate</span>)}
 
 
 

@@ -74,9 +74,10 @@
   border-radius: 30px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.3);
   margin-top: 7px;
+
 }
 
-.search-bar-form:hover input{
+.search-bar-form input{
   width:400px
 }
 
@@ -116,25 +117,25 @@
   height: 20px;
 }
 
-.search-bar-form select {
+/* .search-bar-form select {
   visibility: hidden;
   width: 0;
-}
+} */
 
 
-.search-bar-form:hover select{
+.search-bar-form select{
   visibility: visible;
   width: 3.8rem;
 }
 
-.create-restaurant-btn {
+.create-restaurant-button {
   color: grey;
   text-decoration: none;
   margin-top: 14px;
   justify-self: flex-end;
 }
 
-.create-restaurant-btn:hover {
+.create-restaurant-button:hover {
   transition: 0.5s;
   color: white;
 }
@@ -161,6 +162,6 @@
   color: white;
 }
 
-.price-input-1 option {
-
+#corner-nav-container {
+  display: flex;
 }
