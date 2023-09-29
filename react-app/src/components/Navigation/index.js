@@ -58,8 +58,15 @@ function Navigation({ isLoaded }) {
                         </button>
                     </form>
                 </li>
+                <li className='create-restaurant'>
+                    <NavLink className='create-restaurant-btn' to="/restaurants/new">
+                        Create a restaurant
+                    </NavLink>
+                </li>
                 {isLoaded && (
+
                     <li>
+
                         <ProfileButton user={sessionUser} />
                     </li>
                 )}
