@@ -8,6 +8,7 @@ import DeleteForm from "../DeleteConfirmation";
 import DeleteReviewForm from "../DeleteReview";
 import ImagesFormModal from "../GetAllImagesModal";
 import ImagesModalButton from "../OpenModalButton";
+import CreateRestaurantImage from "../createResImagesForm";
 
 function RestaurantDetailsPage() {
   const history = useHistory()
@@ -79,6 +80,10 @@ function RestaurantDetailsPage() {
           {sessionUser?.id === restaurant?.owner?.id && (
             <div id="manage-buttons">
               <button onClick={() => history.push(`/restaurants/edit/${restaurant?.id}`)}>Update Restaurant Info</button>
+              <OpenModalButton
+                buttonText="Add Photos"
+                modalComponent={<CreateRestaurantImage restaurantId={restaurant?.id} />}
+              />
               <OpenModalButton
                 buttonText="Delete Restaurant"
                 modalComponent={<DeleteForm restaurantId={restaurant?.id} />}
