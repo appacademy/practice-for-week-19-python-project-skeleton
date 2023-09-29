@@ -243,9 +243,10 @@ def delete_review_image(id):
 # Search Filter for Restaurants
 @restaurant_routes.route("/search")
 def search_filter():
-    nameSearch = request.args.get('name')
+    name = request.args.get('name')
     categorySearch = request.args.get('category')
     priceSearch = request.args.get('price')
+    nameSearch = "%{}%".format(name)
     # page = request.args.get('page')
     # size = 10
 
@@ -258,18 +259,18 @@ def search_filter():
 
     if nameSearch and categorySearch and priceSearch:
         restaurants = Restaurant.query.filter(
-            Restaurant.name == nameSearch,
+            Restaurant.name.like(nameSearch),
             Restaurant.category == categorySearch,
             Restaurant.price == priceSearch
         )
     elif nameSearch and categorySearch:
         restaurants = Restaurant.query.filter(
-            Restaurant.name == nameSearch,
+            Restaurant.name.like(nameSearch),
             Restaurant.category == categorySearch
         )
     elif nameSearch and priceSearch:
         restaurants = Restaurant.query.filter(
-            Restaurant.name == nameSearch,
+            Restaurant.name.like(nameSearch),
             Restaurant.price == priceSearch
         )
     elif categorySearch and priceSearch:
@@ -279,7 +280,7 @@ def search_filter():
         )
     elif nameSearch:
         restaurants = Restaurant.query.filter(
-            Restaurant.name == nameSearch)
+            Restaurant.name.like(nameSearch))
     elif categorySearch:
         restaurants = Restaurant.query.filter(
             Restaurant.category == categorySearch)
