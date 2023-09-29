@@ -10,8 +10,11 @@ const UpdateForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const restaurant = useSelector((state) => state.restaurant[restaurantId])
+    const [validSubmit, setValidSubmit] = useState(false)
+    const [errors, setErrors] = useState({});
 
     const [data, setData] = useState({
+
         country: "",
         address: "",
         city: "",
@@ -61,18 +64,54 @@ const UpdateForm = () => {
     const handleNumberData = (e) => {
         setData({
             ...data,
-            [e.target.name]: Number(e.target.value),
+            [e.target.name]: parseInt(e.target.value),
         });
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(data)
-        dispatch(updateRestaurant(restaurantId, data))
-            .then(() => {
+
+        const errors = {};
+        if (!data.country) {
+            errors.country = "Country is required";
+        }
+        if (!data.address) {
+            errors.address = "Street address is required"
+        }
+        if (!data.city) {
+            errors.city = "City is required"
+        }
+        if (!data.state) {
+            errors.state = "State is required"
+        }
+        if (!data.name) {
+            errors.name = "Name is required"
+        }
+        if (!data.category) {
+            errors.category = "Category is required"
+        }
+        if (!data.price) {
+            errors.price = "Price is required"
+        }
+        setErrors(errors)
+
+        if (Object.values(errors).length === 0) {
+            setValidSubmit(true);
+
+
+            try {
+
+                dispatch(updateRestaurant(restaurantId, data))
+                .then(() => {
                 history.push(`/restaurants/${restaurantId}`)
-            })
-            .catch((errors) => console.error(errors))
+                })
+
+            } catch(error) {
+                console.error('Could not update your restaurant:', error)
+            }
+
+
+        }
     }
 
 
@@ -90,6 +129,9 @@ const UpdateForm = () => {
                             placeholder="country"
                             value={data.country}
                             onChange={handleStringData} />
+                            {errors.country && (
+                                <p className='error-create'>{errors.country}*</p>
+                            )}
 
                     </div>
                     <div className="info">
@@ -99,7 +141,9 @@ const UpdateForm = () => {
                             placeholder="address"
                             value={data.address}
                             onChange={handleStringData} />
-
+                            {errors.address && (
+                                <p className='error-create'>{errors.address}*</p>
+                            )}
                     </div>
                     <div className="info">
                         <input
@@ -108,7 +152,9 @@ const UpdateForm = () => {
                             name="city"
                             value={data.city}
                             onChange={handleStringData} />
-
+                         {errors.city && (
+                                <p className='error-create'>{errors.city}*</p>
+                            )}
                     </div>
                     <div className="info">
                         <input
@@ -117,6 +163,9 @@ const UpdateForm = () => {
                             placeholder="state"
                             value={data.state}
                             onChange={handleStringData} />
+                             {errors.state && (
+                                <p className='error-create'>{errors.state}*</p>
+                            )}
                     </div>
 
                     <div className="name-container">
@@ -128,32 +177,53 @@ const UpdateForm = () => {
                             placeholder="Name"
                             value={data.name}
                             onChange={handleStringData} />
+                             {errors.name && (
+                                <p className='error-create'>{errors.name}*</p>
+                            )}
 
                     </div>
                     <div className="price-container">
                         <h2>Updated Price</h2>
                         <p>Inflation comes after us all</p>
-                        <div>
-                            <input
-                                type="string"
-                                name="category"
-                                placeholder="genre"
-                                value={data.category}
-                                onChange={handleStringData} />
+                        <div className="price-container0">
+                    <h2>Set an Average cost per person</h2>
+                        <select name="price" onChange={handleNumberData}>
+                            <option value="0">{
+                                restaurant?.price === 4
+                                  ? "$$$$"
+                                  : restaurant?.price === 3
+                                  ? "$$$"
+                                  : restaurant?.price === 2
+                                  ? "$$"
+                                  : restaurant?.price === 1
+                                  ? "$"
+                                  : null} </option>
+                            <option value="1">$</option>
+                            <option value="2">$$</option>
+                            <option value="3">$$$</option>
+                            <option value="4">$$$$</option>
+                        </select>
+                             {errors.price && (
+                                <p className='error-create'>{errors.price}*</p>
+                            )}
+                            </div>
 
-                        </div>
-                        <input
-                            type="number"
-                            name="price"
-                            placeholder="Price per Night (USD)"
-                            min="0"
-                            max='5'
-                            value={data.price}
-                            onChange={handleNumberData} />
+                            <div>
+                            <h2>Change the genre of your Restaurant</h2>
+                            <select name="category" required onChange={handleStringData}>
+                                <option>{data.category}</option>
+                                <option value="Mexican">Mexican</option>
+                                <option value="Korean">Korean</option>
+                                <option value="American">American</option>
+                                <option value="Japanese">Japanese</option>
+                                <option value="French">French</option>
+                                <option value="Indian">Indian</option>
+                            </select>
+                            </div>
 
                     </div>
                 </div>
-                <button type="submit" className="create-resturant-btn" >Update Restaurant</button>
+                <button type="submit" disabled={validSubmit} className="create-resturant-btn" >Update Restaurant</button>
             </form>
         </section>
     )

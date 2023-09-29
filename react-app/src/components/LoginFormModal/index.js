@@ -23,13 +23,18 @@ function LoginFormModal() {
     }
   };
 
+  const demoLogin = () => {
+    setEmail('demo@aa.io')
+    setPassword('password')
+  }
+
   return (
     <div className="login-container-modal">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
         <img className="home-button" src="https://cdn.discordapp.com/attachments/1115823811116400650/1153915198898450462/joshisgay3.png"></img>
       <h2>User Log In</h2>
       <p>Access your Welp account</p>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} id="login-container-form">
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -56,7 +61,7 @@ function LoginFormModal() {
 
         </label>
         <button type="submit" className="login-for-modal" disabled={password.length < 6}>Log In</button>
-
+        <button className="demo-button" onClick={demoLogin}>Log in as demo user</button>
         <div className="no-account-register">
           <p>Don't have an account?<a><RegisterModalButton
               className='register-button'

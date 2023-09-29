@@ -1,11 +1,14 @@
 import React from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from 'react-router-dom';
 import { deleteRestaurant } from "../../store/restaurants";
 import "./DeleteForm.css"
 
 
 const DeleteForm = ({ restaurantId }) => {
     const dispatch = useDispatch();
+    const history = useHistory();
+
 
 
 
@@ -14,6 +17,7 @@ const DeleteForm = ({ restaurantId }) => {
     const handleDelete = () => {
         const deletedRestaurant = dispatch(deleteRestaurant(restaurantId))
         if (deletedRestaurant) {
+            history.push('/')
             window.location.reload();
         }
     }
