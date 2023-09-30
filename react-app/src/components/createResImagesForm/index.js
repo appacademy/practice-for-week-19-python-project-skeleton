@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createRestaurantImage } from "../../store/restaurants";
 import "../createResImagesForm/createResImagesForm.css"
+import { useModal } from "../../context/Modal";
+import { loadRestaurantDetails } from "../../store/restaurants";
 
 function CreateRestaurantImage({ restaurantId }) {
     const dispatch = useDispatch();
+    const { closeModal } = useModal()
     const history = useHistory();
     const [images, setImages] = useState(["", "", "", ""]);
     const [errors, setErrors] = useState({});
@@ -36,8 +39,9 @@ function CreateRestaurantImage({ restaurantId }) {
                         };
                         await dispatch(createRestaurantImage(restaurantId, payload));
                     }
+                    await dispatch(loadRestaurantDetails(restaurantId))
+                    closeModal()
                 });
-                window.location.reload()
             } catch (error) {
                 console.error("Error creating Image:", error);
                 if (error instanceof Response) {
