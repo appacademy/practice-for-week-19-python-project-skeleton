@@ -246,7 +246,6 @@ def search_filter():
     name = request.args.get('name')
     categorySearch = request.args.get('category')
     priceSearch = request.args.get('price')
-    nameSearch = "%{}%".format(name)
     # page = request.args.get('page')
     # size = 10
 
@@ -257,18 +256,21 @@ def search_filter():
     results = []
     restaurants = None
 
-    if nameSearch and categorySearch and priceSearch:
+    if name and categorySearch and priceSearch:
+        nameSearch = "%{}%".format(name)
         restaurants = Restaurant.query.filter(
             Restaurant.name.like(nameSearch),
             Restaurant.category == categorySearch,
             Restaurant.price == priceSearch
         )
-    elif nameSearch and categorySearch:
+    elif name and categorySearch:
+        nameSearch = "%{}%".format(name)
         restaurants = Restaurant.query.filter(
             Restaurant.name.like(nameSearch),
             Restaurant.category == categorySearch
         )
-    elif nameSearch and priceSearch:
+    elif name and priceSearch:
+        nameSearch = "%{}%".format(name)
         restaurants = Restaurant.query.filter(
             Restaurant.name.like(nameSearch),
             Restaurant.price == priceSearch
@@ -278,7 +280,8 @@ def search_filter():
             Restaurant.category == categorySearch,
             Restaurant.price == priceSearch
         )
-    elif nameSearch:
+    elif name:
+        nameSearch = "%{}%".format(name)
         restaurants = Restaurant.query.filter(
             Restaurant.name.like(nameSearch))
     elif categorySearch:
