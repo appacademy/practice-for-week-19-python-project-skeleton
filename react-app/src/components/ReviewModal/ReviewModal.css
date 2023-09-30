@@ -182,8 +182,8 @@ input:focus {
 }
 
 .create-review-image-error {
-    color: #ff9500;
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 800;
-    font-size: 15px;
+  color: #ff9500;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 800;
+  font-size: 15px;
 }
