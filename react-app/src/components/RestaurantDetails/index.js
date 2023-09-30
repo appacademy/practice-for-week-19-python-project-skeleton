@@ -8,6 +8,7 @@ import DeleteForm from "../DeleteConfirmation";
 import DeleteReviewForm from "../DeleteReview";
 import ImagesFormModal from "../GetAllImagesModal";
 import ImagesModalButton from "../OpenModalButton";
+import CreateRestaurantImage from "../createResImagesForm";
 
 function RestaurantDetailsPage() {
   const history = useHistory()
@@ -80,6 +81,10 @@ function RestaurantDetailsPage() {
             <div id="manage-buttons">
               <button onClick={() => history.push(`/restaurants/edit/${restaurant?.id}`)}>Update Restaurant Info</button>
               <OpenModalButton
+                buttonText="Add Photos"
+                modalComponent={<CreateRestaurantImage restaurantId={restaurant?.id} />}
+              />
+              <OpenModalButton
                 buttonText="Delete Restaurant"
                 modalComponent={<DeleteForm restaurantId={restaurant?.id} />}
               />
@@ -107,7 +112,7 @@ function RestaurantDetailsPage() {
                     <button onClick={() => history.push(`/restaurants/${restaurant?.id}/review/${review?.id}/edit`)}>Update Review</button>
                     <OpenModalButton
                       buttonText="Delete Review"
-                      modalComponent={<DeleteReviewForm reviewId={review?.id} />}
+                      modalComponent={<DeleteReviewForm reviewId={review?.id} restaurantId={restaurant?.id} />}
                     />
                   </div>
                 )}

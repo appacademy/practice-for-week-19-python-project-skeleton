@@ -1,14 +1,22 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteUserReviews } from "../../store/reviews";
+import { loadRestaurantDetails } from "../../store/restaurants";
+import { useModal } from "../../context/Modal";
+import { useHistory } from "react-router-dom"
+import { fetchReviews } from "../../store/reviews";
 
-const DeleteReviewForm = ({ reviewId }) => {
+const DeleteReviewForm = ({ reviewId, restaurantId }) => {
   const dispatch = useDispatch();
+  const { closeModal } = useModal()
+  const history = useHistory()
 
   const handleDelete = () => {
     const deletedReview = dispatch(deleteUserReviews(reviewId));
     if (deletedReview) {
-      window.location.reload();
+      closeModal()
+      dispatch(loadRestaurantDetails(restaurantId))
+      history.push(`/restaurants/${restaurantId}`)
     }
   };
 
@@ -20,7 +28,7 @@ const DeleteReviewForm = ({ reviewId }) => {
       </p>
       <div className="button57-container">
         <button className="yes-button1" onClick={() => handleDelete()}>YES (Delete Review)</button>
-        <button className="no-button1" onClick={() => window.location.reload()}>
+        <button className="no-button1" onClick={() => closeModal()}>
           NO (Keep Review)
         </button>
       </div>

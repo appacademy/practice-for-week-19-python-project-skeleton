@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-
+import { PersistGate } from 'redux-persist/integration/react'
 import { ModalProvider, Modal } from "./context/Modal";
 import configureStore from "./store";
 import * as sessionActions from "./store/session";
@@ -23,11 +23,13 @@ if (process.env.NODE_ENV !== "production") {
 function Root() {
 	return (
 		<ModalProvider>
-			<Provider store={store}>
-				<BrowserRouter>
-					<App />
-					<Modal />
-				</BrowserRouter>
+			<Provider store={store.store}>
+				<PersistGate loading={null} persistor={store.persistor}>
+					<BrowserRouter>
+						<App />
+						<Modal />
+					</BrowserRouter>
+				</PersistGate>
 			</Provider>
 		</ModalProvider>
 	);

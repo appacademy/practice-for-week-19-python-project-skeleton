@@ -1,0 +1,190 @@
+.review-content-main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .form-row-stars-rating-container {
+    border: solid 0.1px rgb(14, 14, 14, 0.3);
+    border-radius: 4px;
+    padding-left: 25px;
+    width: 625px;
+    height: 370px;
+    transition: 0.2s ease-in-out;
+  }
+  
+  .form-row-stars-rating-container:hover {
+    border: 0.1px solid rgb(255, 163, 0.5);
+  }
+  
+  .create-review-input {
+    resize: none;
+    width: 578px;
+    height: 208px;
+    margin-left: 8px;
+    margin-top: 15px;
+    border: none;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #ff9500;
+    font-weight: 1000;
+  }
+  
+  .create-review-input:focus,
+  input:focus {
+    outline: none;
+  }
+  
+  .create-review-title {
+    padding-top: 50px;
+    text-align: center;
+  }
+  
+  .rating {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+  }
+  
+  .stars {
+    display: inline-block;
+    justify-content: space-around;
+    font-size: 25px;
+    padding-top: 10px;
+  }
+  
+  .stars-text {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    padding-left: 5px;
+  }
+  
+  .star {
+    cursor: pointer;
+    background-color: rgb(220, 220, 223);
+    color: white;
+    border-radius: 4px;
+    margin-right: 2.5px;
+    margin-left: 2.5px;
+    padding-top: 2px;
+    transition: 0.5s ease;
+    height: fit-content;
+    padding-bottom: 3px;
+  }
+  
+  .star.filled {
+    color: #ff9601;
+    background-color: #303030;
+  }
+  
+  .star:hover {
+    box-shadow: 0.25px 0.25px #373737, 0.5px 0.5px #373737, 1px 1px #373737,
+      2px 2px #373737;
+    -webkit-transform: translateX(-3px);
+    transform: translateX(-3px);
+    transition: 0.5s ease;
+  }
+  
+  .things-to-consider-container {
+    display: block;
+  }
+  
+  .things-to-consider-text {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: block;
+    font-size: 15px;
+    padding-left: 13px;
+    padding-top: 5px;
+    color: #ff9500;
+    padding-bottom: 5px;
+  }
+  
+  .things-to-consider-categories-food,
+  .things-to-consider-categories-service,
+  .things-to-consider-categories-ambience {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: bolder;
+    margin-left: 12px;
+    background-color: rgb(220, 220, 223);
+    padding: 2px;
+    border-radius: 3px;
+    color: rgb(110, 112, 114);
+  }
+  
+  .images-master-parent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 70px;
+    width: 625px;
+  }
+  
+  .review-url-container {
+    margin-top: 5px;
+  }
+  
+  .create-image-input {
+    width: 646px;
+    height: 30px;
+    border: solid 0.1px rgb(14, 14, 14, 0.3);
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-radius: 4px;
+    color: #ff9500;
+    transition: 0.2s ease-in-out;
+  }
+  
+  .create-image-input::placeholder {
+    color: #888888;
+  }
+  
+  .create-image-input:hover {
+    border: 0.1px solid rgb(255, 163, 0.5);
+  }
+  
+  .create-review-submit-button {
+    width: 200px;
+    height: 44px;
+    border: none;
+    border-radius: 4px;
+    margin-right: 450px;
+    margin-top: 20px;
+    color: #ffffff;
+    background-color: #ff9500;
+    transition: 0.5s ease;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    cursor: pointer;
+  }
+  
+  .create-review-submit-button:hover {
+    box-shadow: 0.5px 0.5px #373737, 1px 1px #373737, 2px 2px #373737,
+      3px 3px #373737;
+    -webkit-transform: translateX(-3px);
+    transform: translateX(-3px);
+    transition: 0.5s ease;
+  }
+  
+  .create-review-error-div {
+    padding: 0px;
+    margin-top: 10px;
+    margin-right: 235px;
+    color: #ff9500;
+    font-weight: 800;
+  }
+  
+  .all-errors-reviews {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .create-review-error-text {
+    font-size: 15px;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  
+  .create-review-image-error {
+      color: #ff9500;
+      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+  }
+  
