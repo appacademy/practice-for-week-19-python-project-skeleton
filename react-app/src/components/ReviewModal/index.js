@@ -26,7 +26,7 @@ function ReviewModal() {
     if (!stars) errors.stars = "Star rating is required!";
     if (stars > 5 || stars < 1)
       errors.stars = "Star rating must be between 1 and 5! ";
-    if (images.length > 0) {
+    if (images[0] || images [1]) {
       if (!images[0].match(/\.(png|jpe?g)$/) || !images[0]) {
         errors.images = "Image URL must end in .png, .jpg, or .jpeg!";
       }

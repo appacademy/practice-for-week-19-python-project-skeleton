@@ -1,5 +1,3 @@
-
-
 .profile-dropdown {
   list-style: none;
   display: flex;
@@ -23,13 +21,28 @@
   font-size: 20px;
   border: none;
   border-radius: 60px;
+}
 
+.homepage-logout-button {
+  border: none;
+  border-radius: 4px;
+  color: #ffffff;
+  background-color: #ff9500;
+  transition: 0.5s ease;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  cursor: pointer;
+}
+
+.homepage-logout-button:hover {
+  box-shadow: 0.5px 0.5px #373737, 1px 1px #373737, 2px 2px #373737;
+  -webkit-transform: translateX(-3px);
+  transform: translateX(-3px);
+  transition: 0.5s ease;
 }
 
 .profile-button:hover {
-  box-shadow: 1px 10px 50px -8px rgba(0,0,0,1);
+  box-shadow: 1px 10px 50px -8px rgba(0, 0, 0, 1);
   cursor: pointer;
-
 }
 
 .profile-image {
@@ -59,9 +72,7 @@
   height: 50px;
   width: 90px;
   text-decoration: none;
-
 }
-
 
 .search-bar {
   cursor: pointer;
@@ -72,13 +83,12 @@
   background: orange;
   padding: 10px 20px;
   border-radius: 30px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   margin-top: 7px;
-
 }
 
-.search-bar-form input{
-  width:400px
+.search-bar-form input {
+  width: 400px;
 }
 
 .search-input {
@@ -97,7 +107,6 @@
   list-style: none;
   margin-top: 5px;
   padding: 0;
-
 }
 
 .search-submit-button {
@@ -122,8 +131,7 @@
   width: 0;
 } */
 
-
-.search-bar-form select{
+.search-bar-form select {
   visibility: visible;
   width: 3.8rem;
 }
@@ -144,10 +152,8 @@
   display: flex;
 }
 
-
-
 .genre-input-1 {
-  border: 1px solid rgba(255, 255, 255, .2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 3px;
   font-size: smaller;
   background-color: grey;
@@ -155,7 +161,7 @@
 }
 
 .price-input-1 {
-  border: 1px solid rgba(255, 255, 255, .2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 3px;
   font-size: smaller;
   background-color: grey;
