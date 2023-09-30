@@ -30,8 +30,8 @@ function ReviewModal() {
       if (!images[0].match(/\.(png|jpe?g)$/) || !images[0]) {
         errors.images = "Image URL must end in .png, .jpg, or .jpeg!";
       }
-      setErrors(errors);
     }
+    setErrors(errors);
 
     if (Object.values(errors).length === 0) {
       setSubmitted(true);
@@ -104,6 +104,7 @@ function ReviewModal() {
               <textarea
                 type="text"
                 value={review}
+                placeholder="Type review here..."
                 onChange={(e) => setReview(e.target.value)}
                 className="create-review-input"
               />

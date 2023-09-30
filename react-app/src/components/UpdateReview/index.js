@@ -22,7 +22,7 @@ function UpdateReviewFunc() {
     e.preventDefault();
 
     const errors = {};
-    if (review.length < 10 || review.length > 250)
+    if (review.length < 10)
       errors.review = "Review text must be greater than 10 characters.";
     if (review.length > 250)
       errors.review = "Review text must be 250 characters or less.";
@@ -31,10 +31,6 @@ function UpdateReviewFunc() {
       errors.stars = "Star rating must be between 1 and 5! ";
     setErrors(errors);
 
-    const reviewData = {
-      review,
-      stars,
-    };
     if (Object.values(errors).length === 0) {
       setSubmitted(true);
       const reviewData = {
