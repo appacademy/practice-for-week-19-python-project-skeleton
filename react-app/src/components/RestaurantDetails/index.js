@@ -112,7 +112,7 @@ function RestaurantDetailsPage() {
                     <button onClick={() => history.push(`/restaurants/${restaurant?.id}/review/${review?.id}/edit`)}>Update Review</button>
                     <OpenModalButton
                       buttonText="Delete Review"
-                      modalComponent={<DeleteReviewForm reviewId={review?.id} />}
+                      modalComponent={<DeleteReviewForm reviewId={review?.id} restaurantId={restaurant?.id} />}
                     />
                   </div>
                 )}
