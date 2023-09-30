@@ -6,7 +6,7 @@ import './Navigation.css';
 
 function Navigation({ isLoaded }) {
     const history = useHistory()
-    const sessionUser = useSelector(state => state.session.user);
+    const sessionUser = useSelector((state) => state?.session.user);
     const [name, setName] = useState(0)
     const [category, setCategory] = useState(0)
     const [price, setPrice] = useState(0)
@@ -61,9 +61,11 @@ function Navigation({ isLoaded }) {
                 {isLoaded && (
 
                     <li id="corner-nav-container">
+                    {sessionUser && (
                     <NavLink className='create-restaurant-button' to="/restaurants/new">
                         Create a restaurant
                     </NavLink>
+                    )}
                         <ProfileButton user={sessionUser} />
                     </li>
                 )}

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { updateRestaurant, loadRestaurantDetails } from "../../store/restaurants";
+import "../createRestaurantForm/createRestaurant.css"
 
 
 
@@ -12,6 +13,7 @@ const UpdateForm = () => {
     const restaurant = useSelector((state) => state.restaurant[restaurantId])
     const [validSubmit, setValidSubmit] = useState(false)
     const [errors, setErrors] = useState({});
+
 
     const [data, setData] = useState({
 
@@ -118,76 +120,79 @@ const UpdateForm = () => {
 
     return (
         <section className="create-restaurant-container">
-            <h2>Update your Restaurant</h2>
+            <h1>Update your Restaurant</h1>
             <h2>Location</h2>
             <form onSubmit={handleSubmit} className="create-restaurant-form">
                 <div className="general-info">
-                    <div>
+                    <div className="form-group">
                         <input
+                            className={`input-field ${errors.country ? 'error' : ''}`}
                             type="string"
                             name="country"
                             placeholder="country"
                             value={data.country}
                             onChange={handleStringData} />
                             {errors.country && (
-                                <p className='error-create'>{errors.country}*</p>
+                                <p className='error-message'>{errors.country}*</p>
                             )}
 
                     </div>
-                    <div className="info">
+                    <div className="form-group">
                         <input
+                            className={`input-field ${errors.country ? 'error' : ''}`}
                             type="string"
                             name="address"
                             placeholder="address"
                             value={data.address}
                             onChange={handleStringData} />
                             {errors.address && (
-                                <p className='error-create'>{errors.address}*</p>
+                                <p className='error-message'>{errors.address}*</p>
                             )}
                     </div>
-                    <div className="info">
+                    <div className="form-group">
                         <input
+                            className={`input-field ${errors.country ? 'error' : ''}`}
                             type="string"
                             placeholder="city"
                             name="city"
                             value={data.city}
                             onChange={handleStringData} />
                          {errors.city && (
-                                <p className='error-create'>{errors.city}*</p>
+                                <p className='error-message'>{errors.city}*</p>
                             )}
                     </div>
-                    <div className="info">
+                    <div className="form-group">
                         <input
+                            className={`input-field ${errors.country ? 'error' : ''}`}
                             type="string"
                             name="state"
                             placeholder="state"
                             value={data.state}
                             onChange={handleStringData} />
                              {errors.state && (
-                                <p className='error-create'>{errors.state}*</p>
+                                <p className='error-message'>{errors.state}*</p>
                             )}
                     </div>
 
-                    <div className="name-container">
+                    <div className="form-group">
                         <h2>New Name?</h2>
 
                         <input
+                            className={`input-field ${errors.country ? 'error' : ''}`}
                             type="string"
                             name="name"
                             placeholder="Name"
                             value={data.name}
                             onChange={handleStringData} />
                              {errors.name && (
-                                <p className='error-create'>{errors.name}*</p>
+                                <p className='error-message'>{errors.name}*</p>
                             )}
 
                     </div>
-                    <div className="price-container">
-                        <h2>Updated Price</h2>
-                        <p>Inflation comes after us all</p>
+                    <div className="form-group">
                         <div className="price-container0">
-                    <h2>Set an Average cost per person</h2>
-                        <select name="price" onChange={handleNumberData}>
+                    <h2>Set a new Average cost per person</h2>
+                        <select className="input-field" name="price" onChange={handleNumberData}>
                             <option value="0">{
                                 restaurant?.price === 4
                                   ? "$$$$"
@@ -204,13 +209,13 @@ const UpdateForm = () => {
                             <option value="4">$$$$</option>
                         </select>
                              {errors.price && (
-                                <p className='error-create'>{errors.price}*</p>
+                                <p className='error-message'>{errors.price}*</p>
                             )}
                             </div>
 
                             <div>
                             <h2>Change the genre of your Restaurant</h2>
-                            <select name="category" required onChange={handleStringData}>
+                            <select className="input-field" name="category" required onChange={handleStringData}>
                                 <option>{data.category}</option>
                                 <option value="Mexican">Mexican</option>
                                 <option value="Korean">Korean</option>
