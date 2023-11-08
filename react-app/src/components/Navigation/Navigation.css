@@ -76,7 +76,6 @@
 
 .search-bar {
   cursor: pointer;
-  height: 30;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -84,11 +83,13 @@
   padding: 10px 20px;
   border-radius: 30px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  margin-top: 7px;
+  width: 35rem;
+  height: 1.5rem;
+  align-self: center;
 }
 
 #combo-box-demo {
-  width: 7rem;
+  width: 19rem;
 }
 
 .search-bar-form {
@@ -96,6 +97,8 @@
   flex-direction: row;
   align-items: center;
   height: 2rem;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .search-bar-form input {
@@ -164,19 +167,36 @@
 }
 
 .genre-input-1 {
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: none;
   border-radius: 3px;
   font-size: smaller;
-  background-color: grey;
-  color: white;
+  color: black;
+  background-color: transparent;
+  width: 100%;
+}
+
+#option-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#option-wrapper select{
+  width: 6rem;
+  height: 1.5rem;
 }
 
 .price-input-1 {
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: none;
   border-radius: 3px;
   font-size: smaller;
-  background-color: grey;
-  color: white;
+  color: black;
+  background-color: transparent;
+}
+
+.price-input-1 option {
+  width: 4rem;
 }
 
 #corner-nav-container {
