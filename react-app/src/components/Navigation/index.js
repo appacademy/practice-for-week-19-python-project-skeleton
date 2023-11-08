@@ -55,6 +55,7 @@ function Navigation({ isLoaded }) {
                             onChange={e => setName(e.target.value)}
                             renderInput={(params) => <TextField className="query-box" size="small" variant='standard'{...params} placeholder='Search...' />}
                         />
+                        <div id="option-wrapper">
                         <select className='genre-input-1' onChange={e => setCategory(e.target.value)}>
                             <option value="0">Genre</option>
                             <option value="Mexican">Mexican</option>
@@ -71,6 +72,7 @@ function Navigation({ isLoaded }) {
                             <option value="3">$$$</option>
                             <option value="4">$$$$</option>
                         </select>
+                        </div>
                         <button type="submit" class="search-submit-button">
                             <i class='fa fa-search'></i>
                         </button>
