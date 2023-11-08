@@ -10,42 +10,27 @@ import './Navigation.css';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
-  const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
-  };
+  function setActiveClass(e) {
+    const ulDiv = document.getElementsByClassName("profile-dropdown")[0];
+    const ulClasses = ulDiv.classList
+    e.preventDefault()
+    ulClasses.toggle('hidden')
+  }
 
-  useEffect(() => {
-    if (!showMenu) return;
-
-    const closeMenu = (e) => {
-      if (!ulRef.current.contains(e.target)) {
-        setShowMenu(false);
-      }
-    };
-
-    document.addEventListener("click", closeMenu);
-
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
 
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
   };
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-  const closeMenu = () => setShowMenu(false);
-
   return (
     <div>
-      <button className='profile-button' onClick={openMenu}>
+      <button className='profile-button' onClick={setActiveClass}>
         <img className='profile-image' src='https://cdn.discordapp.com/attachments/1115823811116400650/1153911006939054180/gayboyjosh.png' alt="profile button"></img>
       </button>
-      <ul className={ulClassName} ref={ulRef}>
+      <ul className="profile-dropdown hidden" ref={ulRef}>
         {user ? (
           <>
             <li>{user.username}</li>
@@ -56,19 +41,17 @@ function ProfileButton({ user }) {
         ) : (
           <ul className="login-signup-buttons">
             <li>
-            <OpenModalButton
-              className="login-button"
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
-          </li>
-          <li>
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
+              <OpenModalButton
+                className="login-button"
+                buttonText="Log In"
+                modalComponent={<LoginFormModal />}
+              />
+            </li>
+            <li>
+              <OpenModalButton
+                buttonText="Sign Up"
+                modalComponent={<SignupFormModal />}
+              />
             </li>
           </ul>
         )}
