@@ -87,6 +87,17 @@
   margin-top: 7px;
 }
 
+#combo-box-demo {
+  width: 7rem;
+}
+
+.search-bar-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 2rem;
+}
+
 .search-bar-form input {
   width: 400px;
 }

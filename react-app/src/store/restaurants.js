@@ -6,10 +6,12 @@ const CREATE_RESTAURANT = "CREATE_RESTAURANT";
 const CREATE_RESTAURANT_IMAGE = "CREATE_RESTAURANT_IMAGE";
 const DELETE_RESTAURANT_IMAGE = "DELETE_RESTAURANT_IMAGE";
 
+
 const loadAction = (restaurants) => ({
   type: LOAD_RESTAURANTS,
   restaurants,
 });
+
 
 const loadDetailsAction = (restaurant) => ({
   type: RESTAURANT_DETAIL,
