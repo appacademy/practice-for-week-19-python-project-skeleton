@@ -174,3 +174,8 @@
     margin-left: 125px;
     border-radius: 8px;
 }
+
+#login-errors {
+    list-style: none;
+    color: red;
+}

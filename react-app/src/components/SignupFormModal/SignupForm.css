@@ -159,3 +159,8 @@
     color: white;
     margin-left: 278px;
 }
+
+#signup-errors {
+    list-style: none;
+    color: red;
+}
