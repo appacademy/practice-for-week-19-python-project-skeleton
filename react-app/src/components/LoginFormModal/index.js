@@ -35,9 +35,9 @@ function LoginFormModal() {
       <h2>User Log In</h2>
       <p>Access your Welp account</p>
       <form onSubmit={handleSubmit} id="login-container-form">
-        <ul>
+        <ul id="login-errors">
           {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <li key={idx}>* {error}</li>
           ))}
         </ul>
         <label className="username-field">

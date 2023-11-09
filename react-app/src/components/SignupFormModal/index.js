@@ -36,9 +36,9 @@ function SignupFormModal() {
 			<img className="home-button" src="https://cdn.discordapp.com/attachments/1115823811116400650/1153915198898450462/joshisgay3.png"></img>
 			<h2>Sign Up</h2>
 			<form onSubmit={handleSubmit}>
-				<ul>
+				<ul id="signup-errors">
 					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
+						<li key={idx}>* {error}</li>
 					))}
 				</ul>
 				<div className="input-fields">
@@ -83,7 +83,7 @@ function SignupFormModal() {
 					/>
 				</label>
 				</div>
-				<button type="submit" className="signup-for-modal" disabled={username.length < 6 || password.length < 6 || email.length < 8 || confirmPassword !== password}>Sign Up</button>
+				<button type="submit" className="signup-for-modal">Sign Up</button>
 				<div className="existing-account-button">
 					<p>Already have an account?<a><RegisterModalButton
               className="login-button"

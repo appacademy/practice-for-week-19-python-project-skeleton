@@ -13,12 +13,12 @@
 .Register-modal-button {
     background: transparent;
     border: none;
-    color: #ff9600;
+    color: rgb(107, 185, 240);
 }
 
 .Register-modal-button:hover {
     text-decoration: underline;
-    color: #ff9600;
+    color: rgb(107, 185, 240);
 }
 
 .images-button {
