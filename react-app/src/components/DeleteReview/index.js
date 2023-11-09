@@ -4,7 +4,6 @@ import { deleteUserReviews } from "../../store/reviews";
 import { loadRestaurantDetails } from "../../store/restaurants";
 import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom"
-import { fetchReviews } from "../../store/reviews";
 
 const DeleteReviewForm = ({ reviewId, restaurantId }) => {
   const dispatch = useDispatch();
