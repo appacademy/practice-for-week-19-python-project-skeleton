@@ -11,20 +11,13 @@ function ImagesFormModal({ images, name }) {
     const { closeModal } = useModal();
     const { restaurantId } = useParams()
 
-
-    // for (let i = 0; i < images.length; i++) {
-    //     console.log(images[i])
-    // }
-
-    images.forEach(image => {
-        console.log(image)
-    })
-
-
     return (
         <div id="images-modal-container">
             <div id="modal-res-name">
-                Photos for {name}
+                <div className="img-header-cont">
+                    Photos for {name}
+                    <button onClick={closeModal}>x</button>
+                </div>
                 <div id="imgs-url-container">
                     {images.map((image) => (
                         <img id="modal-img-tile" src={image} />
