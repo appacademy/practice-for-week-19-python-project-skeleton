@@ -28,7 +28,7 @@ function ProfileButton({ user }) {
   return (
     <div>
       <button className='profile-button' onClick={setActiveClass}>
-      <span id='profile-icon'  class="material-symbols-outlined">person</span>
+        <span id='profile-icon' class="material-symbols-outlined">person</span>
       </button>
       <ul className="profile-dropdown hidden" ref={ulRef}>
         {user ? (
