@@ -7,33 +7,35 @@
     height: 50%;
     margin: 30px 0;
     border-radius: 10px;
-    background: #151515;
+    background: white;
     padding: 1rem;
 }
 
 .delete-container h2 {
-    color: white;
+    color: black;
     margin-bottom: 0;
     margin-top: 10px;
 }
 
 .delete-container p {
-    color: white;
+    color: black;
     margin-top: 0;
 }
 
 .yes-button1 {
-    background-color: #ff9600;
+    background-color: rgb(107, 185, 240);
     color: white;
     border-radius: 5px;
     margin: 3px;
     padding: 3px;
+    cursor: pointer;
 }
 
 .no-button1 {
     color: black;
-    background-color: grey;
+    background-color: white;
     border-radius: 5px;
     margin: 3px;
     padding: 3px;
+    cursor: pointer;
 }

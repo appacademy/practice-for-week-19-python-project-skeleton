@@ -215,3 +215,29 @@ option:hover {
 #corner-nav-container {
   display: flex;
 }
+
+@media screen and (max-width: 850px) {
+  .search-bar {
+    width: 15rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: transparent;
+    padding: 10px 20px;
+    border-radius: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    height: 1.5rem;
+    align-self: center;
+  }
+  .genre-input-1 {
+    display: none;
+  }
+  .price-input-1 {
+    display: none;
+  }
+
+  #combo-box-demo {
+    width: 9rem;
+  }
+}

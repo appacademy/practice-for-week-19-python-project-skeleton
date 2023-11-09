@@ -58,8 +58,8 @@ const CreateRestaurant = () => {
         if (!category) {
             errors.category = "Category is required"
         }
-        if (!urls) {
-            errors.urls = "Image url must end in a .png, .jpg, or .jpeg"
+        if (!urls[0]) {
+            errors.urls = "At least one image is required"
         }
         setErrors(errors)
 
@@ -100,7 +100,7 @@ const CreateRestaurant = () => {
 
     return (
         <section className="create-restaurant-container">
-    <h2 className="form-heading">Update your Restaurant's Address</h2>
+    <h2 className="form-heading">Your Restaurant's Address</h2>
     <form onSubmit={handleNewRestaurant} className="create-restaurant-form">
         <div className="form-group">
             <label htmlFor="country">Country</label>
@@ -216,6 +216,7 @@ const CreateRestaurant = () => {
                     }}
                     className="input-field"
                 />
+                {errors.urls && <p className="error-message">{errors.urls}</p>}
             </div>
         ))}
 
