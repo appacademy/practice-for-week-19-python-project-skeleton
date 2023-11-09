@@ -1,58 +1,56 @@
 .detail-body {
     display: flex;
     flex-direction: column;
-    margin-top: 54px;
+    justify-content: flex-start;
 }
 
 
 #res-img {
-    position: relative;
     display: flex;
     flex-direction: column;
-    height: 500px;
-    justify-content: flex-end;
-    /* background-color: blue; */
-    background-color: transparent;
+    justify-content: flex-start;
+    height: 40rem;
+    align-items: center;
 }
 
 .img-tile {
     z-index: -1;
-    width: 100%;
+    width: 100vw;
+    height: 40rem;
+    object-fit: cover;
     position: absolute;
 }
 
 .info-thing {
     /* z-index: 1; */
-    height: 100px;
-    margin-bottom: 10%;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-top: 15rem;
     background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 75%;
+    height: 15rem;
 }
 
 #res-details {
-    position: absolute;
-    margin-top: 510px;
     margin-left: 15%;
     margin-right: 15%;
 }
 
 #restaurant-name {
     color: white;
-    font-size: 70px;
-    font-weight: bold;
-    font-family: Helvetica;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: rgb(182, 177, 177);
+    font-size: 5rem;
+    font-weight: bolder;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
 }
 
 #restaurant-rtng {
     color: white;
-    font-size: 30px;
+    font-size: 2rem;
     font-weight: bold;
-    font-family: Helvetica;
     -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: rgb(182, 177, 177);
+    -webkit-text-stroke-color: black;
 }
 
 #restaurant-cat {
@@ -63,27 +61,10 @@
 
 #restaurant-price {
     color: white;
-    font-size: 30px;
+    font-size: 2rem;
     font-weight: bold;
-    font-family: Helvetica;
     -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: rgb(182, 177, 177);
-}
-
-#photo-butt {
-    color: white;
-    font-weight: bold;
-    font-size: 30px;
-    font-family: Helvetica;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: rgb(182, 177, 177);
-    background-color: transparent;
-    border: 1px solid white;
-    border-radius: 3px;
-}
-
-#photo-butt:hover {
-    background-color: rgb(182, 177, 177, .5);
+    -webkit-text-stroke-color: black;
 }
 
 
@@ -95,15 +76,22 @@
 }
 
 #option-buttons button {
-    font-size: 15px;
-    padding: 5px;
-    color: black;
-    background-color: orange;
-    border: 1px solid gray;
-    margin-left: 3px;
-    margin-right: 3px;
+    font-size: 90%;
+    font-weight: 600;
+    height: 3rem;
+    width: 25%;
+    padding: 0.2rem;
+    color: white;
+    background-color: rgb(107, 185, 240);
+    border: 2px solid gray;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
     border-radius: 3px;
-    max-width: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 
 #option-buttons {
@@ -159,15 +147,17 @@
 }
 
 #manage-rev-buttons button {
-    font-size: 15px;
-    padding: 5px;
-    color: black;
-    background-color: orange;
-    border: 1px solid gray;
-    margin-left: 3px;
-    margin-right: 3px;
+    font-size: 90%;
+    height: 3rem;
+    width: 80%;
+    padding: 0.2rem;
+    color: white;
+    background-color: rgb(107, 185, 240);
+    border: 2px solid gray;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
     border-radius: 3px;
-    max-width: fit-content;
+    cursor: pointer;
 }
 
 #details-review-text {
@@ -181,6 +171,14 @@
 }
 
 #rev-imgs-container img {
-    height: 225px;
-    width: 300px;
+    object-fit: cover;
+    height: 18rem;
+    width: 20rem;
+}
+
+#profile-icon {
+    font-size: 2rem;
+    color: rgb(107, 185, 240);
+    border: 2px solid black;
+    border-radius: 1.5rem;
 }
