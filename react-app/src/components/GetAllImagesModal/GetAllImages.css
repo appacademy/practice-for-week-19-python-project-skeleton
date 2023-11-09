@@ -2,12 +2,13 @@
     display: flex;
     flex-direction: column;
     width: 90vw;
-    height: 80vh;
+    height: 75vh;
     border-radius: 10px;
     background: white;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     padding-top: 1.5rem;
+    border: 2px solid black
 }
 
 #modal-res-name {
@@ -17,11 +18,12 @@
 }
 
 #modal-img-tile {
-    height: 14rem;
-    width: 14rem;
+    height: 11rem;
+    width: 11rem;
     border-radius: 3px;
     object-fit: cover;
     margin-right: 0.5rem;
+    overflow: scroll;
 }
 
 #imgs-url-container {
