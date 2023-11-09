@@ -28,7 +28,7 @@ function ProfileButton({ user }) {
   return (
     <div>
       <button className='profile-button' onClick={setActiveClass}>
-        <img className='profile-image' src='https://cdn.discordapp.com/attachments/1115823811116400650/1153911006939054180/gayboyjosh.png' alt="profile button"></img>
+        <span id='profile-icon' class="material-symbols-outlined">person</span>
       </button>
       <ul className="profile-dropdown hidden" ref={ulRef}>
         {user ? (
