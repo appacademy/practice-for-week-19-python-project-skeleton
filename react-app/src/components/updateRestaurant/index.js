@@ -228,7 +228,7 @@ const UpdateForm = () => {
 
                     </div>
                 </div>
-                <button type="submit" disabled={validSubmit} className="create-resturant-btn" >Update Restaurant</button>
+                <button type="submit" disabled={validSubmit} className="create-restaurant-btn" >Update Restaurant</button>
             </form>
         </section>
     )
