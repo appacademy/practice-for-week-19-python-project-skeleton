@@ -6,10 +6,11 @@
   position: absolute;
   left: 91%;
   background: white;
-  height: 5rem;
-  width: 8rem;
+  height: 3rem;
+  width: 5rem;
   padding: 15px;
   border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .hidden {
@@ -32,20 +33,16 @@
 
 .homepage-logout-button {
   border: none;
-  border-radius: 4px;
-  color: #ffffff;
+  border-radius: 2px;
+  padding: 2px;
+  color: white;
   background-color: rgb(107, 185, 240);
   transition: 0.5s ease;
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.homepage-logout-button:hover {
-  box-shadow: 0.5px 0.5px #373737, 1px 1px #373737, 2px 2px #373737;
-  -webkit-transform: translateX(-3px);
-  transform: translateX(-3px);
-  transition: 0.5s ease;
-}
 
 .profile-button:hover {
   box-shadow: 1px 10px 50px -8px rgba(0, 0, 0, 1);

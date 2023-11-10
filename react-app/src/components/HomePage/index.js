@@ -15,12 +15,12 @@ const HomePage = () => {
         const allNumbers = Array.from({ length: maxNumber }, (_, index) => index + 1);
 
         for (let i = allNumbers.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [allNumbers[i], allNumbers[j]] = [allNumbers[j], allNumbers[i]];
+            const j = Math.floor(Math.random() * (i + 1));
+            [allNumbers[i], allNumbers[j]] = [allNumbers[j], allNumbers[i]];
         }
 
         return allNumbers.slice(0, 9);
-      }
+    }
 
 
     const dispatch = useDispatch();
@@ -30,7 +30,6 @@ const HomePage = () => {
     let reviewObject = useSelector((state) => state.reviews)
     let reviewArray = Object.values(reviewObject)
     let iterable = reviewArray.length
-    console.log(restaurantObject)
 
 
 
@@ -66,40 +65,51 @@ const HomePage = () => {
 
     return (
         <>
-        <div id="backround-image"></div>
+            <div id="backround-image"></div>
             <div className="restaurant-container">
-            <h2 id="header-text">Your Next Review Awaits</h2>
+                <h2 id="header-text">Your Next Review Awaits</h2>
                 <ul className="restaurant-wrapper">
                     {arr?.map((restaurant) => (
-                    <NavLink id="restaurant-link" to={`/restaurants/${restaurant?.id}`}>
-                        <li className="single-restaurant">
-                            <img className="rst-img-home" src={restaurant?.images[0]?.url} />
-                            <h2>{restaurant?.name}<p>Do you reccomend this business?</p></h2>
-                        </li>
-                    </NavLink>
+                        <NavLink id="restaurant-link" to={`/restaurants/${restaurant?.id}`}>
+                            <li className="single-restaurant">
+                                <img className="rst-img-home" src={restaurant?.images[0]?.url} />
+                                <h2>{restaurant?.name}<p>Do you reccomend this business?</p></h2>
+                            </li>
+                        </NavLink>
                     ))}
                 </ul>
             </div>
             <div id="reviews-wrapper">
                 <h2>Recent Activity</h2>
-            <ul className="review-wrapper">
+                <ul className="review-wrapper">
                     {array?.map((review) => (
                         <NavLink id="homepage-review" to={`/restaurants/${review?.restaurant_id}`}>
                             <li key={review?.id} className="single-review">
-                            <div id="reviewer-username">{review?.reviewer?.username}</div>
-                            {review?.images?.map((image) => (
-                                <img className="homepage-image" src={image?.url} alt='review-image' key={image?.id}></img>
-                                ))}
-                                <div id="reviewer-review">{review?.review}</div>
-                                <div id="reviewer-stars">
-                                {[...Array(review?.stars)].map((_, i) => <span key={i} class="material-symbols-outlined">star_rate</span>)}
+                                <div id="profile-header">
+                                    <span id="prof-picture" class="material-symbols-outlined">account_circle</span>
+                                    <div id="container-username-text" >
+                                        <div id="reviewer-username">{review?.reviewer?.username}</div>
+                                        <div id="filler-text-review">Left a review...</div>
+                                    </div>
                                 </div>
+                                {review?.images?.map((image) => (
+                                    <img className="homepage-image" src={image?.url} alt='review-image' key={image?.id}></img>
+                                ))}
+                                {restaurantArray?.map((restaurant) => (
+                                    <div id="rst-name-in-review" key={restaurant?.id}>
+                                        {restaurant?.id === review?.restaurant_id ? restaurant?.name : ""}
+                                    </div>
+                                ))}
+                                <div id="reviewer-stars">
+                                    {[...Array(review?.stars)].map((_, i) => <i id="review-star-homepage" className="fa-solid fa-star"></i>)}
+                                </div>
+                                <div id="reviewer-review">{review?.review}</div>
                             </li>
                         </NavLink>
                     ))}
 
                 </ul>
-        </div>
+            </div>
         </>
     )
 
