@@ -13,6 +13,7 @@
 .Register-modal-button {
     background: transparent;
     border: none;
+    cursor: pointer;
     color: rgb(107, 185, 240);
 }
 

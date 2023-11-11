@@ -7,7 +7,7 @@
     height: 50%;
     margin: 30px 0;
     border-radius: 10px;
-    background: #151515;
+    background: white;
     /* border: 1px solid black */
     padding-left: 15px;
     padding-right: 15px;
@@ -15,7 +15,7 @@
 }
 
 #create-images-form-modal h2 {
-    color: white;
+    color: black;
 }
 
 .add-photos-submit-button {
@@ -25,7 +25,7 @@
     border: none;
     border-radius: 4px;
     color: #ffffff;
-    background-color: #ff9500;
+    background-color: rgb(107, 185, 240);
     transition: 0.5s ease;
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     cursor: pointer;
