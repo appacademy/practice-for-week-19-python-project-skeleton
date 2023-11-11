@@ -7,33 +7,31 @@
     height: 50%;
     margin: 30px 0;
     border-radius: 10px;
-    background: #151515;
-    width: 500px;
-    height: 500px;
+    background: white;
+    width: 35rem;
+    height: 38rem;
     /* border: 1px solid black */
 }
 
 .login-container-modal h2 {
-    color: white;
+    color: black;
     margin-bottom: 0;
     margin-top: 10px;
 }
 
 .login-container-modal p {
-    color: white;
+    color: black;
     margin-top: 0;
 }
 
 .username-field input{
-    background-color: grey;
-    margin-left: 20px;
-    width: 75%;
+    width: 25rem;
     border-radius: 10px;
     border: none;
     outline: none;
-    border: 2px solid rgba(255, 255, 255, .2);
+    border: 3px solid black;
     font-size: 16px;
-    color: white;
+    color: black;
     padding: 15px 40px 15px;
 }
 .username-field input::placeholder{
@@ -44,23 +42,27 @@
 }
 
 .password-field input{
-    background-color: grey;
     margin-top: 15px;
-    margin-left: 20px;
-    width: 75%;
+    width: 25rem;
     border-radius: 10px;
     border: none;
     outline: none;
-    border: 2px solid rgba(255, 255, 255, .2);
+    border: 3px solid black;
     font-size: 16px;
-    color: white;
+    color: black;
     padding: 15px 40px 15px;
 }
 
 .no-account-register  {
     color: black;
-    margin-left: 100px;
-    margin-top: 50px;
+    margin-top: 25px;
+}
+
+#login-container-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -81,6 +83,7 @@
 
 .register-button {
     color: rgb(107, 185, 240);
+    cursor: pointer;
 }
 
 /* .login-for-modal {
@@ -96,36 +99,28 @@
     cursor: pointer;
 } */
 
-.login-for-modal {
+.login-for-modal:hover {
     color: black;
-    transition: all 0.5s;
     position: relative;
-    line-height: 50px;
     height: 50px;
-    text-align: center;
     width: 250px;
     cursor: pointer;
     margin-top: 15px;
-    margin-left: 125px;
-    border: 0;
+    border: 3px solid transparent;
+    border-radius: 5px;
     background-color: rgb(107, 185, 240);
-    border-radius: 10px;
 }
 
-.login-for-modal:disabled {
-    color: black;
-    transition: all 0.5s;
+.login-for-modal {
+    color: rgb(107, 185, 240);
+    transition: ease 0.5s;
     position: relative;
-    line-height: 50px;
     height: 50px;
-    text-align: center;
     width: 250px;
     cursor: pointer;
     margin-top: 15px;
-    margin-left: 125px;
-    border: 0;
-    background-color: grey;
-    border-radius: 10px;
+    border: 3px solid rgb(107, 185, 240);
+    border-radius: 5px;
 }
 
   /* .login-for-modal::before {
@@ -171,7 +166,6 @@
     border: none;
     border-radius: 3px;
     cursor: pointer;
-    margin-left: 125px;
     border-radius: 8px;
 }
 

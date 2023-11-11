@@ -33,9 +33,9 @@ function SignupFormModal() {
 
 	return (
 		<div className="signup-container-modal">
-			<img className="home-button" src="https://cdn.discordapp.com/attachments/1115823811116400650/1153915198898450462/joshisgay3.png"></img>
+			<img className="home-button" src="https://cdn.discordapp.com/attachments/1115823811116400650/1173012826823081994/welplogoblue.png?ex=65626853&is=654ff353&hm=8b8f03c5f6ae31ebecc250d240b6aacfbc65fd5e8e5a018851bffa6f935e8b86&"></img>
 			<h2>Sign Up</h2>
-			<form onSubmit={handleSubmit}>
+			<form id="signup-form" onSubmit={handleSubmit}>
 				<ul id="signup-errors">
 					{errors.map((error, idx) => (
 						<li key={idx}>* {error}</li>
@@ -83,6 +83,7 @@ function SignupFormModal() {
 					/>
 				</label>
 				</div>
+				<div id="signin-redirect">
 				<button type="submit" className="signup-for-modal">Sign Up</button>
 				<div className="existing-account-button">
 					<p>Already have an account?<a><RegisterModalButton
@@ -90,6 +91,7 @@ function SignupFormModal() {
               buttonText="Log In"
               modalComponent={<LoginFormModal />}
             /></a>here</p>
+			</div>
 				</div>
 			</form>
 		</div>

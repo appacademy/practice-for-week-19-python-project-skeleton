@@ -43,7 +43,7 @@ function Navigation({ isLoaded }) {
         <div>
             <ul className='nav-bar'>
                 <li>
-                    <NavLink exact to="/"><img className='home-button' src='https://cdn.discordapp.com/attachments/1115823811116400650/1153915198898450462/joshisgay3.png' alt='home button'></img></NavLink>
+                    <NavLink exact to="/"><img className='home-button' src='https://cdn.discordapp.com/attachments/1115823811116400650/1173012826823081994/welplogoblue.png?ex=65626853&is=654ff353&hm=8b8f03c5f6ae31ebecc250d240b6aacfbc65fd5e8e5a018851bffa6f935e8b86&' alt='home button'></img></NavLink>
                 </li>
                 <li className='search-bar'>
                     <form className='search-bar-form' onSubmit={handleSubmit}>

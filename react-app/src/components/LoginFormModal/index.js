@@ -31,7 +31,7 @@ function LoginFormModal() {
   return (
     <div className="login-container-modal">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
-        <img className="home-button" src="https://cdn.discordapp.com/attachments/1115823811116400650/1153915198898450462/joshisgay3.png"></img>
+        <img className="home-button" src="https://cdn.discordapp.com/attachments/1115823811116400650/1173012826823081994/welplogoblue.png?ex=65626853&is=654ff353&hm=8b8f03c5f6ae31ebecc250d240b6aacfbc65fd5e8e5a018851bffa6f935e8b86&"></img>
       <h2>User Log In</h2>
       <p>Access your Welp account</p>
       <form onSubmit={handleSubmit} id="login-container-form">
