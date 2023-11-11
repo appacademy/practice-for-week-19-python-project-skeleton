@@ -1,35 +1,39 @@
 .modal-button {
-    border: none;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-decoration: none;
-    width: fit-content;
-    height: 2rem;
-    background-color: transparent;
-    cursor: pointer;
+	border: none;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	text-decoration: none;
+	width: fit-content;
+	height: 2rem;
+	background-color: transparent;
+	cursor: pointer;
 }
 
 .Register-modal-button {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color: rgb(107, 185, 240);
+	background: transparent;
+	border: none;
+	cursor: pointer;
+	color: rgb(107, 185, 240);
 }
 
 .Register-modal-button:hover {
-    text-decoration: underline;
-    color: rgb(107, 185, 240);
+	text-decoration: underline;
+	color: rgb(107, 185, 240);
 }
 
 .images-button {
-    color: white;
-    font-size: 1rem;
-    background-color: rgb(187, 182, 182);
-    border: 1px solid white;
-    border: 2px solid white;
-    border-radius: 5px;
-    width: 12rem;
-    height: 3rem;
-    cursor: pointer;
+	color: white;
+	font-size: 1rem;
+	background-color: transparent;
+	border: 1px solid white;
+	border-radius: 5px;
+	width: 12rem;
+	height: 3rem;
+	cursor: pointer;
+	transition: 0.8s ease;
+}
+
+.images-button:hover {
+	background-color: rgba(255, 255, 255, 0.274);
 }
