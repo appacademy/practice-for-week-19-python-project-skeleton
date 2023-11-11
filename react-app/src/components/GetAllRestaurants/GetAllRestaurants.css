@@ -1,6 +1,7 @@
 .master-container {
 	display: flex;
 	justify-content: space-between;
+	margin: 5rem 0 0 0;
 }
 
 .all-restaurant-tiles {
@@ -13,8 +14,7 @@
 .res-detail-body {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	height: 77rem;
+	margin: 0 0 2rem 0;
 }
 
 .h1-lameo {
@@ -182,4 +182,14 @@
 	justify-content: flex-end;
 	align-items: center;
 	font-size: 10rem;
+}
+
+#no-res-text {
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 5rem;
+	font-weight: bolder;
+	font-style: italic;
 }
