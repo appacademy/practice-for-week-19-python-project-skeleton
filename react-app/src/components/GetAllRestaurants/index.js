@@ -103,9 +103,7 @@ function GetAllRestaurantsPage() {
 														</span>
 													</div>
 												</div>
-											) : (
-												null
-											)}
+											) : null}
 
 											<div className="category-price-container">
 												<div id="cat-text">

@@ -1,184 +1,228 @@
 .detail-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	margin: 5.1rem 0 0 0;
 }
 
-
 #res-img {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    height: 40rem;
-    align-items: center;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	height: 40rem;
+	align-items: center;
+	overflow: hidden;
 }
 
 .img-tile {
-    z-index: -1;
-    width: 100vw;
-    height: 40rem;
-    object-fit: cover;
-    position: absolute;
+	width: 100vw;
+	height: 40rem;
+	object-fit: cover;
+}
+
+#res-img::before {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+	background: linear-gradient(180deg, rgba(0, 0, 0, 0) 31.42%, #000);
+	pointer-events: none;
 }
 
 .info-thing {
-    /* z-index: 1; */
-    margin-top: 15rem;
-    background-color: transparent;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 75%;
-    height: 15rem;
+	/* z-index: 1; */
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	margin: auto;
+	background-color: transparent;
+	display: flex;
+	flex-direction: column;
+    justify-content: flex-end;
+	width: 75%;
+    height: 35rem;
 }
 
 #res-details {
-    margin-left: 15%;
-    margin-right: 15%;
+	margin-left: 15%;
+	margin-right: 15%;
 }
 
 #restaurant-name {
-    color: white;
-    font-size: 5rem;
-    font-weight: bolder;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: black;
+	color: white;
+	font-size: 4rem;
+	font-weight: bolder;
 }
 
 #restaurant-rtng {
-    color: white;
-    font-size: 2rem;
-    font-weight: bold;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+	color: white;
+	font-size: 2rem;
+	font-weight: bold;
 }
 
 #restaurant-cat {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 }
 
 #restaurant-price {
-    color: white;
-    font-size: 2rem;
-    font-weight: bold;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+	color: white;
+	font-size: 2rem;
+	font-weight: bold;
 }
 
-
 #manage-buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    /* background-color: blue; */
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	/* background-color: blue; */
 }
 
 #option-buttons button {
-    font-size: 90%;
-    font-weight: 600;
-    height: 3rem;
-    width: 25%;
-    padding: 0.2rem;
-    color: white;
-    background-color: rgb(107, 185, 240);
-    border: 2px solid gray;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-    border-radius: 3px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+	font-size: 90%;
+	font-weight: 600;
+	height: 3rem;
+	width: 25%;
+	padding: 0.2rem;
+	color: white;
+	background-color: rgb(107, 185, 240);
+	border: 2px solid gray;
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+	border-radius: 3px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
 }
 
 #option-buttons {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgb(182, 177, 177);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid rgb(182, 177, 177);
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 }
 
 #location-tag {
-    font-weight: bold;
-    height: 100%;
+	font-weight: bold;
+	height: 100%;
 }
 
 #res-location {
-    display: grid;
-    grid-template-columns: 1fr 6fr;
-    padding: 5px;
-    /* background-color: red; */
+	display: grid;
+	grid-template-columns: 1fr 6fr;
+	padding: 5px;
+	/* background-color: red; */
 }
 
 #rec-review-text {
-    font-weight: bold;
-    font-size: 20px;
-    padding-top: 1rem;
+	font-weight: bold;
+	font-size: 20px;
+	padding-top: 1rem;
 }
 
 #rev-prof-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
 }
 
 #reviewer-username {
-    font-weight: bold;
+	font-weight: bold;
 }
 
 #prof-stars {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
 }
 
 #manage-rev-buttons {
-    padding-top: 1rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+	padding-top: 1rem;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 }
 
 #manage-rev-buttons button {
-    font-size: 90%;
-    height: 3rem;
-    width: 80%;
-    padding: 0.2rem;
-    color: white;
-    background-color: rgb(107, 185, 240);
-    border: 2px solid gray;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-    border-radius: 3px;
-    cursor: pointer;
+	font-size: 90%;
+	height: 3rem;
+	width: 80%;
+	padding: 0.2rem;
+	color: white;
+	background-color: rgb(107, 185, 240);
+	border: 2px solid gray;
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+	border-radius: 3px;
+	cursor: pointer;
 }
 
 #details-review-text {
-    padding-bottom: 1rem;
+	padding-bottom: 1rem;
 }
 
 #rev-imgs-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
 }
 
 #rev-imgs-container img {
-    object-fit: cover;
-    height: 18rem;
-    width: 20rem;
+	object-fit: cover;
+	height: 18rem;
+	width: 20rem;
 }
 
 #prof-stars #profile-icon {
-    font-size: 2rem;
-    color: rgb(107, 185, 240);
-    border: 2px solid black;
-    border-radius: 1.5rem;
+	font-size: 2rem;
+	color: rgb(107, 185, 240);
+	border: 2px solid black;
+	border-radius: 1.5rem;
+}
+
+#review-star-detail {
+	border-radius: 0.3rem;
+	font-size: 1rem;
+	background-color: rgb(107, 185, 240);
+	margin: 0 0.2rem 0 0;
+	padding: 0.5rem;
+	color: white;
+}
+
+#review-star-half-detail {
+	font-size: 1rem;
+	border-radius: 0.3rem;
+	background: linear-gradient(
+		to right,
+		rgb(107, 185, 240) 0%,
+		rgb(107, 185, 240) 50%,
+		rgba(255, 255, 255, 0.466) 50%,
+		rgba(255, 255, 255, 0.425) 100%
+	);
+	margin: 0 0.2rem 0 0;
+	padding: 0.5rem;
+	color: white;
+}
+
+.rating-text-detail {
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: white;
+	margin: 0 0 0 0.3rem;
+}
+
+#num-reviews-text-detail {
+	color: white;
 }
