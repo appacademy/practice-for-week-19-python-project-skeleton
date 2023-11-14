@@ -74,7 +74,7 @@ export const deleteUserReviews = (reviewId) => async (dispatch) => {
   const res = fetch(`/api/reviews/delete/${reviewId}`, {
     method: "DELETE",
   });
-  
+
   if (!res.ok) {
     return "Review couldn't be removed";
   }
@@ -96,17 +96,17 @@ export const updateReview = (restaurantId, reviewId, reviewData) => async (dispa
 };
 
 export const createReviewImage =
-  (url, reviewId) => async (dispatch) => {
+  (image, reviewId) => async (dispatch) => {
     const res = await fetch(`/api/reviews/${reviewId}/images/new`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(url),
+      body: image,
     });
 
     if (res.ok) {
-      const newReviewImage = await res.json();
-      dispatch(createReviewImageAction(newReviewImage));
-      return newReviewImage;
+      const result = await res.json();
+      await dispatch(createReviewImageAction(result));
+    } else {
+      console.log("There was an error making your post!")
     }
   };
 
@@ -131,9 +131,9 @@ const reviewReducer = (state = {}, action) => {
     case CREATE_REVIEW:
       newState[action.review.id] = action.review;
       return newState;
-      case UPDATE_REVIEW:
-        newState[action.review.id] = action.review;
-        return newState;
+    case UPDATE_REVIEW:
+      newState[action.review.id] = action.review;
+      return newState;
     case CREATE_REVIEW_IMAGE:
       newState[action.reviewImage.id] = action.reviewImage;
       return newState;
