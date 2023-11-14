@@ -11,7 +11,8 @@ function ReviewModal() {
   const history = useHistory();
   const [review, setReview] = useState("");
   const [stars, setStars] = useState();
-  const [images, setImages] = useState(["", ""]);
+  const [image, setImage] = useState("");
+  const [imageLoading, setImageLoading] = useState(false)
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
 
@@ -26,7 +27,7 @@ function ReviewModal() {
     if (!stars) errors.stars = "Star rating is required!";
     if (stars > 5 || stars < 1)
       errors.stars = "Star rating must be between 1 and 5! ";
-    if (images[0] || images [1]) {
+    if (images[0] || images[1]) {
       if (!images[0].match(/\.(png|jpe?g)$/) || !images[0]) {
         errors.images = "Image URL must end in .png, .jpg, or .jpeg!";
       }
@@ -41,21 +42,18 @@ function ReviewModal() {
       };
 
       try {
-        const createdReview = await dispatch(
-          createReview(restaurantId, reviewDatas)
-        );
-        if (createdReview) {
-          const reviewId = createdReview.id;
-          images?.forEach(async (url) => {
-            if (url) {
-              let payload = {
-                url: url,
-              };
-              await dispatch(createReviewImage(payload, reviewId));
-            }
-          });
-          history.push(`/restaurants/${restaurantId}`);
-        }
+      const createdReview = await dispatch(
+        createReview(restaurantId, reviewDatas)
+      );
+      console.log(createdReview)
+      if (createdReview) {
+        const reviewId = createdReview.id;
+        const formData = new FormData();
+        formData.append("url", image)
+        setImageLoading(true)
+        await dispatch(createReviewImage(formData, reviewId));
+        history.push(`/restaurants/${restaurantId}`);
+      }
       } catch (error) {
         console.error("Error creating review:", error);
         if (error instanceof Response) {
@@ -69,7 +67,7 @@ function ReviewModal() {
   return (
     <div className="create-review-container">
       <h2 className="create-review-title">Tell us about your visit!</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div className="review-content-main">
           <div className="form-row-stars-rating-container">
             <div className="stars-container">
@@ -127,29 +125,26 @@ function ReviewModal() {
             )}
           </div>
           <div className="images-master-parent">
-            {images.map((url, index) => (
-              <div key={index} className="form-row-images">
-                {index === 0 && errors.images && (
-                  <span className="create-review-image-error">⚠︎ {errors.images}</span>
-                )}
+            <div className="form-row-images">
+              {errors.images && (
+                <span className="create-review-image-error">⚠︎ {errors.images}</span>
+              )}
 
-                <div className="review-url-container">
-                  <label className="create-image-label">
-                    <input
-                      type="text"
-                      value={url}
-                      placeholder="Image URL"
-                      onChange={(e) => {
-                        const newImages = [...images];
-                        newImages[index] = e.target.value;
-                        setImages(newImages);
-                      }}
-                      className="create-image-input"
-                    />
-                  </label>
-                </div>
+              <div className="review-url-container">
+                <label className="create-image-label">
+                  <input
+                    type="file"
+                    accept="image/png, image/jpeg, image/jpg"
+                    placeholder="Image URL"
+                    onChange={(e) => {
+                      setImage(e.target.files[0])
+                    }}
+                    className="create-image-input"
+                  // multiple="true"
+                  />
+                </label>
               </div>
-            ))}
+            </div>
           </div>
           <br />
           <button
@@ -159,6 +154,7 @@ function ReviewModal() {
           >
             Post Review
           </button>
+          {(imageLoading) && <p>Loading...</p>}
         </div>
       </form>
     </div>
