@@ -4,7 +4,7 @@ from app.forms.restaurant_form import CreateRestaurantForm
 from app.forms.review_form import ReviewForm
 from app.forms.review_images_form import ReviewImageForm
 from flask_login import current_user, login_user, logout_user, login_required
-from app.api.aws_routes import upload_file_to_s3, get_unique_filename
+from app.api.aws_routes import upload_file_to_s3, get_unique_filename, remove_file_from_s3
 
 review_routes = Blueprint("review", __name__)
 
@@ -82,6 +82,9 @@ def delete_review_image(id):
     if reviewImage:
         review = Review.query.get(reviewImage.review_id)
         if review.reviewer_id == current_user.id:
+            url = reviewImage.url
+            deleted = remove_file_from_s3(url)
+            print(deleted)
             db.session.delete(reviewImage)
             db.session.commit()
             return {"message": "Review image sucessfully deleted"}

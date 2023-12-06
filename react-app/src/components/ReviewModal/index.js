@@ -27,11 +27,11 @@ function ReviewModal() {
     if (!stars) errors.stars = "Star rating is required!";
     if (stars > 5 || stars < 1)
       errors.stars = "Star rating must be between 1 and 5! ";
-    if (images[0] || images[1]) {
-      if (!images[0].match(/\.(png|jpe?g)$/) || !images[0]) {
-        errors.images = "Image URL must end in .png, .jpg, or .jpeg!";
-      }
-    }
+    // if (images[0] || images[1]) {
+    //   if (!images[0].match(/\.(png|jpe?g)$/) || !images[0]) {
+    //     errors.images = "Image URL must end in .png, .jpg, or .jpeg!";
+    //   }
+    // }
     setErrors(errors);
 
     if (Object.values(errors).length === 0) {
@@ -42,18 +42,18 @@ function ReviewModal() {
       };
 
       try {
-      const createdReview = await dispatch(
-        createReview(restaurantId, reviewDatas)
-      );
-      console.log(createdReview)
-      if (createdReview) {
-        const reviewId = createdReview.id;
-        const formData = new FormData();
-        formData.append("url", image)
-        setImageLoading(true)
-        await dispatch(createReviewImage(formData, reviewId));
-        history.push(`/restaurants/${restaurantId}`);
-      }
+        const createdReview = await dispatch(
+          createReview(restaurantId, reviewDatas)
+        );
+        console.log(createdReview)
+        if (createdReview) {
+          const reviewId = createdReview.id;
+          const formData = new FormData();
+          formData.append("url", image)
+          setImageLoading(true)
+          await dispatch(createReviewImage(formData, reviewId));
+          history.push(`/restaurants/${restaurantId}`);
+        }
       } catch (error) {
         console.error("Error creating review:", error);
         if (error instanceof Response) {

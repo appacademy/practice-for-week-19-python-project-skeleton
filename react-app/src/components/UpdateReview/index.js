@@ -18,6 +18,7 @@ function UpdateReviewFunc() {
     dispatch(fetchReviews());
   }, [dispatch]);
 
+  console.log(currentReview)
   const handleSubmit = async (e) => {
     e.preventDefault();
 
