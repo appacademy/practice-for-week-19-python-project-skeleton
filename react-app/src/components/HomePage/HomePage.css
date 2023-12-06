@@ -1,11 +1,12 @@
 #backround-image {
-    height: 500px;
-    background-attachment: local;
-    background-size: cover;
-    animation: change 15s infinite ease-in-out;
-    background-position: bottom;
-  }
-  /* #backround-image2 {
+	margin: 5rem 0 0 0;
+	height: 40rem;
+	background-attachment: local;
+	background-size: cover;
+	animation: change 15s infinite ease-in-out;
+	background-position: bottom;
+}
+/* #backround-image2 {
     height: 500px;
     background-image: url(pexels-rachel-claire-5490965.jpg);
     background-repeat: no-repeat;
@@ -13,201 +14,235 @@
     background-size: cover;
   } */
 
-  @keyframes change{
-    0%
-    {
-      background-image: url(https://images.pexels.com/photos/5490965/pexels-photo-5490965.jpeg);
-    }
-    20%
-    {
-      background-image: url(https://images.pexels.com/photos/2290753/pexels-photo-2290753.jpeg);
-    }
-    40%
-    {
-      background-image: url(https://images.pexels.com/photos/331107/pexels-photo-331107.jpeg);
-    }
-    60%
-    {
-      background-image: url(https://images.pexels.com/photos/4946625/pexels-photo-4946625.jpeg);
-    }
-    80%
-    {
-      background-image: url(https://images.pexels.com/photos/2290070/pexels-photo-2290070.jpeg);
-    }
-    100%
-    {
-      background-image: url(https://images.pexels.com/photos/2434649/pexels-photo-2434649.jpeg);
-    }
-  }
-
+@keyframes change {
+	0% {
+		background-image: url(https://images.pexels.com/photos/5490965/pexels-photo-5490965.jpeg);
+	}
+	20% {
+		background-image: url(https://images.pexels.com/photos/2290753/pexels-photo-2290753.jpeg);
+	}
+	40% {
+		background-image: url(https://images.pexels.com/photos/331107/pexels-photo-331107.jpeg);
+	}
+	60% {
+		background-image: url(https://images.pexels.com/photos/4946625/pexels-photo-4946625.jpeg);
+	}
+	80% {
+		background-image: url(https://images.pexels.com/photos/2290070/pexels-photo-2290070.jpeg);
+	}
+	100% {
+		background-image: url(https://images.pexels.com/photos/2434649/pexels-photo-2434649.jpeg);
+	}
+}
 
 /* review start */
 
- #reviews-wrapper{
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 15px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+#reviews-wrapper {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 15px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
 }
-#reviews-wrapper h2{
-  align-self: center;
-  letter-spacing: 5px;
+#reviews-wrapper h2 {
+	align-self: center;
+	letter-spacing: 5px;
 }
 
 #homepage-review {
-  list-style: none;
-  text-decoration: none;
-  color: black;
+	list-style: none;
+	text-decoration: none;
+	color: black;
 }
 
 .review-wrapper {
-  padding: 15px;
-  margin: 15px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 20px;
+	padding: 15px;
+	margin: 15px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+	gap: 20px;
 }
 
 #reviewer-review::-webkit-scrollbar {
-  display: none;
+	display: none;
 }
 
 .single-review {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid rgba(116, 116, 116, 0.3);
-  border-radius: 3px;
-  padding: 15px;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid rgba(116, 116, 116, 0.3);
+	border-radius: 3px;
+	padding: 15px;
 }
 .single-review:hover {
-  transition: 0.3s;
-  box-shadow: 1px 1px 19px 1px rgba(0,0,0,0.5);
+	transition: 0.3s;
+	box-shadow: 1px 1px 19px 1px rgba(0, 0, 0, 0.5);
 }
 
-
 .homepage-image {
-  object-fit: cover;
- height: 150px;
+	object-fit: cover;
+	height: 150px;
 }
 
 #reviewer-review {
-  padding: 8px;
-  line-height: 18px;
-  overflow-y: hidden;
+	padding: 8px;
+	line-height: 18px;
+	overflow-y: hidden;
 }
 
 #reviewer-stars {
-  padding: 8px;
-
+	padding: 8px;
 }
 
 #reviewer-username {
-  font-weight: bolder;
-  font-size: medium;
-  letter-spacing: 2px;
+	font-weight: bolder;
+	font-size: medium;
+	letter-spacing: 2px;
 }
 
 #review-star-homepage {
-  text-align: center;
-  border-radius: 0.3rem;
-  font-size: 0.7rem;
-  background-color: rgb(107, 185, 240);
-  margin: 0 0.2rem 0 0;
-  padding: 0.3rem;
-  color: white;
+	text-align: center;
+	border-radius: 0.3rem;
+	font-size: 0.7rem;
+	background-color: rgb(107, 185, 240);
+	margin: 0 0.2rem 0 0;
+	padding: 0.3rem;
+	color: white;
 }
 
 #profile-header {
-  display: flex;
-  justify-content: start;
-  flex-direction: row;
-  align-items: center;
+	display: flex;
+	justify-content: start;
+	flex-direction: row;
+	align-items: center;
 }
 
 #prof-picture {
- font-size: 2.5rem;
+	font-size: 2.5rem;
 }
 
 #container-username-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: start;
-  margin-left: .8rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	align-items: start;
+	margin-left: 0.8rem;
 }
 
 #filler-text-review {
-  font-size: .8rem;
+	font-size: 0.8rem;
 }
 
 #rst-name-in-review {
-  font-size: .9rem;
-  margin-left: 8px;
+	font-size: 0.9rem;
+	margin-left: 8px;
 }
-
-
 
 /* review end */
 
 /* restaurant start */
 
-.restaurant-container{
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 15px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
+.restaurant-container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 15px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
 }
 
 .restaurant-container h2 {
-  align-self: center;
+	align-self: center;
 }
 
 #header-text {
-  letter-spacing: 5px;
+	font-size: 1.8rem;
 }
 
 .restaurant-wrapper {
-  padding: 15px;
-  margin: 15px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 20px;
+	padding: 15px;
+	margin: 15px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+	gap: 20px;
 }
 
 .rst-img-home {
-  width: 8rem;
-  height: 8rem;
-  border-radius: 2px;
+	width: 13rem;
+	height: 13rem;
+	object-fit: cover;
 }
 
 .single-restaurant {
-  display: flex;
-  flex-direction: row;
-  justify-content: baseline;
+	display: flex;
+	flex-direction: row;
+	justify-content: baseline;
 }
 
 #restaurant-link {
-  list-style: none;
-  text-decoration: none;
-  color: black;
+	list-style: none;
+	text-decoration: none;
+	color: black;
 }
-.single-restaurant h2{
-  padding: 10px;
-  align-self: baseline;
-  font-size: medium;
+.single-restaurant h2 {
+	padding: 10px;
+	align-self: baseline;
+	font-size: medium;
 }
-.single-restaurant p{
-  padding: 10px;
-  align-self: baseline;
-  font-size: small;
-  font-weight: lighter;
+.single-restaurant p {
+	padding: 10px;
+	align-self: baseline;
+	font-size: small;
+	font-weight: lighter;
 }
-.single-restaurant h2:hover{
-  text-decoration: underline;
+.single-restaurant h2:hover {
+	text-decoration: underline;
+}
+.rec-res-container {
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	height: 13rem;
+	width: 35rem;
+	border-radius: 0.3rem;
+}
+.rec-info-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	margin: 1rem 0 0 1rem;
+	height: 6rem;
+}
+#rec-res-name {
+	font-weight: bold;
+	font-size: 1.2rem;
+}
+#rec-res-name:hover {
+	text-decoration: 0.15rem solid underline;
+}
+.stars-rec {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: flex-end;
+	margin: 0.5rem 0 0 0;
+}
+.star-rec {
+	margin: 0 0.15rem 0 0;
+	color: white;
+	font-size: 0.9rem;
+	transition: 0.5s ease;
+	background-color: rgb(196, 196, 196);
+	padding: 0.3rem 0.4rem 0.3rem 0.4rem;
+	border-radius: 0.5rem;
+	cursor: pointer;
+}
+#review-star-homepage-rec {
+	font-size: 1rem;
+}
+.star-rec:hover {
+	background-color: rgb(107, 185, 240);
+}
+.star-rec:hover ~ .star-rec {
+	background-color: rgb(107, 185, 240);
 }
 
 /* restaurant end */
