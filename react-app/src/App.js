@@ -12,6 +12,7 @@ import CreateRestaurant from "./components/createRestaurantForm";
 import ReviewModal from "./components/ReviewModal";
 import UpdateForm from "./components/updateRestaurant";
 import UpdateReviewFunc from "./components/UpdateReview";
+import UpdateReviewImgFunc from "./components/UpdateReviewImages";
 
 function App() {
   const dispatch = useDispatch();
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route path="/restaurants/:restaurantId/review/:reviewId/edit">
             <UpdateReviewFunc />
+          </Route>
+          <Route path="/restaurants/:restaurantId/review/:reviewId/images/edit">
+            <UpdateReviewImgFunc />
           </Route>
           <Route path="/restaurants/:name/:price/:category">
             <GetAllRestaurantsPage />
