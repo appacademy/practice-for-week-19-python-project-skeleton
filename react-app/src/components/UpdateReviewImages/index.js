@@ -21,10 +21,12 @@ function UpdateReviewImgFunc() {
 
     useEffect(() => {
         dispatch(fetchReviews());
-        if (currentReview?.images[0]) {
+        if (currentReview?.images.length > 0) {
             setUrl(currentReview?.images[0].url)
         }
     }, [dispatch]);
+
+    console.log(currentReview)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -82,8 +84,9 @@ function UpdateReviewImgFunc() {
                         {errors.images && (
                             <span className="create-review-image-error">⚠︎ {errors.images}</span>
                         )}
-                        {currentReview?.images[0] && (
+                        {currentReview?.images.length > 0 && (
                             <div className="review-url-container">
+                                <img src={currentReview?.images[0].url} />
                                 <label className="create-image-label">
                                     <input
                                         type="file"
@@ -99,7 +102,7 @@ function UpdateReviewImgFunc() {
                             </div>
                         )}
                     </div>
-                    {!currentReview?.images[0] && (
+                    {currentReview?.images.length == 0 && (
                         <div className="review-url-container">
                             <label className="create-image-label">
                                 <input
@@ -126,7 +129,7 @@ function UpdateReviewImgFunc() {
                 </button>
                 {(imageLoading) && <p>Loading...</p>}
             </form>
-            {currentReview?.images[0] && (
+            {currentReview?.images.length > 0 && (
                 <DetailsModalButton
                     buttonText="Delete Image"
                     modalComponent={

@@ -4,6 +4,7 @@ from app.forms.restaurant_form import CreateRestaurantForm
 from app.forms.review_form import ReviewForm
 from app.forms.restaraunt_image_form import RestaurantImageForm
 from flask_login import current_user, login_user, logout_user, login_required
+from app.api.aws_routes import upload_file_to_s3, get_unique_filename, remove_file_from_s3
 from statistics import mean
 
 restaurant_routes = Blueprint('restuarant', __name__)
@@ -212,6 +213,14 @@ def create_restaurant_image(id):
             form = RestaurantImageForm()
             form['csrf_token'].data = request.cookies['csrf_token']
             if form.validate_on_submit():
+                image = form.data["url"]
+                image.filename = get_unique_filename(image.filename)
+                upload = upload_file_to_s3(image)
+                print(upload)
+
+                if "url" not in upload:
+                    return {"errors": [upload]}
+                url = upload["url"]
                 restaurantImage = RestaurantImage(
                     restaurant_id=id,
                     url=form.data["url"]
@@ -233,6 +242,9 @@ def delete_review_image(id):
     if restaurantImage:
         restaurant = Restaurant.query.get(restaurantImage.restaurant_id)
         if restaurant.owner_id == current_user.id:
+            url = restaurantImage.url
+            deleted = remove_file_from_s3(url)
+            print(deleted)
             db.session.delete(restaurantImage)
             db.session.commit()
             return {"message": "Restaurant image sucessfully deleted"}
