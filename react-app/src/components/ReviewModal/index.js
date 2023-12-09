@@ -12,9 +12,11 @@ function ReviewModal() {
 	const [review, setReview] = useState("");
 	const [stars, setStars] = useState();
 	const [image, setImage] = useState("");
-	const [imageLoading, setImageLoading] = useState(false)
+	const [imageLoading, setImageLoading] = useState(false);
 	const [errors, setErrors] = useState({});
 	const [submitted, setSubmitted] = useState(false);
+
+	console.log("Hello, I'm image!", image);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -64,7 +66,6 @@ function ReviewModal() {
 		}
 	};
 
-
 	return (
 		<div className="create-review-container">
 			<h2 className="create-review-title">Tell us about your visit!</h2>
@@ -74,23 +75,31 @@ function ReviewModal() {
 						<div className="stars-container">
 							<div className="rating">
 								<div className="stars">
-									{[1, 2, 3, 4, 5].map((star) => (
-										<span
+									<span className="stars-text">
+										Select your rating
+									</span>
+									{[5, 4, 3, 2, 1].map((star) => (
+										<div
 											key={star}
-											className={`star ${star <= stars ? "filled" : ""}`}
+											className={`star ${star <= stars ? "filled" : ""
+												}`}
 											onClick={() => setStars(star)}
 										>
-											🌭
-										</span>
+											<i
+												id="review-star-actl"
+												className="fa-solid fa-star"
+											></i>
+										</div>
 									))}
-									<span className="stars-text">Select your rating</span>
 								</div>
 							</div>
 							<div className="things-to-consider-container">
 								<span className="things-to-consider-text">
 									A few things to consider in your review
 								</span>
-								<span className="things-to-consider-categories-food">Food</span>
+								<span className="things-to-consider-categories-food">
+									Food
+								</span>
 								<span className="things-to-consider-categories-service">
 									Service
 								</span>
@@ -128,7 +137,9 @@ function ReviewModal() {
 					<div className="images-master-parent">
 						<div className="form-row-images">
 							{errors.images && (
-								<span className="create-review-image-error">⚠︎ {errors.images}</span>
+								<span className="create-review-image-error">
+									⚠︎ {errors.images}
+								</span>
 							)}
 
 							<div className="review-url-container">
@@ -138,11 +149,19 @@ function ReviewModal() {
 										accept="image/png, image/jpeg, image/jpg"
 										placeholder="Image URL"
 										onChange={(e) => {
-											setImage(e.target.files[0])
+											setImage(e.target.files[0]);
 										}}
 										className="create-image-input"
 									// multiple="true"
 									/>
+									<div className="attch-photos-txt">
+										Attach Photos
+									</div>
+									<div className="upload-img-icon-container">
+										<span id="upload-image-icon" className="material-symbols-outlined">
+											add_a_photo
+										</span>
+									</div>
 								</label>
 							</div>
 						</div>
@@ -155,7 +174,7 @@ function ReviewModal() {
 					>
 						Post Review
 					</button>
-					{(imageLoading) && <p>Loading...</p>}
+					{imageLoading && <p>Loading...</p>}
 				</div>
 			</form>
 		</div>
