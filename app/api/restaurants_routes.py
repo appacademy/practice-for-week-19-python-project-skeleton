@@ -64,7 +64,10 @@ def create_restaurants():
             name=form.data['name'],
             price=form.data['price'],
             rating=0,
-            category=form.data["category"]
+            category=form.data["category"],
+            postalcode=form.data["postalcode"],
+            lat=form.data["lat"],
+            lng=form.data["lng"],
         )
         db.session.add(restaurant)
         db.session.commit()
@@ -111,6 +114,9 @@ def update_one_restaurant(id):
                 reviews = Review.query.filter(Review.restaurant_id == id)
                 ratings = []
                 restaurant.category = form.data["category"]
+                restaurant.postalcode = form.data["postalcode"]
+                restaurant.lat = form.data["lat"]
+                restaurant.lng = form.data["lng"]
                 if reviews:
                     for review in reviews:
                         ratings.append(review.stars)

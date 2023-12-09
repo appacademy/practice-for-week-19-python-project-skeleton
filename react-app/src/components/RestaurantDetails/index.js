@@ -9,6 +9,8 @@ import DeleteReviewForm from "../DeleteReview";
 import ImagesFormModal from "../GetAllImagesModal";
 import ImagesModalButton from "../OpenModalButton/indexv3";
 import CreateRestaurantImage from "../createResImagesForm";
+import Maps from "../Maps/Maps";
+import MapContainer from "../Maps/index";
 
 function RestaurantDetailsPage() {
 	const history = useHistory();
@@ -16,6 +18,8 @@ function RestaurantDetailsPage() {
 	const { restaurantId } = useParams();
 	const restaurant = useSelector((state) => state?.restaurant[restaurantId]);
 	const sessionUser = useSelector((state) => state?.session.user);
+	console.log("THIS IS FROM THE RES!", restaurant?.lat, restaurant?.lng)
+	console.log("THIS IS ACTUAL RESTAURANT!", restaurant)
 
 	useEffect(() => {
 		dispatch(loadRestaurantDetails(restaurantId));
@@ -156,6 +160,12 @@ function RestaurantDetailsPage() {
 							{restaurant?.state}, {restaurant?.country}
 						</div>
 					</div>
+				</div>
+				<div>
+					<MapContainer
+						resLat={restaurant?.lat}
+						resLng={restaurant?.lng}
+					/>
 				</div>
 				<div id="all-da-reviews">
 					<div id="rec-review-text">Recommended Reviews</div>

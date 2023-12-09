@@ -17,6 +17,9 @@ class Restaurant(db.Model):
     price = db.Column(db.Integer, nullable=False)
     rating = db.Column(db.Integer, nullable=True)
     category = db.Column(db.String, nullable=False)
+    postalcode = db.Column(db.Integer, nullable=False)
+    lat = db.Column(db.Integer, nullable=True)
+    lng = db.Column(db.Integer, nullable=True)
 
     owner = db.relationship('User', back_populates='restaurants')
     restaurant_images = db.relationship('RestaurantImage', back_populates='restaurant_img', cascade='all, delete-orphan')
@@ -36,6 +39,9 @@ class Restaurant(db.Model):
             "price": self.price,
             "rating": self.rating,
             "category": self.category,
+            "postalcode": self.postalcode,
+            "lat": self.lat,
+            "lng": self.lng,
             "reviews": reviews_list,
             "images": images_list,
             "owner": self.owner.to_dict()

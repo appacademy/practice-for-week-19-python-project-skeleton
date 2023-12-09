@@ -12,6 +12,7 @@ import CreateRestaurant from "./components/createRestaurantForm";
 import ReviewModal from "./components/ReviewModal";
 import UpdateForm from "./components/updateRestaurant";
 import UpdateReviewFunc from "./components/UpdateReview";
+import MapContainer from "./components/Maps";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path="/maps">
+            <MapContainer />
           </Route>
           <Route path="/restaurants/:restaurantId/review/:reviewId/edit">
             <UpdateReviewFunc />

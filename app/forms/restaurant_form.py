@@ -13,3 +13,6 @@ class CreateRestaurantForm(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
     price = IntegerField('price', validators=[DataRequired()])
     category = StringField("category", validators=[DataRequired()])
+    postalcode = StringField("postalcode", validators=[DataRequired()])
+    lat = StringField("lat")
+    lng = StringField("lng")
