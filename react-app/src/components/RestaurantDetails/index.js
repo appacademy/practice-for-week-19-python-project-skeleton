@@ -206,6 +206,14 @@ function RestaurantDetailsPage() {
 										>
 											Update Review
 										</button>
+										<button
+										onClick={() =>
+											history.push(
+												`/restaurants/${restaurant?.id}/review/${review?.id}/images/edit`
+											)
+										}>
+											Manage Photos
+										</button>
 										<DetailsModalButton
 											buttonText="Delete Review"
 											modalComponent={

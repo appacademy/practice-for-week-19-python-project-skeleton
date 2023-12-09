@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { updateReview, fetchReviews } from "../../store/reviews";
 import "../UpdateReview/UpdateReview.css";
+import DetailsModalButton from "../OpenModalButton/indexv4";
+import DeleteReviewImgForm from "../DeleteReviewImg";
 
 function UpdateReviewFunc() {
 	const dispatch = useDispatch();

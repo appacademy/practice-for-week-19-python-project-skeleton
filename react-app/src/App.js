@@ -35,6 +35,9 @@ function App() {
           <Route path="/restaurants/:restaurantId/review/:reviewId/edit">
             <UpdateReviewFunc />
           </Route>
+          <Route path="/restaurants/:restaurantId/review/:reviewId/images/edit">
+            <UpdateReviewImgFunc />
+          </Route>
           <Route path="/restaurants/:name/:price/:category">
             <GetAllRestaurantsPage />
           </Route>
