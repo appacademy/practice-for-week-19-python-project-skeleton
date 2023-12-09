@@ -12,59 +12,57 @@ function ReviewModal() {
 	const [review, setReview] = useState("");
 	const [stars, setStars] = useState();
 	const [image, setImage] = useState("");
-	const [imageLoading, setImageLoading] = useState(false);
+	const [imageLoading, setImageLoading] = useState(false)
 	const [errors, setErrors] = useState({});
-	const [submitted, setSubmitted] = useState(false);
-
-	console.log("Hello, I'm image!", image);
+	const [submitted, setSubmitted] = useState(false)
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		const errors = {};
 		if (review.length < 10)
-			errors.review = "Review text must be greater than 10 characters!";
+		  errors.review = "Review text must be greater than 10 characters!";
 		if (review.length > 250)
-			errors.review = "Review text must be 250 characters or less!";
+		  errors.review = "Review text must be 250 characters or less!";
 		if (!stars) errors.stars = "Star rating is required!";
 		if (stars > 5 || stars < 1)
-			errors.stars = "Star rating must be between 1 and 5! ";
-		if (image) {
-			if (!image.type.match(/^image\/(png|jpe?g)$/i) || !image.name) {
-				errors.images = "Image URL must end in .png, .jpg, or .jpeg!";
-			}
-		}
+		  errors.stars = "Star rating must be between 1 and 5! ";
+		// if (images[0] || images[1]) {
+		//   if (!images[0].match(/\.(png|jpe?g)$/) || !images[0]) {
+		//     errors.images = "Image URL must end in .png, .jpg, or .jpeg!";
+		//   }
+		// }
 		setErrors(errors);
 
 		if (Object.values(errors).length === 0) {
 			setSubmitted(true);
 			const reviewDatas = {
-				review,
-				stars,
+			  review,
+			  stars,
 			};
 
 			try {
 				const createdReview = await dispatch(
-					createReview(restaurantId, reviewDatas)
+				  createReview(restaurantId, reviewDatas)
 				);
 				console.log(createdReview)
 				if (createdReview) {
-					const reviewId = createdReview.id;
-					const formData = new FormData();
-					formData.append("url", image)
-					setImageLoading(true)
-					await dispatch(createReviewImage(formData, reviewId));
-					history.push(`/restaurants/${restaurantId}`);
+				  const reviewId = createdReview.id;
+				  const formData = new FormData();
+				  formData.append("url", image)
+				  setImageLoading(true)
+				  await dispatch(createReviewImage(formData, reviewId));
+				  history.push(`/restaurants/${restaurantId}`);
 				}
-			} catch (error) {
+			  } catch (error) {
 				console.error("Error creating review:", error);
 				if (error instanceof Response) {
-					const responseJson = await error.json();
-					console.error("Server response:", responseJson);
+				  const responseJson = await error.json();
+				  console.error("Server response:", responseJson);
 				}
+			  }
 			}
-		}
-	};
+		  };
 
 	return (
 		<div className="create-review-container">
@@ -81,8 +79,9 @@ function ReviewModal() {
 									{[5, 4, 3, 2, 1].map((star) => (
 										<div
 											key={star}
-											className={`star ${star <= stars ? "filled" : ""
-												}`}
+											className={`star ${
+												star <= stars ? "filled" : ""
+											}`}
 											onClick={() => setStars(star)}
 										>
 											<i
@@ -152,7 +151,7 @@ function ReviewModal() {
 											setImage(e.target.files[0]);
 										}}
 										className="create-image-input"
-									// multiple="true"
+										// multiple="true"
 									/>
 									<div className="attch-photos-txt">
 										Attach Photos
