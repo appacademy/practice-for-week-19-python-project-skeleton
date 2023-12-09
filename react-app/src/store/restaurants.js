@@ -121,17 +121,16 @@ export const deleteRestaurant = (restaurantId) => async (dispatch) => {
 };
 
 export const createRestaurantImage =
-  (restaurantId, restaurantImageData) => async (dispatch) => {
+  (image, restaurantId) => async (dispatch) => {
     const res = await fetch(`/api/restaurants/${restaurantId}/images/new`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(restaurantImageData),
+      body: image,
     });
-
     if (res.ok) {
-      const newRestaurantImage = await res.json();
-      dispatch(createRestaurantImageAction(newRestaurantImage));
-      return newRestaurantImage;
+      const result = await res.json();
+      await dispatch(createRestaurantImageAction(result));
+    } else {
+      console.log("There was an error making your post!")
     }
   };
 

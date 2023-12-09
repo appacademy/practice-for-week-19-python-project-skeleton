@@ -10,20 +10,22 @@ function CreateRestaurantImage({ restaurantId }) {
     const dispatch = useDispatch();
     const { closeModal } = useModal()
     const history = useHistory();
-    const [images, setImages] = useState(["", "", "", ""]);
+    const [images, setImages] = useState(["", ""]);
     const [errors, setErrors] = useState({});
+    const [imageLoading, setImageLoading] = useState(false);
     const [submitted, setSubmitted] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log(images)
 
         const errors = {};
-        if (images.length > 0) {
-            if (!images[0].match(/\.(png|jpe?g)$/) || !images[0]) {
-                errors.images = "Image URL must end in .png, .jpg, or .jpeg!";
-            }
-        }
-        if (!images[0].length) {
+        // if (images.length > 0) {
+        //     if (!images[0].match(/\.(png|jpe?g)$/) || !images[0]) {
+        //         errors.images = "Image URL must end in .png, .jpg, or .jpeg!";
+        //     }
+        // }
+        if (!images) {
             errors.images = "Add at least one Image URL"
         }
         setErrors(errors);
@@ -34,10 +36,9 @@ function CreateRestaurantImage({ restaurantId }) {
             try {
                 images?.forEach(async (url) => {
                     if (url) {
-                        let payload = {
-                            url: url,
-                        };
-                        await dispatch(createRestaurantImage(restaurantId, payload));
+                        const formData = new FormData();
+                        formData.append("url", url)
+                        await dispatch(createRestaurantImage(formData, restaurantId));
                     }
                     await dispatch(loadRestaurantDetails(restaurantId))
                     closeModal()
@@ -67,16 +68,24 @@ function CreateRestaurantImage({ restaurantId }) {
                                 <div className="review-url-container">
                                     <label className="create-image-label">
                                         <input
-                                            type="text"
-                                            value={url}
+                                            type="file"
+                                            accept="image/png, image/jpeg, image/jpg"
                                             placeholder="Image URL"
                                             onChange={(e) => {
                                                 const newImages = [...images];
-                                                newImages[index] = e.target.value;
+                                                newImages[index] = e.target.files[0];
                                                 setImages(newImages);
                                             }}
                                             className="create-image-input"
                                         />
+                                        <div className="attch-photos-txt">
+                                            Attach Photos
+                                        </div>
+                                        <div className="upload-img-icon-container">
+                                            <span id="upload-image-icon" className="material-symbols-outlined">
+                                                add_a_photo
+                                            </span>
+                                        </div>
                                     </label>
                                 </div>
                             </div>

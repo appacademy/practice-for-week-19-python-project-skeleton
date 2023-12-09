@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import {
 	createRestaurant,
 	createRestaurantImage,
+	loadRestaurantDetails
 } from "../../store/restaurants";
 import "./createRestaurant.css";
 
@@ -114,14 +115,11 @@ const CreateRestaurant = () => {
 					if (createdRestaurant) {
 						urls?.forEach(async (url) => {
 							if (url) {
-								let payload = { url: url };
-								await dispatch(
-									createRestaurantImage(
-										createdRestaurant.id,
-										payload
-									)
-								);
+								const formData = new FormData();
+								formData.append("url", url)
+								await dispatch(createRestaurantImage(formData, createdRestaurant.id));
 							}
+							await dispatch(loadRestaurantDetails(createdRestaurant.id))
 						});
 						history.push(`/restaurants/${createdRestaurant.id}`);
 					}
@@ -150,9 +148,8 @@ const CreateRestaurant = () => {
 						placeholder="Enter country"
 						value={country}
 						onChange={updateCountry}
-						className={`input-field ${
-							errors.country ? "error" : ""
-						}`}
+						className={`input-field ${errors.country ? "error" : ""
+							}`}
 					/>
 					{errors.country && (
 						<p className="error-message">{errors.country}</p>
@@ -166,9 +163,8 @@ const CreateRestaurant = () => {
 						placeholder="Enter address"
 						value={address}
 						onChange={updateAddress}
-						className={`input-field ${
-							errors.address ? "error" : ""
-						}`}
+						className={`input-field ${errors.address ? "error" : ""
+							}`}
 					/>
 					{errors.address && (
 						<p className="error-message">{errors.address}</p>
@@ -210,9 +206,8 @@ const CreateRestaurant = () => {
 						placeholder="Enter Postal Code"
 						value={postalcode}
 						onChange={updatePostalCode}
-						className={`input-field ${
-							errors.postalcode ? "error" : ""
-						}`}
+						className={`input-field ${errors.postalcode ? "error" : ""
+							}`}
 					/>
 					{errors.postalcode && (
 						<p className="error-message">{errors.postalcode}</p>
@@ -288,13 +283,12 @@ const CreateRestaurant = () => {
 							Image URL {index + 1}
 						</label>
 						<input
-							type="url"
+							type="file"
 							id={`imageUrl${index + 1}`}
 							placeholder="Enter image URL"
-							value={url}
 							onChange={(e) => {
 								const newUrls = [...urls];
-								newUrls[index] = e.target.value;
+								newUrls[index] = e.target.files[0];
 								setUrls(newUrls);
 							}}
 							className="input-field"
