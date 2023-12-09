@@ -6,12 +6,14 @@ import session from './session'
 import reviewReducer from './reviews';
 import restaurantReducer from './restaurants';
 import allRestaurantReducer from './allRestaurants';
+import mapsReducer from './maps';
 
 const rootReducer = combineReducers({
   session,
   reviews: reviewReducer,
   restaurant: restaurantReducer,
   allRestaurants: allRestaurantReducer,
+  maps: mapsReducer
 });
 
 
