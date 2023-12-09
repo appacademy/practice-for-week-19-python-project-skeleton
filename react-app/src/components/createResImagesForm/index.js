@@ -78,6 +78,14 @@ function CreateRestaurantImage({ restaurantId }) {
                                             }}
                                             className="create-image-input"
                                         />
+                                        <div className="attch-photos-txt">
+                                            Attach Photos
+                                        </div>
+                                        <div className="upload-img-icon-container">
+                                            <span id="upload-image-icon" className="material-symbols-outlined">
+                                                add_a_photo
+                                            </span>
+                                        </div>
                                     </label>
                                 </div>
                             </div>
