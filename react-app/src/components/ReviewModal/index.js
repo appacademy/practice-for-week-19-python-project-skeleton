@@ -39,31 +39,31 @@ function ReviewModal() {
 		if (Object.values(errors).length === 0) {
 			setSubmitted(true);
 			const reviewDatas = {
-				review,
-				stars,
+			  review,
+			  stars,
 			};
-
+	  
 			try {
-				const createdReview = await dispatch(
-					createReview(restaurantId, reviewDatas)
-				);
-				console.log(createdReview);
-				if (createdReview) {
-					const reviewId = createdReview.id;
-					const formData = new FormData();
-					formData.append("url", image);
-					setImageLoading(true);
-					await dispatch(createReviewImage(formData, reviewId));
-					history.push(`/restaurants/${restaurantId}`);
-				}
+			  const createdReview = await dispatch(
+				createReview(restaurantId, reviewDatas)
+			  );
+			  console.log(createdReview)
+			  if (createdReview) {
+				const reviewId = createdReview.id;
+				const formData = new FormData();
+				formData.append("url", image)
+				setImageLoading(true)
+				await dispatch(createReviewImage(formData, reviewId));
+				history.push(`/restaurants/${restaurantId}`);
+			  }
 			} catch (error) {
-				console.error("Error creating review:", error);
-				if (error instanceof Response) {
-					const responseJson = await error.json();
-					console.error("Server response:", responseJson);
-				}
+			  console.error("Error creating review:", error);
+			  if (error instanceof Response) {
+				const responseJson = await error.json();
+				console.error("Server response:", responseJson);
+			  }
 			}
-		}
+		  }
 	};
 
 	return (
