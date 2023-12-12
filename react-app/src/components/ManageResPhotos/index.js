@@ -5,16 +5,17 @@ import { loadRestaurantDetails } from "../../store/restaurants";
 import { useModal } from "../../context/Modal";
 import DeleteResImgForm from "../DeleteResImg";
 import DetailsModalButton from "../OpenModalButton/indexv4";
+import UpdateResImgFunc from "../UpdateResImages";
 import "../UpdateReview/UpdateReview.css";
 
 
-function UpdateResImgFunc({ resImages, name }) {
+function ManageResImgFunc({ resImages, name, restaurantId }) {
     const dispatch = useDispatch();
-    const { restaurantId } = useParams();
     const { closeModal } = useModal();
     const restaurant = useSelector((state) => state?.restaurant[restaurantId]);
     const history = useHistory();
 
+    console.log(restaurantId)
 
     return (
         <div id="images-modal-container">
@@ -27,6 +28,15 @@ function UpdateResImgFunc({ resImages, name }) {
                     {resImages.map((image) => (
                         <div>
                             <img id="modal-img-tile" src={image.url} />
+                            <DetailsModalButton
+                                buttonText="Update Photo"
+                                modalComponent={
+                                    <UpdateResImgFunc
+                                        resImage={image}
+                                        restaurantId={restaurantId}
+                                    />
+                                }
+                            />
                             <DetailsModalButton
                                 buttonText="Delete Photo"
                                 modalComponent={
@@ -43,4 +53,4 @@ function UpdateResImgFunc({ resImages, name }) {
     );
 }
 
-export default UpdateResImgFunc;
+export default ManageResImgFunc;

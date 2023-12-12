@@ -12,7 +12,9 @@ import CreateRestaurant from "./components/createRestaurantForm";
 import ReviewModal from "./components/ReviewModal";
 import UpdateForm from "./components/updateRestaurant";
 import UpdateReviewFunc from "./components/UpdateReview";
-import UpdateReviewImgFunc from "./components/UpdateReviewImages";
+import UpdateReviewImgFunc from "./components/UpdateReview";
+import ManageResImgFunc from "./components/UpdateReviewImages";
+import UpdateResImgFunc from "./components/UpdateResImages";
 
 function App() {
   const dispatch = useDispatch();

@@ -150,7 +150,7 @@ function RestaurantDetailsPage() {
 							<DetailsModalButton
 								buttonText="Manage Restaurant Photos"
 								modalComponent={
-									<UpdateResImgFunc resImages={resImages} name={restaurant?.name} />
+									<UpdateResImgFunc resImages={resImages} name={restaurant?.name} restaurantId={restaurantId} />
 								}
 							/>
 							<DetailsModalButton
