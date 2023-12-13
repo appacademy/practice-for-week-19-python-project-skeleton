@@ -1,0 +1,109 @@
+.update-review-image-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 5rem 0 20rem 0;
+}
+
+.update-review-image-button {
+	width: 12rem;
+	height: 3rem;
+	border: none;
+	border-radius: 0.5rem;
+	color: #ffffff;
+	background-color: rgb(107, 185, 240);
+	transition: 0.5s ease;
+	cursor: pointer;
+	font-size: 1rem;
+	font-weight: 550;
+}
+
+.update-review-image-button:hover {
+	box-shadow: 0.5px 0.5px #373737, 1px 1px #373737, 2px 2px #373737,
+		3px 3px #373737;
+	-webkit-transform: translateX(-3px);
+	transform: translateX(-3px);
+	transition: 0.5s ease;
+	background-color: rgb(142, 205, 250);
+}
+
+.update-img-btn-container {
+	display: flex;
+	justify-content: space-between;
+	width: 41.5rem;
+	margin: 1rem 0 0 0;
+}
+
+.delete-update-img-btn-container button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 12rem;
+	height: 3rem;
+	border: none;
+	border-radius: 0.5rem;
+	color: #ffffff;
+	background-color: rgb(107, 185, 240);
+	transition: 0.5s ease;
+	cursor: pointer;
+	font-size: 1rem;
+	font-weight: 550;
+}
+
+.delete-update-img-btn-container button:hover {
+	box-shadow: 0.5px 0.5px #373737, 1px 1px #373737, 2px 2px #373737,
+		3px 3px #373737;
+	-webkit-transform: translateX(-3px);
+	transform: translateX(-3px);
+	transition: 0.5s ease;
+	background-color: rgb(240, 107, 107);
+}
+
+#cancel-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 12rem;
+	height: 3rem;
+	border: none;
+	border-radius: 0.5rem;
+	color: #ffffff;
+	background-color: rgb(107, 185, 240);
+	transition: 0.5s ease;
+	cursor: pointer;
+	font-size: 1rem;
+	font-weight: 550;
+}
+
+#cancel-btn:hover {
+	box-shadow: 0.5px 0.5px #373737, 1px 1px #373737, 2px 2px #373737,
+		3px 3px #373737;
+	-webkit-transform: translateX(-3px);
+	transform: translateX(-3px);
+	transition: 0.5s ease;
+	background-color: rgb(189, 189, 189);
+}
+
+#current-img-update-img {
+	object-fit: cover;
+	object-position: center;
+	width: 42rem;
+	height: 20rem;
+	border-radius: 0.5rem;
+    transition: 0.7s ease;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.current-img-container-update-img {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	margin: 0 0 2rem 0;
+}
+
+#current-img-txt {
+	font-size: 1.3rem;
+	margin: 0 0 0.5rem 0.2rem;
+	font-weight: bold;
+}

@@ -6,10 +6,10 @@
 
 .form-row-stars-rating-container {
 	border: solid 0.1px rgb(14, 14, 14, 0.3);
-	border-radius: 4px;
+	border-radius: 0.5rem;
 	padding-left: 25px;
-	width: 625px;
-	height: 370px;
+	width: 40rem;
+	height: 25rem;
 	transition: 0.2s ease-in-out;
 }
 
@@ -24,7 +24,6 @@
 	margin-left: 8px;
 	margin-top: 15px;
 	border: none;
-	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: rgb(107, 185, 240);
 	font-weight: 1000;
 }
@@ -117,12 +116,12 @@ input:focus {
 }
 
 .review-url-container {
-	margin-top: 5px;
+	margin: 2rem 0 0 0;
 }
 
 .create-image-input {
-	width: 646px;
-	height: 30px;
+	width: 41.5rem;
+	height: 0.01rem;
 	border: solid 0.1px rgb(14, 14, 14, 0.3);
 	border-radius: 4px;
 	color: rgb(107, 185, 240);
@@ -130,8 +129,10 @@ input:focus {
 }
 
 .upload-img-icon-container {
-	border: 1px solid rgba(128, 128, 128, 0.534);
+	border: 0.1px solid rgba(128, 128, 128, 0.5);
 	height: 7rem;
+	border-radius: 0.5rem;
+	/* box-shadow: rgba(0, 0, 0, 0.35) 0px 1px 5px; */
 }
 
 .create-image-input::placeholder {
@@ -157,7 +158,8 @@ input:focus {
 
 .attch-photos-txt {
 	font-size: 1.3rem;
-	margin: 0 0 1rem 0;
+	margin: 0 0 0.5rem 0.2rem;
+	font-weight: bold;
 }
 
 .create-review-submit-button {
@@ -170,7 +172,6 @@ input:focus {
 	color: #ffffff;
 	background-color: rgb(107, 185, 240);
 	transition: 0.5s ease;
-	font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	cursor: pointer;
 	font-size: 1rem;
 	font-weight: 550;
@@ -185,9 +186,7 @@ input:focus {
 }
 
 .create-review-error-div {
-	padding: 0px;
-	margin-top: 10px;
-	margin-right: 235px;
+	width: 41.5rem;
 	color: rgb(107, 185, 240);
 	font-weight: 800;
 }
