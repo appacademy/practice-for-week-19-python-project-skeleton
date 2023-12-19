@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 import { loadRestaurants } from "../../store/restaurants";
 import "../GetAllRestaurants/GetAllRestaurants.css";
+import SearchMapContainerMapContainer from "../Maps/SearchMaps";
 
 function GetAllRestaurantsPage() {
 	const dispatch = useDispatch();
@@ -44,8 +45,9 @@ function GetAllRestaurantsPage() {
 							Displaying restaurants below
 						</div>
 						<div className="all-restaurant-tiles">
-							{restaurantsLooper?.map((restaurant) => (
+							{restaurantsLooper?.map((restaurant, index) => (
 								<NavLink
+									key={restaurant?.id}
 									to={`/restaurants/${restaurant?.id}`}
 									className="indv-res-navlink"
 								>
@@ -58,7 +60,7 @@ function GetAllRestaurantsPage() {
 										</div>
 										<div className="res-info-container">
 											<div id="res-name-text">
-												{restaurant?.name}
+												{index + 1}. {restaurant?.name}
 											</div>
 											{restaurant?.reviews?.length ? (
 												<div className="rating-div">
@@ -166,7 +168,11 @@ function GetAllRestaurantsPage() {
 							))}
 						</div>
 					</div>
-					<div className="goggle-maps">GOOGLE MAPS!</div>
+					<div className="goggle-maps">
+						<SearchMapContainerMapContainer
+							restaurants={restaurantsLooper}
+						/>
+					</div>
 				</div>
 			) : (
 				<div id="no-res-text">Sorry no restaurants found..</div>
