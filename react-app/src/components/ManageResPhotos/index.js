@@ -15,7 +15,10 @@ function ManageResImgFunc({ resImages, name, restaurantId }) {
     const restaurant = useSelector((state) => state?.restaurant[restaurantId]);
     const history = useHistory();
 
-    console.log(restaurantId)
+    useEffect(() => {
+        dispatch(loadRestaurantDetails(restaurantId));
+    }, [dispatch, restaurantId]);
+
 
     return (
         <div id="images-modal-container">

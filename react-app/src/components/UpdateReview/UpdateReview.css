@@ -55,7 +55,7 @@ input:focus {
 	align-items: center;
 	font-size: 0.9rem;
 	margin: 0 0 0 0.4rem;
-	color: #c2836e;
+	color: rgb(107, 185, 240);
 	font-weight: 300;
 }
 
@@ -79,7 +79,7 @@ input:focus {
 	transition: 0.5s ease;
 }
 
-.star:hover ~ .star {
+.star:hover~.star {
 	background-color: rgb(107, 185, 240);
 }
 
@@ -133,6 +133,7 @@ input:focus {
 	height: 7rem;
 	border-radius: 0.5rem;
 	/* box-shadow: rgba(0, 0, 0, 0.35) 0px 1px 5px; */
+	width: 41.5rem;
 }
 
 .create-image-input::placeholder {
