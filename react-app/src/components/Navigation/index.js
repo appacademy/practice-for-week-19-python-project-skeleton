@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import { Autocomplete } from '@mui/material';
 import './Navigation.css';
 
-function Navigation({ isLoaded }) {
+function Navigation({isLoaded}) {
     const dispatch = useDispatch()
     const history = useHistory()
     const sessionUser = useSelector((state) => state?.session.user);
