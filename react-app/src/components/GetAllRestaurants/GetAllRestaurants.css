@@ -1,7 +1,6 @@
 .master-container {
 	display: flex;
 	justify-content: space-between;
-	margin: 5rem 0 0 0;
 }
 
 .all-restaurant-tiles {
@@ -14,11 +13,26 @@
 .res-detail-body {
 	display: flex;
 	flex-direction: column;
-	margin: 0 0 2rem 0;
+	margin: 5rem 0 2rem 0;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	height: 50.7rem;
+	width: 54rem;
+}
+
+.res-detail-body::-webkit-scrollbar {
+	display: none;
+}
+
+.res-detail-body::-webkit-scrollbar-thumb {
+	background-color: rgb(107, 185, 240);
+	background-size: 100%;
+	border-radius: 0.3rem;
+	padding-left: 50px;
 }
 
 .h1-lameo {
-	margin: 1rem 0 0 1rem;
+	margin: 1rem 0 1rem 1rem;
 	color: #0e0e0e;
 	font-size: 2rem;
 	font-weight: 600;
@@ -38,7 +52,7 @@
 	border-bottom: 1px solid rgba(0, 0, 0, 0.13);
 	border-radius: 0.3rem;
 	width: 50rem;
-	margin: 1rem 0 0 0;
+	margin: 0 0 1rem 0;
 	padding: 0.75rem;
 	transition: 0.5s ease;
 }
@@ -177,11 +191,14 @@
 
 .goggle-maps {
 	width: 62rem;
-	border: 1px solid black;
 	display: flex;
-	justify-content: flex-end;
-	align-items: center;
 	font-size: 10rem;
+	/* height: 52.6rem; */
+	margin: 0 0 0.2rem 0;
+	border-radius: 0.3rem;
+	align-items: flex-end;
+	justify-content: center;
+	height: 56.8rem;
 }
 
 #no-res-text {
@@ -192,4 +209,76 @@
 	font-size: 5rem;
 	font-weight: bolder;
 	font-style: italic;
+}
+
+.marker-tester {
+	display: flex;
+	flex-direction: column;
+	border-radius: 0.3rem;
+}
+
+.marker-rating-container {
+	display: flex;
+}
+
+#marker-rest-img {
+	object-fit: cover;
+	width: 15rem;
+	height: 10rem;
+	border-radius: 0.3rem;
+}
+
+#marker-rest-name {
+	margin: 0.2rem 0 0 0;
+	font-weight: bold;
+	transition: 0.3s ease;
+}
+
+#marker-rest-name:hover {
+	color: rgb(107, 185, 240);
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#marker-star {
+	display: flex;
+	align-items: center;
+	color: rgb(107, 185, 240);
+	margin: 0 0.1rem 0 0;
+	font-size: 0.7rem;
+}
+
+#marker-rest-rating {
+	display: flex;
+	align-items: center;
+	font-size: .85rem;
+	font-weight: 500;
+}
+
+.marker-rating-container {
+	display: flex;
+	align-items: center;
+	font-weight: 500;
+}
+
+#marker-center-dot {
+	font-size: 1.5rem;
+	font-weight: bolder;
+	margin: 0 0.2rem 0 0.2rem;
+	font-weight: 500;
+}
+
+.marker-info-window {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+#marker-new-text {
+	font-size: 0.85rem;
+}
+
+.marker-star-rating-both {
+	display: flex;
+	align-items: center;
 }

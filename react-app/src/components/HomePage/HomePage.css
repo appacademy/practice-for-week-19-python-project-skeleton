@@ -40,14 +40,15 @@
 #reviews-wrapper {
 	max-width: 1200px;
 	margin: 0 auto;
-	padding: 15px;
+	padding: 1.5rem;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
 }
-#reviews-wrapper h2 {
-	align-self: center;
-	letter-spacing: 5px;
+#recent-activity-text {
+	display: flex;
+	justify-content: center;
+	font-size: 1.8rem;
 }
 
 #homepage-review {
@@ -64,41 +65,51 @@
 	gap: 20px;
 }
 
-#reviewer-review::-webkit-scrollbar {
-	display: none;
-}
-
 .single-review {
 	display: flex;
 	flex-direction: column;
 	border: 1px solid rgba(116, 116, 116, 0.3);
-	border-radius: 3px;
-	padding: 15px;
+	border-radius: 0.3rem;
+	height: 25rem;
+	justify-content: center;
+	align-items: center;
+	transition: 0.5s ease;
 }
 .single-review:hover {
-	transition: 0.3s;
-	box-shadow: 1px 1px 19px 1px rgba(0, 0, 0, 0.5);
+	box-shadow: rgba(107, 185, 240, 0.35) 0px 5px 15px;
+	border: 1px solid rgb(107, 185, 240);
 }
 
 .homepage-image {
 	object-fit: cover;
-	height: 150px;
+	height: 10rem;
+	width: 22.87rem;
 }
 
 #reviewer-review {
-	padding: 8px;
-	line-height: 18px;
+	display: flex;
 	overflow-y: hidden;
+	line-height: 1.1rem;
+	justify-content: flex-start;
+	width: 20rem;
+	height: 5rem;
+	margin: 0.5rem 0 0 0;
+	font-size: 0.8rem;
+}
+
+.more-text {
+	font-weight: bold;
 }
 
 #reviewer-stars {
-	padding: 8px;
+	display: flex;
+	width: 20rem;
+	margin: 0.5rem 0 0 0;
 }
 
-#reviewer-username {
-	font-weight: bolder;
-	font-size: medium;
-	letter-spacing: 2px;
+#reviewer-username-home {
+	font-weight: 600;
+	font-size: .9rem;
 }
 
 #review-star-homepage {
@@ -116,10 +127,13 @@
 	justify-content: start;
 	flex-direction: row;
 	align-items: center;
+	margin: 1rem 0 1rem 0;
+	width: 21rem;
 }
 
 #prof-picture {
 	font-size: 2.5rem;
+	color: rgb(107, 185, 240);
 }
 
 #container-username-text {
@@ -127,7 +141,7 @@
 	flex-direction: column;
 	justify-content: start;
 	align-items: start;
-	margin-left: 0.8rem;
+	margin: 0 0 0 0.2rem;
 }
 
 #filler-text-review {
@@ -136,9 +150,10 @@
 
 #rst-name-in-review {
 	font-size: 0.9rem;
-	margin-left: 8px;
+	font-weight: bold;
+	width: 20rem;
+	margin: 1rem 0 0 0;
 }
-
 /* review end */
 
 /* restaurant start */
@@ -243,6 +258,21 @@
 }
 .star-rec:hover ~ .star-rec {
 	background-color: rgb(107, 185, 240);
+}
+
+#more-res-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.2rem;
+	transition: 0.3s ease;
+	font-weight: bold;
+}
+
+#more-res-btn:hover {
+	text-decoration: .2rem solid underline;
+	color: rgb(107, 185, 240);
+	cursor: pointer;
 }
 
 /* restaurant end */
