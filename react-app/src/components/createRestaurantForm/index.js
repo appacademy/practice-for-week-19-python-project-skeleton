@@ -8,6 +8,8 @@ import {
 } from "../../store/restaurants";
 import "./createRestaurant.css";
 
+
+
 const CreateRestaurant = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -18,7 +20,7 @@ const CreateRestaurant = () => {
 	const [state, setState] = useState("");
 	const [name, setName] = useState("");
 	const [price, setPrice] = useState("");
-	const [urls, setUrls] = useState(["", "", "", ""]);
+	const [urls, setUrls] = useState([""]);
 	const [errors, setErrors] = useState({});
 	const [category, setCategory] = useState("");
 	const [postalcode, setPostalCode] = useState("");
@@ -37,6 +39,9 @@ const CreateRestaurant = () => {
 		e.preventDefault();
 
 		const errors = {};
+		if (country.length > 2) {
+			errors.country = 'Alpha 2 Format required'
+		}
 		if (!country) {
 			errors.country = "Country is required";
 		}
@@ -45,6 +50,9 @@ const CreateRestaurant = () => {
 		}
 		if (!city) {
 			errors.city = "City is required";
+		}
+		if (state.length > 2) {
+			errors.state = "State must be abbreviated"
 		}
 		if (!state) {
 			errors.state = "State is required";
@@ -134,28 +142,70 @@ const CreateRestaurant = () => {
 	};
 
 	return (
-		<section className="create-restaurant-container">
+		<div className='create-wrapper-master'>
+		<section className="create-restaurant-container" >
 			<h2 className="form-heading">Your Restaurant's Address</h2>
 			<form
 				onSubmit={handleNewRestaurant}
 				className="create-restaurant-form"
+
 			>
-				<div className="form-group">
-					<label htmlFor="country">Country</label>
+				<div className="form-group restName">
+					<label htmlFor="restaurantName">
+						Restaurant name
+					</label>
 					<input
 						type="text"
-						id="country"
-						placeholder="Enter country"
-						value={country}
-						onChange={updateCountry}
-						className={`input-field ${errors.country ? "error" : ""
-							}`}
+						id="restaurantName"
+						placeholder="Enter restaurant name"
+						value={name}
+						onChange={updateName}
+						className={`input-field ${errors.name ? "error" : ""}`}
 					/>
-					{errors.country && (
-						<p className="error-message">{errors.country}</p>
+					{errors.name && (
+						<p className="error-message">{errors.name}</p>
 					)}
 				</div>
-				<div className="form-group">
+				<div className="form-group category">
+					<label htmlFor="category">Category</label>
+					<select
+						id="category"
+						onChange={updateCategory}
+						className={`input-field ${errors.city ? "error" : ""}`}
+						required
+					>
+						<option value="0">Genre</option>
+						<option value="Mexican">Mexican</option>
+						<option value="Korean">Korean</option>
+						<option value="American">American</option>
+						<option value="Japanese">Japanese</option>
+						<option value="French">French</option>
+						<option value="Indian">Indian</option>
+					</select>
+					{errors.category && (
+						<p className="error-message">{errors.category}</p>
+					)}
+					</div>
+				<div className="form-group price">
+				<label htmlFor="price">
+						Average Price
+					</label>
+					<select
+						onChange={updatePrice}
+						className={`input-field ${errors.city ? "error" : ""}`}
+						required
+					>
+						<option value="0">Price</option>
+						<option value="1">$</option>
+						<option value="2">$$</option>
+						<option value="3">$$$</option>
+						<option value="4">$$$$</option>
+					</select>
+					{errors.price && (
+						<p className="error-message">{errors.price}</p>
+					)}
+				</div>
+				<div className="form-group address">
 					<label htmlFor="address">Address</label>
 					<input
 						type="text"
@@ -170,7 +220,7 @@ const CreateRestaurant = () => {
 						<p className="error-message">{errors.address}</p>
 					)}
 				</div>
-				<div className="form-group">
+				<div className="form-group city">
 					<label htmlFor="city">City</label>
 					<input
 						type="text"
@@ -184,7 +234,23 @@ const CreateRestaurant = () => {
 						<p className="error-message">{errors.city}</p>
 					)}
 				</div>
-				<div className="form-group">
+				<div className="form-group country">
+					<label htmlFor="country">Country</label>
+					<input
+						type="text"
+						id="country"
+						placeholder="Enter country"
+						value={country}
+						onChange={updateCountry}
+						className={`input-field ${errors.country ? "error" : ""
+							}`}
+					/>
+					{errors.country && (
+						<p className="error-message">{errors.country}</p>
+					)}
+				</div>
+
+				<div className="form-group state">
 					<label htmlFor="state">State</label>
 					<input
 						type="text"
@@ -198,7 +264,7 @@ const CreateRestaurant = () => {
 						<p className="error-message">{errors.state}</p>
 					)}
 				</div>
-				<div className="form-group">
+				<div className="form-group postalCode">
 					<label htmlFor="state">Postal Code</label>
 					<input
 						type="text"
@@ -214,69 +280,10 @@ const CreateRestaurant = () => {
 					)}
 				</div>
 
-				<h2 className="form-heading">
-					Add the Name and Genre of your Restaurant
-				</h2>
-				<div className="form-group">
-					<label htmlFor="category">Category</label>
-					<select
-						id="category"
-						onChange={updateCategory}
-						className="input-field"
-						required
-					>
-						<option value="0">Genre</option>
-						<option value="Mexican">Mexican</option>
-						<option value="Korean">Korean</option>
-						<option value="American">American</option>
-						<option value="Japanese">Japanese</option>
-						<option value="French">French</option>
-						<option value="Indian">Indian</option>
-					</select>
-					{errors.category && (
-						<p className="error-message">{errors.category}</p>
-					)}
-				</div>
-				<div className="form-group">
-					<label htmlFor="restaurantName">
-						Name of your Restaurant
-					</label>
-					<input
-						type="text"
-						id="restaurantName"
-						placeholder="Enter restaurant name"
-						value={name}
-						onChange={updateName}
-						className={`input-field ${errors.name ? "error" : ""}`}
-					/>
-					{errors.name && (
-						<p className="error-message">{errors.name}</p>
-					)}
-				</div>
 
-				<h2 className="form-heading">Set an Average Cost per Person</h2>
-				<div className="form-group">
-					<select
-						onChange={updatePrice}
-						className="input-field"
-						required
-					>
-						<option value="0">Price</option>
-						<option value="1">$</option>
-						<option value="2">$$</option>
-						<option value="3">$$$</option>
-						<option value="4">$$$$</option>
-					</select>
-					{errors.price && (
-						<p className="error-message">{errors.price}</p>
-					)}
-				</div>
 
-				<h2 className="form-heading">Add Photos of your Restaurant</h2>
-				<p>
-					Submit a link to at least one photo to publish your
-					restaurant.
-				</p>
+
+
 				{urls?.map((url, index) => (
 					<div className="form-group" key={index}>
 						<label htmlFor={`imageUrl${index + 1}`}>
@@ -291,7 +298,7 @@ const CreateRestaurant = () => {
 								newUrls[index] = e.target.files[0];
 								setUrls(newUrls);
 							}}
-							className="input-field"
+							className={`input-field ${errors.city ? "error" : ""}`}
 						/>
 						{errors.urls && (
 							<p className="error-message">{errors.urls}</p>
@@ -301,7 +308,6 @@ const CreateRestaurant = () => {
 				{errors.invalidAddress && (
 					<p className="error-message">{errors.invalidAddress}</p>
 				)}
-
 				<button
 					type="submit"
 					className="create-restaurant-btn"
@@ -309,8 +315,11 @@ const CreateRestaurant = () => {
 				>
 					Publish Restaurant
 				</button>
+
 			</form>
+
 		</section>
+	</div>
 	);
 };
 
