@@ -9,6 +9,7 @@ import DeleteReviewForm from "../DeleteReview";
 import ImagesFormModal from "../GetAllImagesModal";
 import ImagesModalButton from "../OpenModalButton/indexv3";
 import CreateRestaurantImage from "../createResImagesForm";
+import UpdateResImgFunc from "../ManageResPhotos";
 import Maps from "../Maps/Maps";
 import MapContainer from "../Maps/index";
 
@@ -26,10 +27,12 @@ function RestaurantDetailsPage() {
 	}, [dispatch, restaurantId]);
 
 	const images = [];
+	const resImages = [];
 
 	if (restaurant?.images.length) {
 		restaurant?.images.forEach((image) => {
 			images.push(image.url);
+			resImages.push(image)
 		});
 	}
 	if (restaurant?.reviews.length) {
@@ -145,6 +148,12 @@ function RestaurantDetailsPage() {
 								}
 							/>
 							<DetailsModalButton
+								buttonText="Manage Restaurant Photos"
+								modalComponent={
+									<UpdateResImgFunc resImages={resImages} name={restaurant?.name} restaurantId={restaurantId} />
+								}
+							/>
+							<DetailsModalButton
 								buttonText="Delete Restaurant"
 								modalComponent={
 									<DeleteForm restaurantId={restaurant?.id} />
@@ -207,11 +216,11 @@ function RestaurantDetailsPage() {
 											Update Review
 										</button>
 										<button
-										onClick={() =>
-											history.push(
-												`/restaurants/${restaurant?.id}/review/${review?.id}/images/edit`
-											)
-										}>
+											onClick={() =>
+												history.push(
+													`/restaurants/${restaurant?.id}/review/${review?.id}/images/edit`
+												)
+											}>
 											Manage Photos
 										</button>
 										<DetailsModalButton
