@@ -7,14 +7,14 @@ import TextField from '@mui/material/TextField';
 import { Autocomplete } from '@mui/material';
 import './Navigation.css';
 
-function Navigation({isLoaded}) {
-    const dispatch = useDispatch()
-    const history = useHistory()
-    const sessionUser = useSelector((state) => state?.session.user);
-    const restaurantsNav = useSelector((state) => state?.allRestaurants);
-    const [name, setName] = useState("")
-    const [category, setCategory] = useState(0)
-    const [price, setPrice] = useState(0)
+function Navigation({ isLoaded }) {
+	const dispatch = useDispatch();
+	const history = useHistory();
+	const sessionUser = useSelector((state) => state?.session.user);
+	const restaurantsNav = useSelector((state) => state?.allRestaurants);
+	const [name, setName] = useState("");
+	const [category, setCategory] = useState(0);
+	const [price, setPrice] = useState(0);
 
     useEffect(() => {
         dispatch(getAllRestaurants());
