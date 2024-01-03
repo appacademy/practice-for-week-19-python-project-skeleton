@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
 	createRestaurant,
 	createRestaurantImage,
-	loadRestaurantDetails
+	loadRestaurantDetails,
 } from "../../store/restaurants";
 import "./createRestaurant.css";
-
-
+import Autocomplete from "react-google-autocomplete";
+import { getKey } from "../../store/maps";
 
 const CreateRestaurant = () => {
 	const dispatch = useDispatch();
@@ -20,27 +20,37 @@ const CreateRestaurant = () => {
 	const [state, setState] = useState("");
 	const [name, setName] = useState("");
 	const [price, setPrice] = useState("");
-	const [urls, setUrls] = useState([""]);
+	const [image, setImage] = useState("");
+	const [lat, setLat] = useState();
+	const [lng, setLng] = useState();
 	const [errors, setErrors] = useState({});
+	const [invalidAddyError, setInvalidAddyError] = useState("");
 	const [category, setCategory] = useState("");
 	const [postalcode, setPostalCode] = useState("");
 	const [validSubmit, setValidSubmit] = useState(false);
 
-	const updateAddress = (e) => setAddress(e.target.value);
-	const updateCity = (e) => setCity(e.target.value);
-	const updateState = (e) => setState(e.target.value);
-	const updateCountry = (e) => setCountry(e.target.value);
+	const key = useSelector((state) => state.maps.key);
+
 	const updateName = (e) => setName(e.target.value);
 	const updatePrice = (e) => setPrice(e.target.value);
 	const updateCategory = (e) => setCategory(e.target.value);
-	const updatePostalCode = (e) => setPostalCode(e.target.value);
+
+	useEffect(() => {
+		if (!key) {
+			dispatch(getKey());
+		}
+	}, [dispatch, key]);
+
+	if (!key) {
+		return null;
+	}
 
 	const handleNewRestaurant = async (e) => {
 		e.preventDefault();
 
 		const errors = {};
 		if (country.length > 2) {
-			errors.country = 'Alpha 2 Format required'
+			errors.country = "Alpha 2 Format required";
 		}
 		if (!country) {
 			errors.country = "Country is required";
@@ -52,7 +62,7 @@ const CreateRestaurant = () => {
 			errors.city = "City is required";
 		}
 		if (state.length > 2) {
-			errors.state = "State must be abbreviated"
+			errors.state = "State must be abbreviated";
 		}
 		if (!state) {
 			errors.state = "State is required";
@@ -69,70 +79,46 @@ const CreateRestaurant = () => {
 		if (!category) {
 			errors.category = "Category is required";
 		}
-		if (!urls[0]) {
+		if (!image) {
 			errors.urls = "At least one image is required";
+		}
+		if (invalidAddyError) {
+			errors.invalidAddress = invalidAddyError;
 		}
 		setErrors(errors);
 
 		if (Object.values(errors).length === 0) {
 			setValidSubmit(true);
 
-			const validSubmit = {
-				address: {
-					regionCode: country,
-					locality: city,
-					administrativeArea: state,
-					postalCode: postalcode,
-					addressLines: [address],
-				},
-				enableUspsCass: true,
-			};
-
 			try {
-				const addressValidate = await fetch(
-					"https://addressvalidation.googleapis.com/v1:validateAddress?key=AIzaSyDNLNEeKNVLoQYEToYv5bca-1_Vy9YtHM4",
-					{
-						method: "POST",
-						headers: {
-							"Content-Type": "application/json",
-						},
-						body: JSON.stringify(validSubmit),
-					}
+				const safeSpot = {
+					address,
+					city,
+					state,
+					country,
+					name,
+					price,
+					category,
+					postalcode,
+					lat: lat,
+					lng: lng,
+				};
+				const createdRestaurant = await dispatch(
+					createRestaurant(safeSpot)
 				);
-				const response = await addressValidate.json();
-				console.log(response);
-
-				if (
-					response.result.verdict.validationGranularity === "PREMISE"
-				) {
-					const safeSpot = {
-						address,
-						city,
-						state,
-						country,
-						name,
-						price,
-						category,
-						postalcode,
-						lat: response.result.geocode.location.latitude,
-						lng: response.result.geocode.location.longitude,
-					};
-					const createdRestaurant = await dispatch(
-						createRestaurant(safeSpot)
-					);
-					if (createdRestaurant) {
-						urls?.forEach(async (url) => {
-							if (url) {
-								const formData = new FormData();
-								formData.append("url", url)
-								await dispatch(createRestaurantImage(formData, createdRestaurant.id));
-							}
-							await dispatch(loadRestaurantDetails(createdRestaurant.id))
-						});
-						history.push(`/restaurants/${createdRestaurant.id}`);
+				if (createdRestaurant) {
+					if (image) {
+						const formData = new FormData();
+						formData.append("url", image);
+						await dispatch(
+							createRestaurantImage(
+								formData,
+								createdRestaurant.id
+							)
+						);
 					}
-				} else {
-					errors.invalidAddress = "Please enter a valid address!";
+					await dispatch(loadRestaurantDetails(createdRestaurant.id));
+					history.push(`/restaurants/${createdRestaurant.id}`);
 				}
 			} catch (error) {
 				console.error("Restaurant creation failed:", error);
@@ -142,184 +128,226 @@ const CreateRestaurant = () => {
 	};
 
 	return (
-		<div className='create-wrapper-master'>
-		<section className="create-restaurant-container" >
-			<h2 className="form-heading">Your Restaurant's Address</h2>
-			<form
-				onSubmit={handleNewRestaurant}
-				className="create-restaurant-form"
-
-			>
-				<div className="form-group restName">
-					<label htmlFor="restaurantName">
-						Restaurant name
-					</label>
-					<input
-						type="text"
-						id="restaurantName"
-						placeholder="Enter restaurant name"
-						value={name}
-						onChange={updateName}
-						className={`input-field ${errors.name ? "error" : ""}`}
-					/>
-					{errors.name && (
-						<p className="error-message">{errors.name}</p>
-					)}
-				</div>
-				<div className="form-group category">
-					<label htmlFor="category">Category</label>
-					<select
-						id="category"
-						onChange={updateCategory}
-						className={`input-field ${errors.city ? "error" : ""}`}
-						required
-					>
-						<option value="0">Genre</option>
-						<option value="Mexican">Mexican</option>
-						<option value="Korean">Korean</option>
-						<option value="American">American</option>
-						<option value="Japanese">Japanese</option>
-						<option value="French">French</option>
-						<option value="Indian">Indian</option>
-					</select>
-					{errors.category && (
-						<p className="error-message">{errors.category}</p>
-					)}
-					</div>
-				<div className="form-group price">
-				<label htmlFor="price">
-						Average Price
-					</label>
-					<select
-						onChange={updatePrice}
-						className={`input-field ${errors.city ? "error" : ""}`}
-						required
-					>
-						<option value="0">Price</option>
-						<option value="1">$</option>
-						<option value="2">$$</option>
-						<option value="3">$$$</option>
-						<option value="4">$$$$</option>
-					</select>
-					{errors.price && (
-						<p className="error-message">{errors.price}</p>
-					)}
-				</div>
-				<div className="form-group address">
-					<label htmlFor="address">Address</label>
-					<input
-						type="text"
-						id="address"
-						placeholder="Enter address"
-						value={address}
-						onChange={updateAddress}
-						className={`input-field ${errors.address ? "error" : ""
-							}`}
-					/>
-					{errors.address && (
-						<p className="error-message">{errors.address}</p>
-					)}
-				</div>
-				<div className="form-group city">
-					<label htmlFor="city">City</label>
-					<input
-						type="text"
-						id="city"
-						placeholder="Enter city"
-						value={city}
-						onChange={updateCity}
-						className={`input-field ${errors.city ? "error" : ""}`}
-					/>
-					{errors.city && (
-						<p className="error-message">{errors.city}</p>
-					)}
-				</div>
-				<div className="form-group country">
-					<label htmlFor="country">Country</label>
-					<input
-						type="text"
-						id="country"
-						placeholder="Enter country"
-						value={country}
-						onChange={updateCountry}
-						className={`input-field ${errors.country ? "error" : ""
-							}`}
-					/>
-					{errors.country && (
-						<p className="error-message">{errors.country}</p>
-					)}
-				</div>
-
-				<div className="form-group state">
-					<label htmlFor="state">State</label>
-					<input
-						type="text"
-						id="state"
-						placeholder="Enter state"
-						value={state}
-						onChange={updateState}
-						className={`input-field ${errors.state ? "error" : ""}`}
-					/>
-					{errors.state && (
-						<p className="error-message">{errors.state}</p>
-					)}
-				</div>
-				<div className="form-group postalCode">
-					<label htmlFor="state">Postal Code</label>
-					<input
-						type="text"
-						id="postal-code"
-						placeholder="Enter Postal Code"
-						value={postalcode}
-						onChange={updatePostalCode}
-						className={`input-field ${errors.postalcode ? "error" : ""
-							}`}
-					/>
-					{errors.postalcode && (
-						<p className="error-message">{errors.postalcode}</p>
-					)}
-				</div>
-
-
-
-
-
-				{urls?.map((url, index) => (
-					<div className="form-group" key={index}>
-						<label htmlFor={`imageUrl${index + 1}`}>
-							Image URL {index + 1}
-						</label>
-						<input
-							type="file"
-							id={`imageUrl${index + 1}`}
-							placeholder="Enter image URL"
-							onChange={(e) => {
-								const newUrls = [...urls];
-								newUrls[index] = e.target.files[0];
-								setUrls(newUrls);
-							}}
-							className={`input-field ${errors.city ? "error" : ""}`}
-						/>
-						{errors.urls && (
-							<p className="error-message">{errors.urls}</p>
-						)}
-					</div>
-				))}
-				{errors.invalidAddress && (
-					<p className="error-message">{errors.invalidAddress}</p>
-				)}
-				<button
-					type="submit"
-					className="create-restaurant-btn"
-					disabled={validSubmit}
+		<div className="create-wrapper-master">
+			<div className="create-restaurant-container">
+				<form
+					onSubmit={handleNewRestaurant}
+					className="create-restaurant-form"
 				>
-					Publish Restaurant
-				</button>
-
-			</form>
-
-		</section>
-	</div>
+					<div className="within-form-master-container">
+						<div className="form-heading-create">
+							Enter Your Restaurant's Information Below.
+						</div>
+						<div className="res-name-price-cat-container">
+							<div className="form-group restName">
+								<div htmlFor="restaurantName">
+									Restaurant name
+								</div>
+								<input
+									type="text"
+									id="restaurantName"
+									placeholder="Enter restaurant name"
+									value={name}
+									onChange={updateName}
+									className={`input-field ${
+										errors.name ? "error" : ""
+									}`}
+								/>
+								{errors.name && (
+									<p className="error-message-name">
+										⚠︎ {errors.name}
+									</p>
+								)}
+							</div>
+							<div className="form-group category">
+								<div
+									className="create-small-boxers"
+									htmlFor="category-create"
+								>
+									Category
+								</div>
+								<select
+									id="category-create"
+									onChange={updateCategory}
+									className={`input-field ${
+										errors.city ? "error" : ""
+									}`}
+									required
+								>
+									<option value="0">Genre</option>
+									<option value="Mexican">Mexican</option>
+									<option value="Korean">Korean</option>
+									<option value="American">American</option>
+									<option value="Japanese">Japanese</option>
+									<option value="French">French</option>
+									<option value="Indian">Indian</option>
+								</select>
+								{errors.category && (
+									<p className="error-message">
+										⚠︎ {errors.category}
+									</p>
+								)}
+							</div>
+							<div className="form-group price">
+								<div
+									className="create-small-boxers"
+									htmlFor="price-create"
+								>
+									Average Price
+								</div>
+								<select
+									id="price-create"
+									onChange={updatePrice}
+									className={`input-field ${
+										errors.city ? "error" : ""
+									}`}
+									required
+								>
+									<option value="0">Price</option>
+									<option value="1">$</option>
+									<option value="2">$$</option>
+									<option value="3">$$$</option>
+									<option value="4">$$$$</option>
+								</select>
+								{errors.price && (
+									<p className="error-message">
+										⚠︎ {errors.price}
+									</p>
+								)}
+							</div>
+						</div>
+						<div className="auto-complete-container">
+							<div
+								id="res-address-create"
+								htmlFor="auto-complete-box"
+							>
+								Restaurant Address
+							</div>
+							<Autocomplete
+								id="auto-complete-box"
+								apiKey={key}
+								onPlaceSelected={(place) => {
+									if (place?.address_components) {
+										setAddress(
+											place?.address_components[0]
+												?.short_name +
+												" " +
+												place?.address_components[1]
+													?.short_name
+										);
+										if (place?.geometry?.location) {
+											setLng(
+												place.geometry.location.lng()
+											);
+											setLat(
+												place.geometry.location.lat()
+											);
+										}
+										place?.address_components.forEach(
+											(component) => {
+												if (
+													component?.types[0] ===
+													"locality"
+												) {
+													setCity(
+														component?.short_name
+													);
+												}
+												if (
+													component?.types[0] ===
+													"administrative_area_level_1"
+												) {
+													setState(
+														component?.short_name
+													);
+												}
+												if (
+													component?.types[0] ===
+													"country"
+												) {
+													setCountry(
+														component?.short_name
+													);
+												}
+												if (
+													component?.types[0] ===
+													"postal_code"
+												) {
+													setPostalCode(
+														component?.short_name
+													);
+												}
+											}
+										);
+									}
+									if (!place?.address_components) {
+										setInvalidAddyError(
+											"Please enter a valid address!"
+										);
+									} else {
+										setInvalidAddyError("");
+									}
+								}}
+								options={{
+									fields: ["ALL"],
+									componentRestrictions: { country: "US" },
+									types: ["address"],
+								}}
+							/>
+							{invalidAddyError && (
+								<p className="error-message-invalidAddy">
+									⚠︎ {invalidAddyError}
+								</p>
+							)}
+						</div>
+						<div className="form-row-images-create">
+							<div className="attch-photos-txt-create">
+								Attach Photos
+							</div>
+							<label className="create-image-label-create">
+								<div className="upload-img-icon-container-create">
+									<div
+										id="upload-image-icon-create"
+										className="material-symbols-outlined"
+									>
+										add_a_photo
+										<input
+											type="file"
+											accept="image/png, image/jpeg, image/jpg"
+											placeholder="Image URL"
+											onChange={(e) => {
+												setImage(e.target.files[0]);
+											}}
+											className="create-image-input-create"
+											// multiple="true"
+										/>
+										{image && (
+											<div id="image-name-create">
+												Selected files: {image?.name}
+											</div>
+										)}
+									</div>
+								</div>
+							</label>
+							{errors.urls && (
+								<span className="create-res-image-error">
+									⚠︎ {errors.urls}
+								</span>
+							)}
+						</div>
+						<div className="create-res-btn-container">
+							<button
+								type="submit"
+								className="create-restaurant-btn"
+								disabled={validSubmit}
+							>
+								Publish Restaurant
+							</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
 	);
 };
 

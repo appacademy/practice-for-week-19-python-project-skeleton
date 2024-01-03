@@ -1,11 +1,11 @@
 body {
-    margin: 0;
-    padding: 0
+	margin: 0;
+	padding: 0;
 }
 html {
-    height: 100vh;
-    margin: 0;
-    padding: 0;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
 }
 
 /* .create-restaurant-container {
@@ -81,59 +81,218 @@ label {
     width: 12rem;
     height: 2.5rem;
 } */
+
+.auto-complete-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 45rem;
+	margin: 2rem 0 0 0;
+}
+
+#auto-complete-box {
+	width: 38rem;
+	border-radius: 0.3rem;
+	border: 2px solid rgba(107, 185, 240);
+	height: 2.5rem;
+}
+
+#res-address-create {
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	width: 38.5rem;
+	border-radius: 0.3rem;
+}
+
+.form-heading-create {
+	display: flex;
+	justify-content: center;
+	font-weight: bold;
+	font-size: 1.5rem;
+	margin: 0 0 2.5rem 0;
+}
+
+#price-create,
+#category-create {
+	width: 10rem;
+	height: 2.9rem;
+	margin: 0 0 0 0.5rem;
+	border-radius: 0.3rem;
+	border: 2px solid rgba(107, 185, 240);
+	cursor: pointer;
+}
+
+#price-create:focus,
+#category-create:focus {
+	outline: none;
+}
+
+.create-small-boxers {
+	margin: 0 0 0 0.6rem;
+}
+
 .create-wrapper-master {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 99vh;
+}
 
-  .create-restaurant-container {
-    max-width: 55rem; /* 600px in rem */
-    width: 100%;
-    padding: 1.25rem; /* 20px in rem */
-    box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1); /* 10px in rem */
-  }
+.within-form-master-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	height: 25rem;
+	width: 45rem;
+}
 
-  .create-restaurant-form {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.625rem; /* 10px in rem, reduced the gap */
-  }
+.create-restaurant-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 55rem;
+	height: 40rem;
+	border-radius: 0.3rem;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 
-  .form-group {
-    margin: 0.625rem; /* 10px in rem, reduced the margin */
-  }
+.res-name-price-cat-container {
+	display: flex;
+	justify-content: center;
+	width: 45rem;
+}
 
-  .input-field {
-    width: 80%;
-    padding: 0.938rem; /* 15px in rem */
-    border: 0.063rem solid #ccc; /* 1px in rem */
-    border-radius: 0.25rem; /* 4px in rem */
-  }
+#restaurantName {
+	width: 17rem;
+	height: 2.5rem;
+	border-radius: 0.3rem;
+	border: 2px solid rgba(107, 185, 240);
+}
 
-  .error {
-    border-color: #ff6347; /* Light Coral */
-  }
+.error {
+	border-color: #ff6347; /* Light Coral */
+}
 
-  .error-message {
-    color: #ff6347; /* Light Coral */
-    margin-top: 0.313rem; /* 5px in rem */
-  }
+.error-message {
+	color: red;
+	font-weight: 800;
+	margin: 0.2rem 0 0 0.6rem;
+	font-size: 0.85rem;
+}
 
-  .create-restaurant-btn {
-    grid-column: 2;
-    margin-top: 0.625rem; /* 10px in rem */
-    padding: 0.938rem; /* 15px in rem */
-    background-color: rgb(107, 185, 240);
-    color: white;
-    border: none;
-    border-radius: 0.25rem; /* 4px in rem */
-    cursor: pointer;
-    font-size: 1rem; /* 16px in rem */
-  }
+.error-message-name {
+	color: red;
+	font-weight: 800;
+	margin: 0.2rem 0 0 0;
+	font-size: 0.85rem;
+}
 
-  .create-restaurant-btn:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
+.form-row-images-create {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 45rem;
+	margin: 2rem 0 0 0;
+}
+
+.attch-photos-txt-create {
+	display: flex;
+	width: 38.5rem;
+}
+
+.create-res-btn-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 2rem 0 0 0;
+}
+
+.create-restaurant-btn {
+	background-color: rgb(107, 185, 240);
+	color: white;
+	border: none;
+	border-radius: 0.3rem; /* 4px in rem */
+	cursor: pointer;
+	font-size: 1rem; /* 16px in rem */
+	width: 38.5rem;
+	height: 3rem;
+	transition: 0.5s ease;
+}
+
+.create-restaurant-btn:hover {
+	box-shadow: 0.5px 0.5px #373737, 1px 1px #373737, 2px 2px #373737,
+		3px 3px #373737;
+	-webkit-transform: translateX(-3px);
+	transform: translateX(-3px);
+	transition: 0.5s ease;
+}
+
+.create-restaurant-btn:disabled {
+	background-color: #ccc;
+	cursor: not-allowed;
+}
+
+.upload-img-icon-container-create {
+	border: 0.1px solid rgba(128, 128, 128, 0.5);
+	height: 6rem;
+	border-radius: 0.5rem;
+	width: 38.5rem;
+}
+
+.create-image-input-create {
+	width: 2rem;
+	height: 0.01rem;
+	border: solid 0.1px rgb(14, 14, 14, 0.3);
+	border-radius: 4px;
+	color: rgb(107, 185, 240);
+	transition: 0.2s ease-in-out;
+	visibility: hidden;
+}
+
+.create-image-input-create::placeholder {
+	color: #888888;
+}
+
+#upload-image-icon-create:hover {
+	color: rgb(107, 185, 240);
+}
+
+.upload-img-icon-container-create:hover {
+	cursor: pointer;
+}
+
+#upload-image-icon-create {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+	height: 7rem;
+	font-size: 2rem;
+	transition: 0.5s ease;
+}
+
+#image-name-create {
+	color: black;
+	font-size: 1rem;
+	margin: 0.5rem 0 0 0;
+}
+
+.create-res-image-error {
+	width: 38.5rem;
+	color: red;
+	font-weight: 800;
+	margin: 0.2rem 0 0 0;
+	font-size: 0.85rem;
+}
+
+.error-message-invalidAddy {
+	width: 38.5rem;
+	color: red;
+	font-weight: 800;
+	margin: 0.2rem 0 0 0;
+	font-size: 0.85rem;
+}

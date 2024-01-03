@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, NavLink, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { loadRestaurantDetails } from "../../store/restaurants";
 import "../RestaurantDetails/RestaurantDetails.css";
 import DetailsModalButton from "../OpenModalButton/indexv4";
@@ -10,7 +10,6 @@ import ImagesFormModal from "../GetAllImagesModal";
 import ImagesModalButton from "../OpenModalButton/indexv3";
 import CreateRestaurantImage from "../createResImagesForm";
 import UpdateResImgFunc from "../ManageResPhotos";
-import Maps from "../Maps/Maps";
 import MapContainer from "../Maps/index";
 
 function RestaurantDetailsPage() {
